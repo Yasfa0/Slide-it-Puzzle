@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradientbackground"
+    tools:context=".PuzzleActivity">
+
+    <ImageView
+        android:id="@+id/custom"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/custom"
+        android:adjustViewBounds="true"
+        android:maxWidth="150dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toTopOf="@id/card"
+        app:layout_constraintLeft_toLeftOf="@id/card"
+        app:layout_constraintTop_toBottomOf="@id/back"
+        />
+
+
+    <ImageView
+        android:id="@+id/classic"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/classic"
+        android:adjustViewBounds="true"
+        android:maxWidth="150dp"
+        app:layout_constraintRight_toRightOf="@id/card"
+        app:layout_constraintBottom_toTopOf="@id/card"
+        app:layout_constraintLeft_toRightOf="@id/custom"
+        app:layout_constraintTop_toBottomOf="@id/back"
+        />
+
+    <ImageView
+        android:id="@+id/timed"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/time"
+        android:adjustViewBounds="true"
+        android:maxWidth="150dp"
+        app:layout_constraintRight_toRightOf="@id/classic"
+        app:layout_constraintBottom_toTopOf="@id/custom"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/logo"
+        android:layout_height="130dp"
+        android:layout_width="130dp"
+        android:src="@drawable/logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/card"
+        />
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxWidth="50dp"
+        android:src="@drawable/back"
+        app:layout_constraintLeft_toLeftOf="@id/card"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="50dp"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:cardCornerRadius="20dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        app:cardBackgroundColor="@color/white2"
+        android:paddingTop="40dp">
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
