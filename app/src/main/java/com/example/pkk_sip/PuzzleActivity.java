@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -20,10 +22,12 @@ public class PuzzleActivity extends AppCompatActivity {
 
     Bundle bundle;
     ImageView no1,no2,no3,start,blur,classic,timed,custom,pause,timeBox;
+    ImageView up,down,left,right;
     Button resume,toMenu,restart;
     CardView card,cardmain;
     TextView timer,skip;
     MediaPlayer voice;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,12 @@ public class PuzzleActivity extends AppCompatActivity {
         no3 = (ImageView) findViewById(R.id.no3);
         start = (ImageView) findViewById(R.id.start);
         blur = (ImageView) findViewById(R.id.blur);
+        up = findViewById(R.id.pad_up);
+        down = findViewById(R.id.pad_down);
+        right = findViewById(R.id.pad_right);
+        left = findViewById(R.id.pad_left);
+
+        pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
         resume = findViewById(R.id.resume);
 
@@ -145,17 +155,22 @@ public class PuzzleActivity extends AppCompatActivity {
 
             public void onTick(long waktu){
                 no1.setVisibility(View.VISIBLE);
+                //chimeSound();
+
 
                 if (waktu < 4000){
                     no2.setVisibility(View.VISIBLE);
+                    //chimeSound();
                 }
 
                 if (waktu < 3000){
                     no3.setVisibility(View.VISIBLE);
+                    //chimeSound();
                 }
 
                 if (waktu < 2000){
                     start.setVisibility(View.VISIBLE);
+                    //chimeSound();
                 }
 
                 }
@@ -174,20 +189,83 @@ public class PuzzleActivity extends AppCompatActivity {
             }
 
         }.start();
+
+
+        up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playSound();
+            }
+        });
+
+        down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playSound();
+            }
+        });
+
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playSound();
+            }
+        });
+
+        left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playSound();
+            }
+        });
+
     }
 
     public void playSound(){
 
-        voice = MediaPlayer.create(this,R.raw.tone);
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+            voice = MediaPlayer.create(this,R.raw.tone);
+            voice.start();
+            voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    voice.stop();
+                    voice.release();
+                }
+            });
+        }else{
 
-        voice.start();
+        }
+    }
 
+    public void chimeSound(){
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+            voice = MediaPlayer.create(this,R.raw.electronic_chime);
+            voice.start();
+            voice.setLooping(false);
+            voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    voice.stop();
+                    voice.release();
+                }
+            });
+        }else{}
     }
 
     public void backSound(){
 
-        voice = MediaPlayer.create(this,R.raw.computer_error);
-        voice.start();
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+            voice = MediaPlayer.create(this,R.raw.computer_error);
+            voice.start();
+            voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    voice.stop();
+                    voice.release();
+                }
+            });
+        }else{}
 
     }
 

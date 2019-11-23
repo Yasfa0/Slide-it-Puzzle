@@ -2,7 +2,9 @@ package com.example.pkk_sip;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +16,7 @@ public class Preview extends AppCompatActivity {
 
     ImageView back,play;
     MediaPlayer voice;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,8 @@ public class Preview extends AppCompatActivity {
 
         back = findViewById(R.id.back);
         play = findViewById(R.id.play);
+
+        pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,16 +57,34 @@ public class Preview extends AppCompatActivity {
 
     public void playSound(){
 
-        voice = MediaPlayer.create(this,R.raw.tone);
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+            voice = MediaPlayer.create(this,R.raw.tone);
+            voice.start();
+            voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    voice.stop();
+                    voice.release();
+                }
+            });
+        }else{
 
-        voice.start();
-
+        }
     }
 
     public void backSound(){
 
-        voice = MediaPlayer.create(this,R.raw.computer_error);
-        voice.start();
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+            voice = MediaPlayer.create(this,R.raw.computer_error);
+            voice.start();
+            voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    voice.stop();
+                    voice.release();
+                }
+            });
+        }else{}
 
     }
 }

@@ -2,7 +2,9 @@ package com.example.pkk_sip;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +19,8 @@ public class CustomTimeActivity extends AppCompatActivity {
     TextView input1,input2,input3,input4;
     ImageView del,num0,num1,num2,num3,num4,num5,num6,num7,num8,num9,clear,left,right;
     int posisi = 0;
-    MediaPlayer ok;
+    MediaPlayer voice;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,8 @@ public class CustomTimeActivity extends AppCompatActivity {
         input2 = (TextView) findViewById(R.id.input2);
         input3 = (TextView) findViewById(R.id.input3);
         input4 = (TextView) findViewById(R.id.input4);
+
+        pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
         right = (ImageView) findViewById(R.id.right);
 
@@ -691,16 +696,34 @@ public class CustomTimeActivity extends AppCompatActivity {
 
     public void playSound(){
 
-        ok = MediaPlayer.create(this,R.raw.tone);
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+            voice = MediaPlayer.create(this,R.raw.tone);
+            voice.start();
+            voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    voice.stop();
+                    voice.release();
+                }
+            });
+        }else{
 
-        ok.start();
-
+        }
     }
 
     public void backSound(){
 
-        ok = MediaPlayer.create(this,R.raw.computer_error);
-        ok.start();
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+            voice = MediaPlayer.create(this,R.raw.computer_error);
+            voice.start();
+            voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    voice.stop();
+                    voice.release();
+                }
+            });
+        }else{}
 
     }
 

@@ -2,7 +2,9 @@ package com.example.pkk_sip;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -14,8 +16,8 @@ public class RankingDifficultyActivity extends AppCompatActivity {
 
     ImageView easy,medium,hard,back,sip;
     MediaPlayer voice;
-    Bundle data;
-    int soundSet;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
 
 
     @Override
@@ -23,6 +25,7 @@ public class RankingDifficultyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking_difficulty);
 
+        pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
         back = (ImageView) findViewById(R.id.back);
         easy = (ImageView) findViewById(R.id.easy);
@@ -30,22 +33,9 @@ public class RankingDifficultyActivity extends AppCompatActivity {
         sip = findViewById(R.id.sip);
         hard = findViewById(R.id.hard);
 
-        data = getIntent().getExtras();
-        soundSet = data.getInt("sound");
 
 
-        if (getIntent().getExtras() != null){
 
-            Bundle backData;
-            backData = getIntent().getExtras();
-            int backSound = backData.getInt("sound");
-            soundSet = backSound;
-
-        }else{
-
-            soundSet = 1;
-
-        }
 
 
         sip.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +44,6 @@ public class RankingDifficultyActivity extends AppCompatActivity {
                 Intent RankingActivity = new Intent(RankingDifficultyActivity.this, RankingActivity.class);
                 Bundle data = new Bundle();
                 data.putString("difficulty","sip");
-                data.putInt("sound",soundSet);
                 RankingActivity.putExtras(data);
                 startActivity(RankingActivity);
                 CustomIntent.customType(RankingDifficultyActivity.this,"fadein-to-fadeout");
@@ -68,7 +57,6 @@ public class RankingDifficultyActivity extends AppCompatActivity {
                 Intent RankingActivity = new Intent(RankingDifficultyActivity.this,RankingActivity.class);
                 Bundle data = new Bundle();
                 data.putString("difficulty","easy");
-                data.putInt("sound",soundSet);
                 RankingActivity.putExtras(data);
                 startActivity(RankingActivity);
                 CustomIntent.customType(RankingDifficultyActivity.this,"fadein-to-fadeout");
@@ -82,7 +70,6 @@ public class RankingDifficultyActivity extends AppCompatActivity {
                 Intent RankingActivity = new Intent(RankingDifficultyActivity.this,RankingActivity.class);
                 Bundle data = new Bundle();
                 data.putString("difficulty","medium");
-                data.putInt("sound",soundSet);
                 RankingActivity.putExtras(data);
                 startActivity(RankingActivity);
                 CustomIntent.customType(RankingDifficultyActivity.this,"fadein-to-fadeout");
@@ -96,7 +83,6 @@ public class RankingDifficultyActivity extends AppCompatActivity {
                 Intent RankingActivity = new Intent(RankingDifficultyActivity.this,RankingActivity.class);
                 Bundle data = new Bundle();
                 data.putString("difficulty","hard");
-                data.putInt("sound",soundSet);
                 RankingActivity.putExtras(data);
                 startActivity(RankingActivity);
                 CustomIntent.customType(RankingDifficultyActivity.this,"fadein-to-fadeout");
@@ -108,7 +94,6 @@ public class RankingDifficultyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Bundle backData = new Bundle();
-                backData.putInt("sound",soundSet);
                 Intent back = new Intent(RankingDifficultyActivity.this,MainActivity.class);
                 back.putExtras(backData);
                 startActivity(back);
@@ -121,22 +106,37 @@ public class RankingDifficultyActivity extends AppCompatActivity {
 
     public void playSound(){
 
-        if (soundSet == 1){
-        voice = MediaPlayer.create(this,R.raw.tone);
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+            voice = MediaPlayer.create(this,R.raw.tone);
+            voice.start();
+            voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    voice.stop();
+                    voice.release();
+                }
+            });
+        }else{
 
-        voice.start();}else if (soundSet == 0){
         }
-
     }
 
     public void backSound(){
 
-        if (soundSet == 1){
-        voice = MediaPlayer.create(this,R.raw.computer_error);
-        voice.start();}else if (soundSet == 0){
-
-        }
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+            voice = MediaPlayer.create(this,R.raw.computer_error);
+            voice.start();
+            voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    voice.stop();
+                    voice.release();
+                }
+            });
+        }else{}
 
     }
 
-}
+    }
+
+

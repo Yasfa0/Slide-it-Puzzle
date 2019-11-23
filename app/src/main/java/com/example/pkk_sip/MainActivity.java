@@ -5,23 +5,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import maes.tech.intentanim.CustomIntent;
 
 public class MainActivity extends AppCompatActivity {
 
+    Context context;
+    TextView testText;
     ImageView customMenu,timedMenu,classicMenu,ranking,sound;
-    MediaPlayer ok;
-    int soundSet;
-
-
+    MediaPlayer ok,bgm;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+    Sound soundController = new Sound();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,61 +33,51 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sound = findViewById(R.id.sound);
+        testText = findViewById(R.id.soundTest);
         customMenu = (ImageView) findViewById(R.id.custom);
         timedMenu = (ImageView) findViewById(R.id.time);
         classicMenu = (ImageView) findViewById(R.id.classic);
         ranking = (ImageView) findViewById(R.id.ranking);
 
+        pref = getSharedPreferences("gamePrefs",Context.MODE_PRIVATE);
 
-        if (getIntent().getExtras() != null){
+        testText.setText(pref.getString("soundSetting",null));
 
-            Bundle backData;
-            backData = getIntent().getExtras();
-            int backSound = backData.getInt("sound");
-            soundSet = backSound;
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
 
-        }else{
-
-            soundSet = 1;
-
-        }
-
-
-
-        if (soundSet == 0){
-            sound.setColorFilter(Color.argb(180,192,174,167));
-
-        }else if (soundSet == 1){
             sound.setColorFilter(Color.argb(0,255,255,255));
 
         }
 
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("OFF")){
+            sound.setColorFilter(Color.argb(100,20,20,20));
+        }
 
         sound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (soundSet == 1){
-                sound.setColorFilter(Color.argb(180,192,174,167));
-                soundSet = 0;
-                }else if (soundSet == 0){
+                if(pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+                    editor = pref.edit();
+                    editor.putString("soundSetting","OFF");
+                    editor.apply();
+                    sound.setColorFilter(Color.argb(100,20,20,20));
+                    testText.setText(pref.getString("soundSetting",null));
+                }else{
+                    editor = pref.edit();
+                    editor.putString("soundSetting","ON");
+                    editor.apply();
                     sound.setColorFilter(Color.argb(0,255,255,255));
-                    soundSet = (1);
-                    backSound();
+                    testText.setText(pref.getString("soundSetting",null));
                 }
             }
         });
 
-
         ranking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int soundVar = soundSet;
-                Bundle data = new Bundle();
-                data.putInt("sound",soundVar);
                 Intent toRanking = new Intent(MainActivity.this,RankingDifficultyActivity.class);
-                playSound();
-                toRanking.putExtras(data);
                 startActivity(toRanking);
+                playSound();
                 CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
             }
         });
@@ -118,29 +112,51 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //ok = MediaPlayer.create(this,R.raw.tone);
+        //ok.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+          //  @Override
+            //public void onCompletion(MediaPlayer mediaPlayer) {
+              //  mediaPlayer.reset();
+                //mediaPlayer.release();
+                //ok = null;
+            //}
+       // });
+
     }
 
     public void playSound(){
 
-        if (soundSet == 1){
-
-        ok = MediaPlayer.create(this,R.raw.tone);
-
-        ok.start();}else if (soundSet == 0){
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+            ok = MediaPlayer.create(this,R.raw.tone);
+            ok.start();
+            ok.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    ok.stop();
+                    ok.release();
+                }
+            });
+        }else{
 
         }
-
     }
 
     public void backSound(){
 
-        if (soundSet == 1){
-
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
             ok = MediaPlayer.create(this,R.raw.computer_error);
+            ok.start();
+            ok.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    ok.stop();
+                    ok.release();
+                }
+            });
+        }else{}
 
-            ok.start();}else if (soundSet == 0){
-
-        }
     }
+
+
 
 }

@@ -2,7 +2,9 @@ package com.example.pkk_sip;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MenuInflater;
@@ -17,12 +19,14 @@ public class HasilActivity extends AppCompatActivity {
     EditText input;
     Button ok;
     MediaPlayer voice;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hasil);
 
+        pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
         input = findViewById(R.id.input);
         ok = (Button) findViewById(R.id.button);
@@ -43,16 +47,34 @@ public class HasilActivity extends AppCompatActivity {
 
     public void playSound(){
 
-        voice = MediaPlayer.create(this,R.raw.tone);
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+            voice = MediaPlayer.create(this,R.raw.tone);
+            voice.start();
+            voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    voice.stop();
+                    voice.release();
+                }
+            });
+        }else{
 
-        voice.start();
-
+        }
     }
 
     public void backSound(){
 
-        voice = MediaPlayer.create(this,R.raw.computer_error);
-        voice.start();
+        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+            voice = MediaPlayer.create(this,R.raw.computer_error);
+            voice.start();
+            voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    voice.stop();
+                    voice.release();
+                }
+            });
+        }else{}
 
     }
 }
