@@ -40,7 +40,7 @@ public class CustomTimeActivity extends AppCompatActivity {
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent preview = new Intent(CustomTimeActivity.this,Preview.class);
+                Intent preview = new Intent(CustomTimeActivity.this,ChooseImageActivity.class);
                 startActivity(preview);
                 playSound();
                 CustomIntent.customType(CustomTimeActivity.this,"fadein-to-fadeout");

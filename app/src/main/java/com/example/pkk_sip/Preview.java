@@ -31,7 +31,7 @@ public class Preview extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent back = new Intent(Preview.this,CustomTimeActivity.class);
+                Intent back = new Intent(Preview.this,ChooseImageActivity.class);
                 startActivity(back);
                 CustomIntent.customType(Preview.this,"fadein-to-fadeout");
                 backSound();

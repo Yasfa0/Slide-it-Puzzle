@@ -38,7 +38,7 @@ public class rowcolumninput extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent back = new Intent(rowcolumninput.this,ChooseImageActivity.class);
+                Intent back = new Intent(rowcolumninput.this,MainActivity.class);
                 startActivity(back);
                 CustomIntent.customType(rowcolumninput.this,"fadein-to-fadeout");
                 backSound();
