@@ -7,10 +7,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import maes.tech.intentanim.CustomIntent;
 
@@ -140,558 +144,137 @@ public class CustomTimeActivity extends AppCompatActivity {
         });
 
 
-        num0.setOnClickListener(new View.OnClickListener() {
+
+        initnumber(num0,"0");
+        initnumber(num1,"1");
+        initnumber(num2,"2");
+        initnumber(num3,"3");
+        initnumber(num4,"4");
+        initnumber(num5,"5");
+        initnumber(num6,"6");
+        initnumber(num7,"7");
+        initnumber(num8,"8");
+        initnumber(num9,"9");
+        del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("0");
-
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
+                if(posisi==0){
+                    posisi =4;
                 }
-                else if (posisi == 2){
-
-                    input2.setText("0");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-
-                }else if (posisi == 3){
-                    input3.setText("0");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(70);
-                    input4.setTextSize(50);
-                    playSound();
-                }else if (posisi == 4){
-                    input4.setText("0");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(70);
-                    playSound();
+                arrayinput.get(posisi-1).setText("0");
+                for(int i = 0;i<4;i++){
+                    if((i+1)==posisi){
+                        arrayinput.get(i).setTextSize(70);
+                    }else{
+                        arrayinput.get(posisi).setTextSize(50);
+                    }
                 }
 
 
-
-                if (posisi >= 4){
-                    posisi = 0;
-                }
-
-                posisi++;
+//                if(posisi != 1){
+                    posisi--;
+//                }
+                playSound();
 
             }
         });
 
-        num1.setOnClickListener(new View.OnClickListener() {
+//        num2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (posisi == 1){
+//                    input1.setText("2");
+//
+//
+//                    input1.setTextSize(70);
+//                    input2.setTextSize(50);
+//                    input3.setTextSize(50);
+//                    input4.setTextSize(50);
+//                    playSound();
+//                }
+//                else if (posisi == 2){
+//
+//                    input2.setText("2");
+//
+//
+//                    input1.setTextSize(50);
+//                    input2.setTextSize(70);
+//                    input3.setTextSize(50);
+//                    input4.setTextSize(50);
+//                    playSound();
+//
+//                }else if (posisi == 3){
+//                    input3.setText("2");
+//
+//
+//                    input1.setTextSize(50);
+//                    input2.setTextSize(50);
+//                    input3.setTextSize(70);
+//                    input4.setTextSize(50);
+//                    playSound();
+//                }else if (posisi == 4){
+//                    input4.setText("2");
+//
+//
+//                    input1.setTextSize(50);
+//                    input2.setTextSize(50);
+//                    input3.setTextSize(50);
+//                    input4.setTextSize(70);
+//                    playSound();
+//                }
+//
+//
+//
+//                if (posisi >= 4){
+//                    posisi = 0;
+//                }
+//
+//                posisi++;
+//
+//            }
+//        });
+
+    }
+
+    public void initinput(){
+
+    }
+
+    ArrayList<TextView> arrayinput = new ArrayList<TextView>();
+    public void initnumber(ImageView nomor,final String text){
+        arrayinput.add(input1);
+        arrayinput.add(input2);
+        arrayinput.add(input3);
+        arrayinput.add(input4);
+
+        nomor.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("1");
-
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
+            public void onClick(View v) {
+                if(posisi==0){
+                    posisi =1;
                 }
-                else if (posisi == 2){
+                for(int i = 1;i<5;i++){
+                    if(posisi == i){
+                        arrayinput.get(i-1).setText(text);
 
-                    input2.setText("1");
+                        for(int b = 0;b<4;b++){
+                            if(b==i){
+                                arrayinput.get(b).setTextSize(70);
+                            }else{
+                                arrayinput.get(b).setTextSize(50);
+                            }
 
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-
-                }else if (posisi == 3){
-                    input3.setText("1");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(70);
-                    input4.setTextSize(50);
-                    playSound();
-                }else if (posisi == 4){
-                    input4.setText("1");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(70);
-                    playSound();
+                        }
+                    }
                 }
-
-
-
-                if (posisi >= 4){
-                    posisi = 0;
-                }
+                playSound();
 
                 posisi++;
-
-            }
-        });
-
-
-
-        num4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("4");
-
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-
-                    input2.setText("4");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-
-                }else if (posisi == 3){
-                    input3.setText("4");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(70);
-                    input4.setTextSize(50);
-                    playSound();
-                }else if (posisi == 4){
-                    input4.setText("4");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(70);
-                    playSound();
-                }
-
-
-
-                if (posisi >= 4){
+                if(posisi>4){
                     posisi = 0;
                 }
-
-                posisi++;
-
             }
         });
-
-        num3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("3");
-
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-
-                    input2.setText("3");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-
-                }else if (posisi == 3){
-                    input3.setText("3");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(70);
-                    input4.setTextSize(50);
-                    playSound();
-                }else if (posisi == 4){
-                    input4.setText("3");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(70);
-                    playSound();
-                }
-
-
-
-                if (posisi >= 4){
-                    posisi = 0;
-                }
-
-                posisi++;
-
-            }
-        });
-
-        num5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("5");
-
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-
-                    input2.setText("5");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-
-                }else if (posisi == 3){
-                    input3.setText("5");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(70);
-                    input4.setTextSize(50);
-                    playSound();
-                }else if (posisi == 4){
-                    input4.setText("5");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(70);
-                    playSound();
-                }
-
-
-
-                if (posisi >= 4){
-                    posisi = 0;
-                }
-
-                posisi++;
-
-            }
-        });
-
-        num6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("6");
-
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-
-                    input2.setText("6");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-
-                }else if (posisi == 3){
-                    input3.setText("6");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(70);
-                    input4.setTextSize(50);
-                    playSound();
-                }else if (posisi == 4){
-                    input4.setText("6");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(70);
-                    playSound();
-                }
-
-
-
-                if (posisi >= 4){
-                    posisi = 0;
-                }
-
-                posisi++;
-
-            }
-        });
-
-        num7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("7");
-
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-
-                    input2.setText("7");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-
-                }else if (posisi == 3){
-                    input3.setText("7");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(70);
-                    input4.setTextSize(50);
-                    playSound();
-                }else if (posisi == 4){
-                    input4.setText("7");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(70);
-                    playSound();
-                }
-
-
-
-                if (posisi >= 4){
-                    posisi = 0;
-                }
-
-                posisi++;
-
-            }
-        });
-
-        num8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("8");
-
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-
-                    input2.setText("8");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-
-                }else if (posisi == 3){
-                    input3.setText("8");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(70);
-                    input4.setTextSize(50);
-                    playSound();
-                }else if (posisi == 4){
-                    input4.setText("8");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(70);
-                    playSound();
-                }
-
-
-
-                if (posisi >= 4){
-                    posisi = 0;
-                }
-
-                posisi++;
-
-            }
-        });
-
-        num9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("9");
-
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-
-                    input2.setText("9");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-
-                }else if (posisi == 3){
-                    input3.setText("9");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(70);
-                    input4.setTextSize(50);
-                    playSound();
-                }else if (posisi == 4){
-                    input4.setText("9");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(70);
-                    playSound();
-                }
-
-
-
-                if (posisi >= 4){
-                    posisi = 0;
-                }
-
-                posisi++;
-
-            }
-        });
-
-        num2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("2");
-
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-
-                    input2.setText("2");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    input3.setTextSize(50);
-                    input4.setTextSize(50);
-                    playSound();
-
-                }else if (posisi == 3){
-                    input3.setText("2");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(70);
-                    input4.setTextSize(50);
-                    playSound();
-                }else if (posisi == 4){
-                    input4.setText("2");
-
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(50);
-                    input3.setTextSize(50);
-                    input4.setTextSize(70);
-                    playSound();
-                }
-
-
-
-                if (posisi >= 4){
-                    posisi = 0;
-                }
-
-                posisi++;
-
-            }
-        });
-
     }
 
     public void playSound(){
@@ -710,7 +293,6 @@ public class CustomTimeActivity extends AppCompatActivity {
 
         }
     }
-
     public void backSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
