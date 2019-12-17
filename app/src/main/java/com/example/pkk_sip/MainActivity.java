@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         customMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toCustom = new Intent(MainActivity.this,rowcolumninput.class);
+                Intent toCustom = new Intent(MainActivity.this,CustomTimeActivity.class);
                 startActivity(toCustom);
                 playSound();
                 CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");

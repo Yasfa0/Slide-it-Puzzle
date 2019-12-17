@@ -44,7 +44,7 @@ public class CustomTimeActivity extends AppCompatActivity {
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent preview = new Intent(CustomTimeActivity.this,ChooseImageActivity.class);
+                Intent preview = new Intent(CustomTimeActivity.this,rowcolumninput.class);
                 startActivity(preview);
                 playSound();
                 CustomIntent.customType(CustomTimeActivity.this,"fadein-to-fadeout");
@@ -56,7 +56,7 @@ public class CustomTimeActivity extends AppCompatActivity {
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent back = new Intent(CustomTimeActivity.this,rowcolumninput.class);
+                Intent back = new Intent(CustomTimeActivity.this,MainActivity.class);
                 startActivity(back);
                 backSound();
                 CustomIntent.customType(CustomTimeActivity.this,"fadein-to-fadeout");

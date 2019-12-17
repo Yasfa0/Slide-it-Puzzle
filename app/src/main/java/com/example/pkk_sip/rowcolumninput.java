@@ -40,7 +40,7 @@ public class rowcolumninput extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent back = new Intent(rowcolumninput.this,MainActivity.class);
+                Intent back = new Intent(rowcolumninput.this,CustomTimeActivity.class);
                 startActivity(back);
                 CustomIntent.customType(rowcolumninput.this,"fadein-to-fadeout");
                 backSound();
@@ -94,7 +94,7 @@ public class rowcolumninput extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(rowcolumninput.this,CustomTimeActivity.class);
+                Intent intent = new Intent(rowcolumninput.this,ChooseImageActivity.class);
                 startActivity(intent);
                 playSound();
                 CustomIntent.customType(rowcolumninput.this,"fadein-to-fadeout");

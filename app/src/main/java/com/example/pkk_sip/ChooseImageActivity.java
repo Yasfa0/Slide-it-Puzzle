@@ -42,7 +42,7 @@ public class ChooseImageActivity extends AppCompatActivity{
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent back = new Intent(ChooseImageActivity.this,CustomTimeActivity.class);
+                Intent back = new Intent(ChooseImageActivity.this,rowcolumninput.class);
                 startActivity(back);
                 backSound();
                 CustomIntent.customType(ChooseImageActivity.this,"fadein-to-fadeout");
