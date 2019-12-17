@@ -218,19 +218,22 @@ public class PuzzleActivity extends AppCompatActivity {
         }.start();
 
         p = Integer.parseInt(getIntent().getStringExtra("p"));
-        t = Integer.parseInt(getIntent().getStringExtra("l"));;
+        t = Integer.parseInt(getIntent().getStringExtra("l"));
+        int size_t = pxToDp(((CardView) findViewById(R.id.card)).getHeight());
+        int size_p = pxToDp(((CardView) findViewById(R.id.card)).getWidth());
+
         if(p>t){
-            layout_p = 360;
-            layout_t = 360/p*t;
+            layout_p = size_p;
+            layout_t = size_p/p*t;
         }else if(p<t){
             System.out.println("In");
-            layout_t = 360;
-            layout_p = 360/t*p;
+            layout_t = size_t;
+            layout_p = size_t/t*p;
             System.out.println(layout_p);
             System.out.println(layout_t);
         }else{
-            layout_t = 360;
-            layout_p = 360;
+            layout_t = size_t;
+            layout_p = size_p;
         }
         initPicOOP();
         initBlockOOP(p,t);
@@ -375,8 +378,8 @@ public class PuzzleActivity extends AppCompatActivity {
         ArrayList<LinearLayout> arrayll = new ArrayList<LinearLayout>();
         int block_length = dpToPx(layout_p/(p+1));
         int block_height = dpToPx(layout_t/(t+1));
-//        FrameLayout fl = findViewById(R.id.frame);
-        FrameLayout fl = null;
+        FrameLayout fl = findViewById(R.id.frame);
+//        FrameLayout fl = null;
         listblock = new ArrayList<Bearblock>();
         for(int i = 0;i<=t;i++){
             LinearLayout ll = new LinearLayout(this);

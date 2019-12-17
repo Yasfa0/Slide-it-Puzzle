@@ -52,6 +52,12 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
+        <ImageView
+            android:id="@+id/gambar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ImageView>
 
     </androidx.cardview.widget.CardView>
 <RelativeLayout

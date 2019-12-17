@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -45,7 +46,15 @@ public class Preview extends AppCompatActivity {
                 Bundle data = new Bundle();
                 data.putString("difficulty","custom");
                 data.putString("mode","custom");
+
+                Bitmap sentBitmap = getIntent().getParcelableExtra("Gambar");
+                String p = getIntent().getStringExtra("p");
+                String t = getIntent().getStringExtra("l");
+
                 Intent play = new Intent(Preview.this,PuzzleActivity.class);
+                play.putExtra("Gambar",sentBitmap);
+                play.putExtra("p",String.valueOf(p));
+                play.putExtra("l",String.valueOf(t));
                 play.putExtras(data);
                 startActivity(play);
                 CustomIntent.customType(Preview.this,"fadein-to-fadeout");

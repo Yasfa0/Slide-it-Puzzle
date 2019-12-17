@@ -95,6 +95,8 @@ public class rowcolumninput extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(rowcolumninput.this,ChooseImageActivity.class);
+                intent.putExtra("p",input1.getText());
+                intent.putExtra("l",input2.getText());
                 startActivity(intent);
                 playSound();
                 CustomIntent.customType(rowcolumninput.this,"fadein-to-fadeout");
@@ -142,7 +144,7 @@ public class rowcolumninput extends AppCompatActivity {
                 posisi++;
                 if(posisi>2){
                     posisi = 0;
-                }
+                } 
             }
         });
     }
@@ -155,7 +157,7 @@ public class rowcolumninput extends AppCompatActivity {
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
-                    voice.stop();
+//                    voice.stop();
                     voice.release();
                 }
             });
