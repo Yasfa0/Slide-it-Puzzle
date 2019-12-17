@@ -219,8 +219,9 @@ public class PuzzleActivity extends AppCompatActivity {
 
         p = Integer.parseInt(getIntent().getStringExtra("p"));
         t = Integer.parseInt(getIntent().getStringExtra("l"));
-        int size_t = pxToDp(((CardView) findViewById(R.id.card)).getHeight());
-        int size_p = pxToDp(((CardView) findViewById(R.id.card)).getWidth());
+
+        int size_t = 250;
+        int size_p = 250;
 
         if(p>t){
             layout_p = size_p;
@@ -383,7 +384,7 @@ public class PuzzleActivity extends AppCompatActivity {
         listblock = new ArrayList<Bearblock>();
         for(int i = 0;i<=t;i++){
             LinearLayout ll = new LinearLayout(this);
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+            FrameLayout.LayoutParams lp =  new FrameLayout.LayoutParams(
                     dpToPx(layout_p),dpToPx(layout_t)
             );
 
@@ -406,7 +407,7 @@ public class PuzzleActivity extends AppCompatActivity {
             }
 
             fl.addView(arrayll.get(i),lp);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
                     dpToPx(layout_p), dpToPx(layout_t));
             params.gravity = Gravity.CENTER;
             fl.setLayoutParams(params);
@@ -476,6 +477,10 @@ public class PuzzleActivity extends AppCompatActivity {
     private Bitmap crop(Bitmap original,int pos_p,int pos_t){
         int height = layout_t/t;
         int width = layout_p/p;
+        System.out.println("Lebar : "+width);
+        System.out.println("Pos P : "+pos_p);
+        System.out.println("Tinggi : "+height);
+        System.out.println("Pos T : "+pos_t);
         Bitmap bMap = Bitmap.createBitmap(original, width*pos_p, height*pos_t,
                 width, height, new Matrix(), true);
 

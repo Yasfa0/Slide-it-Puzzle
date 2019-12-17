@@ -95,8 +95,8 @@ public class rowcolumninput extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(rowcolumninput.this,ChooseImageActivity.class);
-                intent.putExtra("p",input1.getText());
-                intent.putExtra("l",input2.getText());
+                intent.putExtra("p",input1.getText().toString());
+                intent.putExtra("l",input2.getText().toString());
                 startActivity(intent);
                 playSound();
                 CustomIntent.customType(rowcolumninput.this,"fadein-to-fadeout");

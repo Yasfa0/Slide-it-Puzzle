@@ -39,7 +39,9 @@ public class Preview extends AppCompatActivity {
             }
         });
 
-
+        ImageView img = findViewById(R.id.gambar);
+        Bitmap sentBitmap = getIntent().getParcelableExtra("Gambar");
+        img.setImageBitmap(sentBitmap);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,11 +52,13 @@ public class Preview extends AppCompatActivity {
                 Bitmap sentBitmap = getIntent().getParcelableExtra("Gambar");
                 String p = getIntent().getStringExtra("p");
                 String t = getIntent().getStringExtra("l");
+                System.out.println("Preview P : "+p);
+                System.out.println("Preview T : "+t);
 
                 Intent play = new Intent(Preview.this,PuzzleActivity.class);
                 play.putExtra("Gambar",sentBitmap);
-                play.putExtra("p",String.valueOf(p));
-                play.putExtra("l",String.valueOf(t));
+                play.putExtra("p",p);
+                play.putExtra("l",t);
                 play.putExtras(data);
                 startActivity(play);
                 CustomIntent.customType(Preview.this,"fadein-to-fadeout");

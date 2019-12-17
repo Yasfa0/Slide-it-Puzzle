@@ -60,7 +60,7 @@ public class ChooseImageActivity extends AppCompatActivity{
         });
 
         p = Integer.parseInt(getIntent().getStringExtra("p"));
-        t = Integer.parseInt(getIntent().getStringExtra("l"));;
+        t = Integer.parseInt(getIntent().getStringExtra("l"));
         if(p>t){
             layout_p = 250;
             layout_t = 250/p*t;
@@ -74,14 +74,13 @@ public class ChooseImageActivity extends AppCompatActivity{
         block_p = layout_p/p;
         block_t = layout_t/t;
 
-        final Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-        photoPickerIntent.setType("image/*");
-
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent next = new Intent(ChooseImageActivity.this,Preview.class);
                 next.putExtra("Gambar",sentBitmap);
+                p = Integer.parseInt(getIntent().getStringExtra("p"));
+                t = Integer.parseInt(getIntent().getStringExtra("l"));
                 next.putExtra("p",String.valueOf(p));
                 next.putExtra("l",String.valueOf(t));
                 startActivity(next);
@@ -90,14 +89,13 @@ public class ChooseImageActivity extends AppCompatActivity{
             }
         });
 
-        ImageView btn = findViewById(R.id.image);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    startActivityForResult(photoPickerIntent,RESULT_LOAD_IMAGE);
-            }
-        });
 
+
+    }
+    public void Pilih(View v) {
+        final Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent,RESULT_LOAD_IMAGE);
     }
 
     public void playSound(){
