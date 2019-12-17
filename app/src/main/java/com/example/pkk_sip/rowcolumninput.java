@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import maes.tech.intentanim.CustomIntent;
 
 public class rowcolumninput extends AppCompatActivity {
@@ -88,184 +90,6 @@ public class rowcolumninput extends AppCompatActivity {
             }
         });
 
-        num4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("4");
-                    posisi = 2;
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-
-                    input2.setText("4");
-                    posisi = 1;
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    playSound();
-
-                }
-            }
-        });
-
-        num3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("3");
-                    posisi = 2;
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-                    input2.setText("3");
-                    posisi = 1;
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    playSound();
-
-                }
-            }
-        });
-
-        num5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("5");
-                    posisi = 2;
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-                    input2.setText("5");
-                    posisi = 1;
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    playSound();
-                }
-            }
-        });
-
-        num6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("6");
-                    posisi = 2;
-
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-                    input2.setText("6");
-                    posisi = 1;
-
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    playSound();
-                }
-            }
-        });
-
-        num7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("7");
-                    posisi = 2;
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-                    input2.setText("7");
-
-                    posisi = 1;
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    playSound();
-                }
-            }
-        });
-
-        num8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("8");
-                    posisi = 2;
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                }
-                else if (posisi == 2){
-                    input2.setText("8");
-                    posisi = 1;
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-
-                    playSound();
-                }
-            }
-        });
-
-        num9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (posisi == 1){
-                    input1.setText("9");
-                    posisi = 2;
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-                    input2.setText("9");
-
-                    posisi = 1;
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    playSound();
-                }
-            }
-        });
-
-        num2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (posisi == 1){
-                input1.setText("2");
-                posisi = 2;
-
-                    input1.setTextSize(70);
-                    input2.setTextSize(50);
-                    playSound();
-                }
-                else if (posisi == 2){
-                 input2.setText("2");
-                    posisi = 1;
-                    input1.setTextSize(50);
-                    input2.setTextSize(70);
-                    playSound();
-                }
-            }
-        });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -277,8 +101,51 @@ public class rowcolumninput extends AppCompatActivity {
             }
         });
 
+        initnumber(num2,"2");
+        initnumber(num3,"3");
+        initnumber(num4,"4");
+        initnumber(num5,"5");
+        initnumber(num6,"6");
+        initnumber(num7,"7");
+        initnumber(num8,"8");
+        initnumber(num9,"9");
+
     }
 
+    ArrayList<TextView> arrayinput = new ArrayList<TextView>();
+    public void initnumber(ImageView nomor,final String text){
+        arrayinput.add(input1);
+        arrayinput.add(input2);
+
+        nomor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(posisi==0){
+                    posisi =1;
+                }
+                for(int i = 1;i<5;i++){
+                    if(posisi == i){
+                        arrayinput.get(i-1).setText(text);
+
+                        for(int b = 0;b<2;b++){
+                            if(b==i){
+                                arrayinput.get(b).setTextSize(70);
+                            }else{
+                                arrayinput.get(b).setTextSize(50);
+                            }
+
+                        }
+                    }
+                }
+                playSound();
+
+                posisi++;
+                if(posisi>2){
+                    posisi = 0;
+                }
+            }
+        });
+    }
 
     public void playSound(){
 

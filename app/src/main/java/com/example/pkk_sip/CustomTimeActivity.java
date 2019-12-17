@@ -236,9 +236,6 @@ public class CustomTimeActivity extends AppCompatActivity {
 
     }
 
-    public void initinput(){
-
-    }
 
     ArrayList<TextView> arrayinput = new ArrayList<TextView>();
     public void initnumber(ImageView nomor,final String text){
