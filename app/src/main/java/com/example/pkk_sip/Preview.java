@@ -19,6 +19,8 @@ public class Preview extends AppCompatActivity {
     MediaPlayer voice;
     SharedPreferences pref;
 
+    UjangEffect ujang = new UjangEffect();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class Preview extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ujang.clickAnim(back);
                 Intent back = new Intent(Preview.this,ChooseImageActivity.class);
                 startActivity(back);
                 CustomIntent.customType(Preview.this,"fadein-to-fadeout");
@@ -71,7 +74,7 @@ public class Preview extends AppCompatActivity {
     public void playSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.tone);
+            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -88,7 +91,7 @@ public class Preview extends AppCompatActivity {
     public void backSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.computer_error);
+            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override

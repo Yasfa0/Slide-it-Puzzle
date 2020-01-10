@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ import maes.tech.intentanim.CustomIntent;
 public class MainActivity extends AppCompatActivity {
 
     Context context;
+    UjangEffect ujang = new UjangEffect();
     TextView testText;
     ImageView customMenu,timedMenu,classicMenu,ranking,sound;
     MediaPlayer ok,bgm;
@@ -75,21 +77,43 @@ public class MainActivity extends AppCompatActivity {
         ranking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toRanking = new Intent(MainActivity.this,RankingDifficultyActivity.class);
-                startActivity(toRanking);
-                playSound();
-                CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
-            }
+                ujang.clickAnim(ranking);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent toRanking = new Intent(MainActivity.this,RankingDifficultyActivity.class);
+                        playSound();
+                        startActivity(toRanking);
+                        CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
+
+
+                    }
+                };
+
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
+
+                            }
         });
 
         customMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toCustom = new Intent(MainActivity.this,CustomTimeActivity.class);
-                startActivity(toCustom);
-                playSound();
-                CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
-            }
+                ujang.clickAnim(customMenu);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent toCustom = new Intent(MainActivity.this,CustomTimeActivity.class);
+                        startActivity(toCustom);
+                        playSound();
+                        CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
+                    }
+                };
+
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
+
+                    }
         });
 
         timedMenu.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
     public void playSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            ok = MediaPlayer.create(this,R.raw.tone);
+            ok = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
             ok.start();
             ok.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -144,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
     public void backSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            ok = MediaPlayer.create(this,R.raw.computer_error);
+            ok = MediaPlayer.create(this,R.raw.bubble_cancel);
             ok.start();
             ok.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override

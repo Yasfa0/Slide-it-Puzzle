@@ -27,6 +27,8 @@ public class ChooseImageActivity extends AppCompatActivity{
     MediaPlayer voice;
     SharedPreferences pref;
 
+    UjangEffect ujang = new UjangEffect();
+
     private static int RESULT_LOAD_IMAGE = 1;
     final int PIC_CROP = 2;
     int i = 0;
@@ -52,6 +54,7 @@ public class ChooseImageActivity extends AppCompatActivity{
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ujang.clickAnim(back);
                 Intent back = new Intent(ChooseImageActivity.this,rowcolumninput.class);
                 startActivity(back);
                 backSound();
@@ -77,6 +80,7 @@ public class ChooseImageActivity extends AppCompatActivity{
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ujang.clickAnim(next);
                 Intent next = new Intent(ChooseImageActivity.this,Preview.class);
                 next.putExtra("Gambar",sentBitmap);
                 p = Integer.parseInt(getIntent().getStringExtra("p"));
@@ -101,7 +105,7 @@ public class ChooseImageActivity extends AppCompatActivity{
     public void playSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.tone);
+            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -118,7 +122,7 @@ public class ChooseImageActivity extends AppCompatActivity{
     public void backSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.computer_error);
+            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override

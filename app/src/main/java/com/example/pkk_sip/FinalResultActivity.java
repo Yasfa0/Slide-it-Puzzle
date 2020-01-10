@@ -21,6 +21,8 @@ public class FinalResultActivity extends AppCompatActivity {
     MediaPlayer voice;
     SharedPreferences pref;
 
+    UjangEffect ujang = new UjangEffect();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class FinalResultActivity extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ujang.clickButtonAnim(menu);
                 Intent keMenu = new Intent(FinalResultActivity.this,MainActivity.class);
                 startActivity(keMenu);
                 CustomIntent.customType(FinalResultActivity.this,"fadein-to-fadeout");
@@ -52,6 +55,7 @@ public class FinalResultActivity extends AppCompatActivity {
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ujang.clickButtonAnim(restart);
                 Intent restart = new Intent(FinalResultActivity.this,PuzzleActivity.class);
                 startActivity(restart);
                 CustomIntent.customType(FinalResultActivity.this,"fadein-to-fadeout");
@@ -65,7 +69,7 @@ public class FinalResultActivity extends AppCompatActivity {
     public void playSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.tone);
+            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -82,7 +86,7 @@ public class FinalResultActivity extends AppCompatActivity {
     public void backSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.computer_error);
+            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
