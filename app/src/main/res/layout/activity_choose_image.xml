@@ -7,27 +7,18 @@
     android:background="@drawable/gradientbackground"
     tools:context=".ChooseImageActivity">
 
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        />
 
     <ImageView
-        android:id="@+id/choose_image"
-        android:layout_width="300dp"
-        android:layout_height="350dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/pad_icon"
-        android:src="@drawable/select_image"
+        android:id="@+id/back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/left"
+        android:layout_marginRight="40dp"
+        app:layout_constraintRight_toLeftOf="@id/pad_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="40dp"
         />
+
 
     <ImageView
         android:id="@+id/pad_icon"
@@ -50,16 +41,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="40dp"
         />
+
     <ImageView
-        android:id="@+id/asdasdasdasdasd"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:id="@+id/image"
+        android:onClick="Pilih"
+        android:layout_margin="30dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/pad_icon"
         android:src="@drawable/select_image"
-        android:onClick="Pilih"
         />
 
 

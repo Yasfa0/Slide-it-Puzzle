@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -35,10 +36,21 @@ public class Preview extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ujang.clickAnim(back);
-                Intent back = new Intent(Preview.this,ChooseImageActivity.class);
-                startActivity(back);
-                CustomIntent.customType(Preview.this,"fadein-to-fadeout");
-                backSound();
+
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Intent back = new Intent(Preview.this,ChooseImageActivity.class);
+                        startActivity(back);
+                        CustomIntent.customType(Preview.this,"fadein-to-fadeout");
+                        backSound();
+
+                    }
+                };
+
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
             }
         });
 
@@ -58,6 +70,7 @@ public class Preview extends AppCompatActivity {
                 System.out.println("Preview P : "+p);
                 System.out.println("Preview T : "+t);
 
+                ujang.clickAnim(play);
                 Intent play = new Intent(Preview.this,PuzzleActivity.class);
                 play.putExtra("Gambar",sentBitmap);
                 play.putExtra("p",p);

@@ -28,10 +28,6 @@ public class RankingDifficultyActivity extends AppCompatActivity {
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
         back = (ImageView) findViewById(R.id.back);
-        easy = (ImageView) findViewById(R.id.easy);
-        medium = findViewById(R.id.medium);
-        sip = findViewById(R.id.sip);
-        hard = findViewById(R.id.hard);
 
 
 

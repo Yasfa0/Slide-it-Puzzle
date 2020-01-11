@@ -32,9 +32,9 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".PuzzleActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ClassicDifficultyActivity"
+        <activity android:name=".ImageOptionActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".TimedDifficultyActivity"
+        <activity android:name=".TimeLimitActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ChooseImageActivity"
             android:screenOrientation="portrait"/>

@@ -51,6 +51,7 @@ public class CustomTimeActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent preview = new Intent(CustomTimeActivity.this,rowcolumninput.class);
+                        preview.putExtra("skipTime","no");
                         startActivity(preview);
                         playSound();
                         CustomIntent.customType(CustomTimeActivity.this,"fadein-to-fadeout");
@@ -75,7 +76,7 @@ public class CustomTimeActivity extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-                        Intent back = new Intent(CustomTimeActivity.this,MainActivity.class);
+                        Intent back = new Intent(CustomTimeActivity.this,TimeLimitActivity.class);
                         startActivity(back);
                         backSound();
                         CustomIntent.customType(CustomTimeActivity.this,"fadein-to-fadeout");

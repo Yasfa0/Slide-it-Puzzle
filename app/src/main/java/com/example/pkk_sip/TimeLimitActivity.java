@@ -5,18 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 
 import maes.tech.intentanim.CustomIntent;
 
-public class RankingActivity extends AppCompatActivity {
+public class TimeLimitActivity extends AppCompatActivity {
 
-    Bundle data;
-    ImageView classic,timed,custom,sip,back;
+    ImageView back,yes,no;
+    CountDownTimer jeda;
     MediaPlayer voice;
     SharedPreferences pref;
 
@@ -25,28 +27,25 @@ public class RankingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ranking);
+        setContentView(R.layout.activity_timed_difficulty);
+
+        back = (ImageView) findViewById(R.id.back);
+        yes = (ImageView) findViewById(R.id.yes);
+        no = (ImageView) findViewById(R.id.no);
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
-        sip = findViewById(R.id.logo);
-        back = findViewById(R.id.back);
-
-        data = getIntent().getExtras();
-
-        back.setOnClickListener(new View.OnClickListener() {
+        yes.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                ujang.clickAnim(back);
+            public void onClick(View v) {
+                ujang.clickAnim(yes);
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-
-                        Intent back = new Intent(RankingActivity.this,MainActivity.class);
-                        startActivity(back);
-                        CustomIntent.customType(RankingActivity.this,"fadein-to-fadeout");
-                        backSound();
-
+                        Intent toCustom = new Intent(TimeLimitActivity.this,CustomTimeActivity.class);
+                        startActivity(toCustom);
+                        playSound();
+                        CustomIntent.customType(TimeLimitActivity.this,"fadein-to-fadeout");
                     }
                 };
 
@@ -55,19 +54,47 @@ public class RankingActivity extends AppCompatActivity {
 
             }
         });
-        if (getIntent().getExtras() != null){
 
-            Bundle backData;
-            backData = getIntent().getExtras();
-            int backSound = backData.getInt("sound");
-            //soundSet = backSound;
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ujang.clickAnim(no);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent toCustom = new Intent(TimeLimitActivity.this,rowcolumninput.class);
+                        toCustom.putExtra("skipTime","yes");
+                        startActivity(toCustom);
+                        playSound();
+                        CustomIntent.customType(TimeLimitActivity.this,"fadein-to-fadeout");
+                    }
+                };
 
-        }else{
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
 
-            //soundSet = 1;
+            }
+        });
 
-        }
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ujang.clickAnim(back);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent toMenu = new Intent(TimeLimitActivity.this,MainActivity.class);
+                        startActivity(toMenu);
+                        CustomIntent.customType(TimeLimitActivity.this,"fadein-to-fadeout");
+                        backSound();
+                    }
+                };
 
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
+
+            }
+        });
 
     }
 

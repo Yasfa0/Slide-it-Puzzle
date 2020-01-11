@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     Context context;
     UjangEffect ujang = new UjangEffect();
     TextView testText;
-    ImageView customMenu,timedMenu,classicMenu,ranking,sound;
+    ImageView customMenu,ranking,sound,exit;
     MediaPlayer ok,bgm;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -37,16 +37,14 @@ public class MainActivity extends AppCompatActivity {
         sound = findViewById(R.id.sound);
         testText = findViewById(R.id.soundTest);
         customMenu = (ImageView) findViewById(R.id.custom);
-        timedMenu = (ImageView) findViewById(R.id.time);
-        classicMenu = (ImageView) findViewById(R.id.classic);
         ranking = (ImageView) findViewById(R.id.ranking);
+        exit = (ImageView) findViewById(R.id.exit);
 
         pref = getSharedPreferences("gamePrefs",Context.MODE_PRIVATE);
 
         testText.setText(pref.getString("soundSetting",null));
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-
             sound.setColorFilter(Color.argb(0,255,255,255));
 
         }
@@ -58,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         sound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ujang.clickAnim(sound);
                 if(pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
                     editor = pref.edit();
                     editor.putString("soundSetting","OFF");
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-                        Intent toRanking = new Intent(MainActivity.this,RankingDifficultyActivity.class);
+                        Intent toRanking = new Intent(MainActivity.this,RankingActivity.class);
                         playSound();
                         startActivity(toRanking);
                         CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
@@ -103,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-                        Intent toCustom = new Intent(MainActivity.this,CustomTimeActivity.class);
+                        Intent toCustom = new Intent(MainActivity.this,TimeLimitActivity.class);
                         startActivity(toCustom);
                         playSound();
                         CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
@@ -116,23 +115,24 @@ public class MainActivity extends AppCompatActivity {
                     }
         });
 
-        timedMenu.setOnClickListener(new View.OnClickListener() {
+        exit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent toTimed = new Intent(MainActivity.this,TimedDifficultyActivity.class);
-                startActivity(toTimed);
-                playSound();
-                CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
-            }
-        });
+            public void onClick(View v) {
+                ujang.clickAnim(exit);
 
-        classicMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent toClassic = new Intent(MainActivity.this,ClassicDifficultyActivity.class);
-                startActivity(toClassic);
-                playSound();
-                CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+                    backSound();
+
+                        finish();
+                        System.exit(0);
+
+                    }
+                };
+
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
             }
         });
 

@@ -7,74 +7,46 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ImageView;
 
 import maes.tech.intentanim.CustomIntent;
 
-public class RankingActivity extends AppCompatActivity {
+public class ImageOptionActivity extends AppCompatActivity {
 
-    Bundle data;
-    ImageView classic,timed,custom,sip,back;
+    ImageView back;
+    CountDownTimer jeda;
     MediaPlayer voice;
     SharedPreferences pref;
+    MediaPlayer bgm;
 
-    UjangEffect ujang = new UjangEffect();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ranking);
+        setContentView(R.layout.activity_classic_difficulty);
+
+        back = (ImageView) findViewById(R.id.back);
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
-
-        sip = findViewById(R.id.logo);
-        back = findViewById(R.id.back);
-
-        data = getIntent().getExtras();
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ujang.clickAnim(back);
-                Runnable run = new Runnable() {
-                    @Override
-                    public void run() {
-
-                        Intent back = new Intent(RankingActivity.this,MainActivity.class);
-                        startActivity(back);
-                        CustomIntent.customType(RankingActivity.this,"fadein-to-fadeout");
-                        backSound();
-
-                    }
-                };
-
-                Handler timer = new Handler();
-                timer.postDelayed(run,300);
-
+                Intent toMenu = new Intent(ImageOptionActivity.this,MainActivity.class);
+                startActivity(toMenu);
+                backSound();
+                CustomIntent.customType(ImageOptionActivity.this,"fadein-to-fadeout");
             }
         });
-        if (getIntent().getExtras() != null){
-
-            Bundle backData;
-            backData = getIntent().getExtras();
-            int backSound = backData.getInt("sound");
-            //soundSet = backSound;
-
-        }else{
-
-            //soundSet = 1;
-
-        }
-
 
     }
 
     public void playSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
+            voice = MediaPlayer.create(this,R.raw.tone);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -91,7 +63,7 @@ public class RankingActivity extends AppCompatActivity {
     public void backSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
+            voice = MediaPlayer.create(this,R.raw.computer_error);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -103,5 +75,4 @@ public class RankingActivity extends AppCompatActivity {
         }else{}
 
     }
-
 }

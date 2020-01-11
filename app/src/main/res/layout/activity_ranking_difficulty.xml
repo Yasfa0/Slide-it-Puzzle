@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradientbackground"
-    tools:context=".TimedDifficultyActivity">
+    tools:context=".TimeLimitActivity">
 
     <ImageView
         android:id="@+id/back"
@@ -31,19 +31,6 @@
         android:src="@drawable/blankspace"
         ></ImageView>
 
-    <TextView
-        android:id="@+id/labelDifficulty"
-        android:text="Select Difficulty"
-        android:textColor="#ffffff"
-        android:layout_marginTop="80dp"
-        app:layout_constraintTop_toTopOf="@id/difficulty"
-        app:layout_constraintRight_toRightOf="@id/difficulty"
-        app:layout_constraintLeft_toLeftOf="@id/difficulty"
-        android:textSize="25dp"
-        android:fontFamily="sans-serif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
 
     <GridLayout
         android:id="@+id/gridlayout"
@@ -53,39 +40,37 @@
         android:columnCount="1"
         app:layout_constraintLeft_toLeftOf="@id/difficulty"
         app:layout_constraintRight_toRightOf="@id/difficulty"
-        app:layout_constraintTop_toBottomOf="@id/labelDifficulty"
-        app:layout_constraintBottom_toBottomOf="@id/difficulty"
-        android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toTopOf="@+id/difficulty"
+        app:layout_constraintBottom_toBottomOf="@+id/difficulty"
         >
-        <ImageView
-            android:id="@+id/easy"
-            android:src="@drawable/easy"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-
-            />
-
-
-        <ImageView
-            android:id="@+id/medium"
-            android:src="@drawable/medium"
-            android:layout_width="200dp"
+        <TextView
+            android:id="@+id/labelDifficulty"
+            android:text=" Use Time Limit?"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="50dp"
+            android:textSize="25dp"
+            android:fontFamily="sans-serif"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
         <ImageView
-            android:id="@+id/hard"
-            android:src="@drawable/hard"
+            android:id="@+id/yes"
+            android:src="@drawable/yes"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="90dp"
             />
 
+
         <ImageView
-            android:id="@+id/sip"
-            android:src="@drawable/sip_unlock"
+            android:id="@+id/no"
+            android:src="@drawable/no"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="90dp"
             />
+
+
+
     </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
