@@ -41,6 +41,7 @@
                 android:fontFamily="quicksand"
                 android:layout_marginRight="20dp"
                 android:textAlignment="center"/>
+
             <TextView
                 android:id="@+id/input2"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
