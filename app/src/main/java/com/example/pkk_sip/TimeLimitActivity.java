@@ -63,7 +63,7 @@ public class TimeLimitActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent toCustom = new Intent(TimeLimitActivity.this,rowcolumninput.class);
-                        toCustom.putExtra("waktu",0);
+                        toCustom.putExtra("skipTime","yes");
                         startActivity(toCustom);
                         playSound();
                         CustomIntent.customType(TimeLimitActivity.this,"fadein-to-fadeout");

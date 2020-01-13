@@ -27,7 +27,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import maes.tech.intentanim.CustomIntent;
 
@@ -37,7 +36,6 @@ public class PuzzleActivity extends AppCompatActivity {
     UjangEffect ujang = new UjangEffect();
 
     Bundle bundle;
-    int waktu;
     ImageView no1,no2,no3,start,blur,classic,timed,custom,pause,timeBox;
     Button resume,toMenu,restart;
     CardView card,cardmain;
@@ -111,14 +109,7 @@ public class PuzzleActivity extends AppCompatActivity {
         pause.setVisibility(View.INVISIBLE);
 
         bundle = getIntent().getExtras();
-
-        if (bundle != null){
-            waktu = bundle.getInt("waktu");
-        }else{
-            waktu = 0;
-        }
-
-
+        String difficulty = bundle.getString("difficulty");
 
 
 //Section
@@ -214,29 +205,6 @@ public class PuzzleActivity extends AppCompatActivity {
 
         }.start();
 
-
-        if (waktu > 0) {
-
-            new CountDownTimer(waktu, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    String waktu = String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
-                            TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
-
-                    timer.setText(waktu);
-
-                }
-
-                @Override
-                public void onFinish() {
-
-                }
-            }.start();
-
-        }else{
-            timer.setText("No Time");
-        }
-
         p = Integer.parseInt(getIntent().getStringExtra("p"));
         t = Integer.parseInt(getIntent().getStringExtra("l"));
 
@@ -326,11 +294,7 @@ public class PuzzleActivity extends AppCompatActivity {
             }
         }
         if(status == true){
-            //System.out.println("Kamu Menang");
-//            Intent result = new Intent(PuzzleActivity.this,HasilActivity.class);
-//            startActivity(result);
-//            PuzzleActivity.super.finish();
-//            CustomIntent.customType(PuzzleActivity.this,"fadein-to-fadeout");
+            System.out.println("Kamu Menang");
         }
     }
     private void Bearmove(int p,int t){

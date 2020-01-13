@@ -27,7 +27,7 @@ public class rowcolumninput extends AppCompatActivity {
     SharedPreferences pref;
 
     Bundle bundleSkipSound;
-    int waktu;
+    String isSkipTime;
 
     UjangEffect ujang = new UjangEffect();
 
@@ -45,10 +45,12 @@ public class rowcolumninput extends AppCompatActivity {
         bundleSkipSound = getIntent().getExtras();
 
         if (bundleSkipSound != null){
-            waktu = bundleSkipSound.getInt("waktu");
+            isSkipTime = bundleSkipSound.getString("skipTime");
         }else{
-            waktu = 0;
+            isSkipTime = "no";
         }
+
+
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
@@ -59,10 +61,13 @@ public class rowcolumninput extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-
+                        if (isSkipTime.equalsIgnoreCase("yes")) {
+                            Intent back = new Intent(rowcolumninput.this, TimeLimitActivity.class);
+                            startActivity(back);
+                        } else {
                             Intent back = new Intent(rowcolumninput.this, CustomTimeActivity.class);
                             startActivity(back);
-
+                        }
 
                         CustomIntent.customType(rowcolumninput.this,"fadein-to-fadeout");
                         backSound();
@@ -131,7 +136,6 @@ public class rowcolumninput extends AppCompatActivity {
                         Intent intent = new Intent(rowcolumninput.this,ChooseImageActivity.class);
                         intent.putExtra("p",input1.getText().toString());
                         intent.putExtra("l",input2.getText().toString());
-                        intent.putExtra("waktu",waktu);
                         startActivity(intent);
                         playSound();
                         CustomIntent.customType(rowcolumninput.this,"fadein-to-fadeout");

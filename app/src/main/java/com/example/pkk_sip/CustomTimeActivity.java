@@ -26,8 +26,6 @@ public class CustomTimeActivity extends AppCompatActivity {
     MediaPlayer voice;
     SharedPreferences pref;
 
-    String val1,val2,val3,val4;
-
     UjangEffect ujang = new UjangEffect();
 
     @Override
@@ -48,31 +46,12 @@ public class CustomTimeActivity extends AppCompatActivity {
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 ujang.clickAnim(right);
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
                         Intent preview = new Intent(CustomTimeActivity.this,rowcolumninput.class);
-                        val1 = input1.getText().toString();
-                        val2 = input2.getText().toString();
-                        val3 = input3.getText().toString();
-                        val4 = input4.getText().toString();
-
-                        String angkaDetik = val3 + val4;
-                        String angkaMenit = val1 + val2;
-
-                        int milisDetik =  Integer.parseInt(angkaDetik) * 1000;
-                        int milisMenit = Integer.parseInt(angkaMenit) * 60000;
-
-                        int milisTotal = milisMenit + milisDetik;
-
-                        if (milisTotal > 0){
-                            milisTotal = milisTotal + 6000;
-                        }
-
-                        preview.putExtra("waktu",milisTotal);
+                        preview.putExtra("skipTime","no");
                         startActivity(preview);
                         playSound();
                         CustomIntent.customType(CustomTimeActivity.this,"fadein-to-fadeout");
