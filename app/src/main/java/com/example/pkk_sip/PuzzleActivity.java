@@ -37,7 +37,6 @@ public class PuzzleActivity extends AppCompatActivity {
 
     Bundle bundle;
     ImageView no1,no2,no3,start,blur,classic,timed,custom,pause,timeBox;
-    ImageView up,down,left,right;
     Button resume,toMenu,restart;
     CardView card,cardmain;
     TextView timer,skip;
@@ -81,10 +80,6 @@ public class PuzzleActivity extends AppCompatActivity {
         no3 = (ImageView) findViewById(R.id.no3);
         start = (ImageView) findViewById(R.id.start);
         blur = (ImageView) findViewById(R.id.blur);
-        up = findViewById(R.id.pad_up);
-        down = findViewById(R.id.pad_down);
-        right = findViewById(R.id.pad_right);
-        left = findViewById(R.id.pad_left);
 
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
@@ -258,10 +253,10 @@ public class PuzzleActivity extends AppCompatActivity {
         }
         initPicOOP();
         initBlockOOP(p,t);
-        leftbtn = findViewById(R.id.pad_left);
-        rightbtn = findViewById(R.id.pad_right);
-        upbtn = findViewById(R.id.pad_up);
-        downbtn = findViewById(R.id.pad_down);
+        leftbtn = findViewById(R.id.pad_right);
+        rightbtn = findViewById(R.id.pad_left);
+        upbtn = findViewById(R.id.pad_down);
+        downbtn = findViewById(R.id.pad_up);
         Bearmove(p,t);
         initslide();
         randomizer();
@@ -297,6 +292,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 }
             });
         }else{}
+
     }
 
     public void backSound(){
@@ -314,10 +310,26 @@ public class PuzzleActivity extends AppCompatActivity {
         }else{}
 
     }
-
+    private void checkwin(){
+        boolean status = false;
+        for(int i = 0;i<listblock.size();i++){
+            if(listblock.get(i).getPosition() == listblock.get(i).getStartposition()){
+                status = true;
+            }else{
+                status = false;
+                break;
+            }
+        }
+        if(status == true){
+            System.out.println("Kamu Menang");
+        }
+    }
     private void Bearmove(int p,int t){
         int block_length = dpToPx(layout_p/p);
         int block_height = dpToPx(layout_t/t);
+        if(currentpos[0]==p-1&&currentpos[1]==t-1){
+            checkwin();
+        }
         if(leftpos[0]>=0){
             for(int i = 0;i<p*t-1;i++) {
                 if (leftpos[0] == listblock.get(i).getPosition()[0]&&leftpos[1] == listblock.get(i).getPosition()[1]) {
@@ -374,7 +386,7 @@ public class PuzzleActivity extends AppCompatActivity {
         final int block_length = dpToPx(layout_p/p);
         final int block_height = dpToPx(layout_t/t);
         int temp = 0;
-        for(int i = 0;i <1500;i++){
+        for(int i = 0;i <(p*t*18);i++){
 
             int random = new Random().nextInt(5);
             for(int a = 5;a<5;a++){
@@ -512,6 +524,7 @@ public class PuzzleActivity extends AppCompatActivity {
                     ip.topMargin = i*block_height;
                     arrayll.get(i).addView(imv, ip);
                     listblock.add(block);
+
                 }
             }
 

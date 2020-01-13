@@ -173,7 +173,7 @@
 
 
     <ImageView
-        android:id="@+id/pad_right"
+        android:id="@+id/pad_left"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/pad_left"
@@ -183,7 +183,7 @@
         />
 
     <ImageView
-        android:id="@+id/pad_down"
+        android:id="@+id/pad_up"
         android:layout_height="50dp"
         android:layout_width="50dp"
         android:src="@drawable/pad_up"
@@ -194,7 +194,7 @@
 
 
     <ImageView
-        android:id="@+id/pad_left"
+        android:id="@+id/pad_right"
         android:layout_height="50dp"
         android:layout_width="50dp"
         app:layout_constraintRight_toRightOf="parent"
@@ -206,7 +206,7 @@
 
 
     <ImageView
-        android:id="@+id/pad_up"
+        android:id="@+id/pad_down"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/pad_down"
