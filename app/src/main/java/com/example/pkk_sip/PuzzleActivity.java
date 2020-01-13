@@ -14,6 +14,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -80,6 +81,7 @@ public class PuzzleActivity extends AppCompatActivity {
         down = findViewById(R.id.pad_down);
         right = findViewById(R.id.pad_right);
         left = findViewById(R.id.pad_left);
+
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
@@ -227,11 +229,11 @@ public class PuzzleActivity extends AppCompatActivity {
             layout_p = size_p;
             layout_t = size_p/p*t;
         }else if(p<t){
-            System.out.println("In");
+//            System.out.println("In");
             layout_t = size_t;
             layout_p = size_t/t*p;
-            System.out.println(layout_p);
-            System.out.println(layout_t);
+//            System.out.println(layout_p);
+//            System.out.println(layout_t);
         }else{
             layout_t = size_t;
             layout_p = size_p;
@@ -243,6 +245,7 @@ public class PuzzleActivity extends AppCompatActivity {
         upbtn = findViewById(R.id.pad_up);
         downbtn = findViewById(R.id.pad_down);
         Bearmove(p,t);
+        initslide();
     }
 
     public void playSound(){
@@ -300,7 +303,7 @@ public class PuzzleActivity extends AppCompatActivity {
             for(int i = 0;i<p*t-1;i++) {
                 if (leftpos[0] == listblock.get(i).getPosition()[0]&&leftpos[1] == listblock.get(i).getPosition()[1]) {
                     Run(listblock.get(i),leftbtn,block_length,0,"left");
-                    System.out.print("Its Left");
+//                    System.out.print("Its Left /n");
                 }
             }
         }else{
@@ -310,7 +313,7 @@ public class PuzzleActivity extends AppCompatActivity {
             for(int i = 0;i<p*t-1;i++) {
                 if (rightpos[0] == listblock.get(i).getPosition()[0]&&rightpos[1] == listblock.get(i).getPosition()[1]) {
                     Run(listblock.get(i),rightbtn,-block_length,0,"right");
-                    System.out.print("Its Right");
+//                    System.out.print("Its Right/n");
                 }
             }
         }else{
@@ -321,7 +324,7 @@ public class PuzzleActivity extends AppCompatActivity {
             for(int i = 0;i<p*t-1;i++) {
                 if (uppos[0] == listblock.get(i).getPosition()[0]&&uppos[1] == listblock.get(i).getPosition()[1]) {
                     Run(listblock.get(i),upbtn,0,block_height,"up");
-                    System.out.print("Its Up");
+//                    System.out.print("Its Up/n");
                 }
             }
         }else{
@@ -332,7 +335,7 @@ public class PuzzleActivity extends AppCompatActivity {
             for(int i = 0;i<p*t-1;i++) {
                 if (downpos[0] == listblock.get(i).getPosition()[0]&&downpos[1] == listblock.get(i).getPosition()[1]) {
                     Run(listblock.get(i),downbtn,0,-block_height,"down");
-                    System.out.print("Its Down");
+//                    System.out.print("Its Down/n");
                 }
             }
         }else{
@@ -359,6 +362,61 @@ public class PuzzleActivity extends AppCompatActivity {
         next[0] = (block.getPosition()[0]-block.getStartposition()[0])*block_length;
         next[1] = (block.getPosition()[1]-block.getStartposition()[1])*block_height;
         initbtn(btn,img,cur,next,block,change);
+    }
+
+    private void slide(int[] nextpos,String change,int x,int y){
+        int block_length = dpToPx(layout_p/p);
+        int block_height = dpToPx(layout_t/t);
+        if(nextpos[1]<t&&nextpos[1]>=0&&nextpos[0]<p&&nextpos[0]>=0){
+            for(int i = 0;i<p*t-1;i++) {
+                if (nextpos[0] == listblock.get(i).getPosition()[0]&&nextpos[1] == listblock.get(i).getPosition()[1]) {
+//                    Run(listblock.get(i),downbtn,0,-block_height,"down");
+                    Bearblock block = listblock.get(i);
+                    ImageView img = block.getBlock();
+                    int[] cur = new int[2];
+                    cur[0] = (block.getPosition()[0]-block.getStartposition()[0])*block_length+x;
+                    cur[1] = (block.getPosition()[1]-block.getStartposition()[1])*block_height+y;
+                    int[] next = new int[2];
+                    next[0] = (block.getPosition()[0]-block.getStartposition()[0])*block_length;
+                    next[1] = (block.getPosition()[1]-block.getStartposition()[1])*block_height;
+                    Animation animation = new TranslateAnimation(next[0],cur[0],next[1], cur[1]);
+                    System.out.println(change);
+                    animation.setDuration(1000);
+                    animation.setFillAfter(true);
+                    img.startAnimation(animation);
+                    Change(change,block);
+                    Bearmove(p,t);
+                    initslide();
+                    playSound();
+                    break;
+                }
+            }
+        }else{
+
+        }
+    }
+    private void initslide(){
+        final int block_length = dpToPx(layout_p/p);
+        final int block_height = dpToPx(layout_t/t);
+        CardView playarea = findViewById(R.id.card);
+        playarea.setOnTouchListener(new OnSwipeTouchListener(this){
+
+            public void onSwipeTop() {
+                slide(downpos,"down",0,(-block_height));
+            }
+            public void onSwipeRight() {
+                slide(leftpos,"left",block_length,0);
+            }
+            public void onSwipeLeft() {
+                slide(rightpos,"right",(-block_length),0);
+            }
+            public void onSwipeBottom() {
+                slide(uppos,"up",0,block_height);
+            }
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }
+        });
     }
     public static int pxToDp(int px) {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
@@ -418,7 +476,7 @@ public class PuzzleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Animation animation = new TranslateAnimation(next[0],pos[0],next[1], pos[1]);
-                System.out.println((pos[0])+","+(pos[1]));
+//                System.out.println((pos[0])+","+(pos[1]));
                 System.out.println(change);
                 animation.setDuration(1000);
                 animation.setFillAfter(true);
@@ -477,15 +535,14 @@ public class PuzzleActivity extends AppCompatActivity {
     private Bitmap crop(Bitmap original,int pos_p,int pos_t){
         int height = layout_t/t;
         int width = layout_p/p;
-        System.out.println("Lebar : "+width);
-        System.out.println("Pos P : "+pos_p);
-        System.out.println("Tinggi : "+height);
-        System.out.println("Pos T : "+pos_t);
+//        System.out.println("Lebar : "+width);
+//        System.out.println("Pos P : "+pos_p);
+//        System.out.println("Tinggi : "+height);
+//        System.out.println("Pos T : "+pos_t);
         Bitmap bMap = Bitmap.createBitmap(original, width*pos_p, height*pos_t,
                 width, height, new Matrix(), true);
 
         return bMap;
     }
-
 
 }
