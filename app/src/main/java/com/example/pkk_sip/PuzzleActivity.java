@@ -72,8 +72,6 @@ public class PuzzleActivity extends AppCompatActivity {
         timeBox = findViewById(R.id.timer_show);
         timer = findViewById(R.id.timer);
         cardmain = findViewById(R.id.card);
-        classic = findViewById(R.id.classic);
-        timed = findViewById(R.id.timed);
         custom = findViewById(R.id.custom);
         no1 = (ImageView) findViewById(R.id.no1);
         no2 = (ImageView) findViewById(R.id.no2);
@@ -112,7 +110,7 @@ public class PuzzleActivity extends AppCompatActivity {
 
         bundle = getIntent().getExtras();
         String difficulty = bundle.getString("difficulty");
-        String mode = bundle.getString("mode");
+
 
 //Section
         pause.setOnClickListener(new View.OnClickListener() {
@@ -167,31 +165,6 @@ public class PuzzleActivity extends AppCompatActivity {
             }
         });
 
-        if (mode.equalsIgnoreCase("timed")){
-
-            custom.setVisibility(View.INVISIBLE);
-            classic.setVisibility(View.INVISIBLE);
-            timed.setVisibility(View.VISIBLE);
-
-        }
-
-
-        if (mode.equalsIgnoreCase("classic")){
-
-            custom.setVisibility(View.INVISIBLE);
-            classic.setVisibility(View.VISIBLE);
-            timed.setVisibility(View.INVISIBLE);
-
-        }
-
-
-        if (mode.equalsIgnoreCase("custom")){
-
-            custom.setVisibility(View.VISIBLE);
-            classic.setVisibility(View.INVISIBLE);
-            timed.setVisibility(View.INVISIBLE);
-
-        }
 
         new CountDownTimer(5000,1000) {
 
