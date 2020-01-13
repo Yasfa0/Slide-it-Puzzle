@@ -28,6 +28,9 @@ public class ChooseImageActivity extends AppCompatActivity{
     MediaPlayer voice;
     SharedPreferences pref;
 
+    Bundle dataBundle;
+    int waktu;
+
     UjangEffect ujang = new UjangEffect();
 
     private static int RESULT_LOAD_IMAGE = 1;
@@ -49,6 +52,13 @@ public class ChooseImageActivity extends AppCompatActivity{
         back = (ImageView) findViewById(R.id.back);
         next = (ImageView) findViewById(R.id.next_img);
 
+        dataBundle = getIntent().getExtras();
+
+        if (dataBundle != null){
+            waktu = dataBundle.getInt("waktu");
+            }else {
+            waktu = 0;
+        }
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
@@ -61,6 +71,7 @@ public class ChooseImageActivity extends AppCompatActivity{
                     public void run() {
 
                         Intent back = new Intent(ChooseImageActivity.this,rowcolumninput.class);
+                        back.putExtra("waktu",waktu);
                         startActivity(back);
                         backSound();
                         CustomIntent.customType(ChooseImageActivity.this,"fadein-to-fadeout");
@@ -102,6 +113,7 @@ public class ChooseImageActivity extends AppCompatActivity{
                         t = Integer.parseInt(getIntent().getStringExtra("l"));
                         next.putExtra("p",String.valueOf(p));
                         next.putExtra("l",String.valueOf(t));
+                        next.putExtra("waktu",waktu);
                         startActivity(next);
                         playSound();
                         CustomIntent.customType(ChooseImageActivity.this,"fadein-to-fadeout");

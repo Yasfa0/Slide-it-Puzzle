@@ -20,6 +20,9 @@ public class Preview extends AppCompatActivity {
     MediaPlayer voice;
     SharedPreferences pref;
 
+    Bundle dataBundle;
+    int waktu;
+
     UjangEffect ujang = new UjangEffect();
 
     @Override
@@ -29,6 +32,14 @@ public class Preview extends AppCompatActivity {
 
         back = findViewById(R.id.back);
         play = findViewById(R.id.play);
+
+        dataBundle = getIntent().getExtras();
+
+        if (dataBundle != null){
+            waktu = dataBundle.getInt("waktu");
+        }else {
+            waktu = 0;
+        }
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
@@ -42,6 +53,7 @@ public class Preview extends AppCompatActivity {
                     public void run() {
 
                         Intent back = new Intent(Preview.this,ChooseImageActivity.class);
+                        back.putExtra("waktu",waktu);
                         startActivity(back);
                         CustomIntent.customType(Preview.this,"fadein-to-fadeout");
                         backSound();
@@ -76,6 +88,7 @@ public class Preview extends AppCompatActivity {
                 play.putExtra("p",p);
                 play.putExtra("l",t);
                 play.putExtras(data);
+                play.putExtra("waktu",waktu);
                 startActivity(play);
                 CustomIntent.customType(Preview.this,"fadein-to-fadeout");
                 playSound();
