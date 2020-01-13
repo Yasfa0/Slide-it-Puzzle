@@ -26,6 +26,8 @@ public class CustomTimeActivity extends AppCompatActivity {
     MediaPlayer voice;
     SharedPreferences pref;
 
+    UjangEffect ujang = new UjangEffect();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +46,23 @@ public class CustomTimeActivity extends AppCompatActivity {
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent preview = new Intent(CustomTimeActivity.this,rowcolumninput.class);
-                startActivity(preview);
-                playSound();
-                CustomIntent.customType(CustomTimeActivity.this,"fadein-to-fadeout");
+                ujang.clickAnim(right);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent preview = new Intent(CustomTimeActivity.this,rowcolumninput.class);
+                        preview.putExtra("skipTime","no");
+                        startActivity(preview);
+                        playSound();
+                        CustomIntent.customType(CustomTimeActivity.this,"fadein-to-fadeout");
+
+                    }
+                };
+
+
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
+
             }
         });
 
@@ -56,10 +71,21 @@ public class CustomTimeActivity extends AppCompatActivity {
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent back = new Intent(CustomTimeActivity.this,MainActivity.class);
-                startActivity(back);
-                backSound();
-                CustomIntent.customType(CustomTimeActivity.this,"fadein-to-fadeout");
+                ujang.clickAnim(left);
+
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent back = new Intent(CustomTimeActivity.this,TimeLimitActivity.class);
+                        startActivity(back);
+                        backSound();
+                        CustomIntent.customType(CustomTimeActivity.this,"fadein-to-fadeout");
+                    }
+                };
+
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
+
             }
         });
 
@@ -129,18 +155,31 @@ public class CustomTimeActivity extends AppCompatActivity {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                input1.setText("0");
-                input2.setText("0");
-                input3.setText("0");
-                input4.setText("0");
-                posisi = 1;
-                input1.setTextSize(70);
-                input2.setTextSize(50);
-                input3.setTextSize(50);
-                input4.setTextSize(50);
-                playSound();
+                ujang.clickAnim(clear);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+
+                        input1.setText("0");
+                        input2.setText("0");
+                        input3.setText("0");
+                        input4.setText("0");
+                        posisi = 1;
+                        input1.setTextSize(70);
+                        input2.setTextSize(50);
+                        input3.setTextSize(50);
+                        input4.setTextSize(50);
+                        playSound();
+
+
+                    }
+                };
+
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
 
             }
+
         });
 
 
@@ -174,6 +213,7 @@ public class CustomTimeActivity extends AppCompatActivity {
 //                if(posisi != 1){
                     posisi--;
 //                }
+                ujang.clickAnim(del);
                 playSound();
 
             }
@@ -238,7 +278,7 @@ public class CustomTimeActivity extends AppCompatActivity {
 
 
     ArrayList<TextView> arrayinput = new ArrayList<TextView>();
-    public void initnumber(ImageView nomor,final String text){
+    public void initnumber(final ImageView nomor, final String text){
         arrayinput.add(input1);
         arrayinput.add(input2);
         arrayinput.add(input3);
@@ -264,6 +304,7 @@ public class CustomTimeActivity extends AppCompatActivity {
                         }
                     }
                 }
+                ujang.clickAnim(nomor);
                 playSound();
 
                 posisi++;
@@ -277,7 +318,7 @@ public class CustomTimeActivity extends AppCompatActivity {
     public void playSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.tone);
+            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -293,7 +334,7 @@ public class CustomTimeActivity extends AppCompatActivity {
     public void backSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.computer_error);
+            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override

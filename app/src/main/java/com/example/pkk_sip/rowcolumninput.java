@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,6 +26,11 @@ public class rowcolumninput extends AppCompatActivity {
     MediaPlayer voice;
     SharedPreferences pref;
 
+    Bundle bundleSkipSound;
+    String isSkipTime;
+
+    UjangEffect ujang = new UjangEffect();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,15 +41,42 @@ public class rowcolumninput extends AppCompatActivity {
         input2 = (TextView) findViewById(R.id.input2);
         back = (ImageView) findViewById(R.id.left);
 
+
+        bundleSkipSound = getIntent().getExtras();
+
+        if (bundleSkipSound != null){
+            isSkipTime = bundleSkipSound.getString("skipTime");
+        }else{
+            isSkipTime = "no";
+        }
+
+
+
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent back = new Intent(rowcolumninput.this,CustomTimeActivity.class);
-                startActivity(back);
-                CustomIntent.customType(rowcolumninput.this,"fadein-to-fadeout");
-                backSound();
+                ujang.clickAnim(back);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+                        if (isSkipTime.equalsIgnoreCase("yes")) {
+                            Intent back = new Intent(rowcolumninput.this, TimeLimitActivity.class);
+                            startActivity(back);
+                        } else {
+                            Intent back = new Intent(rowcolumninput.this, CustomTimeActivity.class);
+                            startActivity(back);
+                        }
+
+                        CustomIntent.customType(rowcolumninput.this,"fadein-to-fadeout");
+                        backSound();
+                    }
+                };
+
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
+
             }
         });
 
@@ -82,6 +115,7 @@ public class rowcolumninput extends AppCompatActivity {
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ujang.clickAnim(del);
                 input1.setText("2");
                 input2.setText("2");
                 input1.setTextSize(50);
@@ -94,12 +128,22 @@ public class rowcolumninput extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(rowcolumninput.this,ChooseImageActivity.class);
-                intent.putExtra("p",input1.getText().toString());
-                intent.putExtra("l",input2.getText().toString());
-                startActivity(intent);
-                playSound();
-                CustomIntent.customType(rowcolumninput.this,"fadein-to-fadeout");
+                ujang.clickAnim(next);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Intent intent = new Intent(rowcolumninput.this,ChooseImageActivity.class);
+                        intent.putExtra("p",input1.getText().toString());
+                        intent.putExtra("l",input2.getText().toString());
+                        startActivity(intent);
+                        playSound();
+                        CustomIntent.customType(rowcolumninput.this,"fadein-to-fadeout");
+                    }
+                };
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
+
             }
         });
 
@@ -115,7 +159,7 @@ public class rowcolumninput extends AppCompatActivity {
     }
 
     ArrayList<TextView> arrayinput = new ArrayList<TextView>();
-    public void initnumber(ImageView nomor,final String text){
+    public void initnumber(final ImageView nomor, final String text){
         arrayinput.add(input1);
         arrayinput.add(input2);
 
@@ -139,6 +183,7 @@ public class rowcolumninput extends AppCompatActivity {
                         }
                     }
                 }
+                ujang.clickAnim(nomor);
                 playSound();
 
                 posisi++;
@@ -152,7 +197,7 @@ public class rowcolumninput extends AppCompatActivity {
     public void playSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.tone);
+            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -169,7 +214,7 @@ public class rowcolumninput extends AppCompatActivity {
     public void backSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.computer_error);
+            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override

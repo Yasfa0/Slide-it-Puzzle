@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,6 +27,8 @@ public class ChooseImageActivity extends AppCompatActivity{
     ImageView back,next;
     MediaPlayer voice;
     SharedPreferences pref;
+
+    UjangEffect ujang = new UjangEffect();
 
     private static int RESULT_LOAD_IMAGE = 1;
     final int PIC_CROP = 2;
@@ -52,10 +55,21 @@ public class ChooseImageActivity extends AppCompatActivity{
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent back = new Intent(ChooseImageActivity.this,rowcolumninput.class);
-                startActivity(back);
-                backSound();
-                CustomIntent.customType(ChooseImageActivity.this,"fadein-to-fadeout");
+                ujang.clickAnim(back);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Intent back = new Intent(ChooseImageActivity.this,rowcolumninput.class);
+                        startActivity(back);
+                        backSound();
+                        CustomIntent.customType(ChooseImageActivity.this,"fadein-to-fadeout");
+                    }
+                };
+
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
+
             }
         });
 
@@ -77,15 +91,27 @@ public class ChooseImageActivity extends AppCompatActivity{
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent next = new Intent(ChooseImageActivity.this,Preview.class);
-                next.putExtra("Gambar",sentBitmap);
-                p = Integer.parseInt(getIntent().getStringExtra("p"));
-                t = Integer.parseInt(getIntent().getStringExtra("l"));
-                next.putExtra("p",String.valueOf(p));
-                next.putExtra("l",String.valueOf(t));
-                startActivity(next);
-                playSound();
-                CustomIntent.customType(ChooseImageActivity.this,"fadein-to-fadeout");
+                ujang.clickAnim(next);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Intent next = new Intent(ChooseImageActivity.this,Preview.class);
+                        next.putExtra("Gambar",sentBitmap);
+                        p = Integer.parseInt(getIntent().getStringExtra("p"));
+                        t = Integer.parseInt(getIntent().getStringExtra("l"));
+                        next.putExtra("p",String.valueOf(p));
+                        next.putExtra("l",String.valueOf(t));
+                        startActivity(next);
+                        playSound();
+                        CustomIntent.customType(ChooseImageActivity.this,"fadein-to-fadeout");
+
+                    }
+                };
+
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
+
             }
         });
 
@@ -101,7 +127,7 @@ public class ChooseImageActivity extends AppCompatActivity{
     public void playSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.tone);
+            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -118,7 +144,7 @@ public class ChooseImageActivity extends AppCompatActivity{
     public void backSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.computer_error);
+            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override

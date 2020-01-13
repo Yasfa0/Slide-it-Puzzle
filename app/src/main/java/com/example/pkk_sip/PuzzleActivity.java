@@ -13,6 +13,7 @@ import android.graphics.Matrix;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,6 +31,8 @@ import maes.tech.intentanim.CustomIntent;
 
 public class PuzzleActivity extends AppCompatActivity {
 
+
+    UjangEffect ujang = new UjangEffect();
 
     Bundle bundle;
     ImageView no1,no2,no3,start,blur,classic,timed,custom,pause,timeBox;
@@ -119,15 +122,29 @@ public class PuzzleActivity extends AppCompatActivity {
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                card.setVisibility(View.VISIBLE);
-                blur.setVisibility(View.VISIBLE);
-                cardmain.setVisibility(View.INVISIBLE);
+                ujang.clickAnim(pause);
+
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+
+                        card.setVisibility(View.VISIBLE);
+                        blur.setVisibility(View.VISIBLE);
+                        cardmain.setVisibility(View.INVISIBLE);
+                    }
+                };
+
+                Handler timer = new Handler();
+                timer.postDelayed(run,300);
+
             }
         });
 
         resume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 card.setVisibility(View.INVISIBLE);
                 blur.setVisibility(View.INVISIBLE);
                 cardmain.setVisibility(View.VISIBLE);
@@ -251,7 +268,7 @@ public class PuzzleActivity extends AppCompatActivity {
     public void playSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.tone);
+            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -283,7 +300,7 @@ public class PuzzleActivity extends AppCompatActivity {
     public void backSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.computer_error);
+            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override

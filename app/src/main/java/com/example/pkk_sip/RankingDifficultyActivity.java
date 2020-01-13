@@ -28,10 +28,6 @@ public class RankingDifficultyActivity extends AppCompatActivity {
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
         back = (ImageView) findViewById(R.id.back);
-        easy = (ImageView) findViewById(R.id.easy);
-        medium = findViewById(R.id.medium);
-        sip = findViewById(R.id.sip);
-        hard = findViewById(R.id.hard);
 
 
 
@@ -107,7 +103,7 @@ public class RankingDifficultyActivity extends AppCompatActivity {
     public void playSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.tone);
+            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -124,7 +120,7 @@ public class RankingDifficultyActivity extends AppCompatActivity {
     public void backSound(){
 
         if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.computer_error);
+            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
