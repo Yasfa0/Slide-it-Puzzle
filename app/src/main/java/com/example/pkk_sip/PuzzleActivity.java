@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import maes.tech.intentanim.CustomIntent;
 
@@ -263,6 +264,7 @@ public class PuzzleActivity extends AppCompatActivity {
         downbtn = findViewById(R.id.pad_down);
         Bearmove(p,t);
         initslide();
+        randomizer();
     }
 
     public void playSound(){
@@ -352,7 +354,6 @@ public class PuzzleActivity extends AppCompatActivity {
             for(int i = 0;i<p*t-1;i++) {
                 if (downpos[0] == listblock.get(i).getPosition()[0]&&downpos[1] == listblock.get(i).getPosition()[1]) {
                     Run(listblock.get(i),downbtn,0,-block_height,"down");
-//                    System.out.print("Its Down/n");
                 }
             }
         }else{
@@ -368,6 +369,39 @@ public class PuzzleActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void randomizer(){
+        final int block_length = dpToPx(layout_p/p);
+        final int block_height = dpToPx(layout_t/t);
+        int temp = 0;
+        for(int i = 0;i <1500;i++){
+
+            int random = new Random().nextInt(5);
+            for(int a = 5;a<5;a++){
+                if(temp == random){
+                    random = new Random().nextInt(5);
+                }else{
+                    temp = random;
+                    break;
+                }
+            }
+
+
+            if(random == 1){
+                slide(downpos,"down",0,(-block_height),1000);
+            }else
+            if(random == 2){
+                slide(leftpos,"left",block_length,0,1000);
+            }else
+            if(random == 3){
+                slide(rightpos,"right",(-block_length),0,1000);
+            }else
+            if(random == 4){
+                slide(uppos,"up",0,block_height,1000);
+            }
+        }
+
+    }
     private void Run(Bearblock block,ImageView btn,int x, int y,String change){
         int block_length = dpToPx(layout_p/p);
         int block_height = dpToPx(layout_t/t);
@@ -381,7 +415,7 @@ public class PuzzleActivity extends AppCompatActivity {
         initbtn(btn,img,cur,next,block,change);
     }
 
-    private void slide(int[] nextpos,String change,int x,int y){
+    private void slide(int[] nextpos,String change,int x,int y,int speed){
         int block_length = dpToPx(layout_p/p);
         int block_height = dpToPx(layout_t/t);
         if(nextpos[1]<t&&nextpos[1]>=0&&nextpos[0]<p&&nextpos[0]>=0){
@@ -398,13 +432,13 @@ public class PuzzleActivity extends AppCompatActivity {
                     next[1] = (block.getPosition()[1]-block.getStartposition()[1])*block_height;
                     Animation animation = new TranslateAnimation(next[0],cur[0],next[1], cur[1]);
                     System.out.println(change);
-                    animation.setDuration(500);
+                    animation.setDuration(speed);
                     animation.setFillAfter(true);
                     img.startAnimation(animation);
                     Change(change,block);
                     Bearmove(p,t);
                     initslide();
-                    playSound();
+//                    playSound();
                     break;
                 }
             }
@@ -419,16 +453,16 @@ public class PuzzleActivity extends AppCompatActivity {
         playarea.setOnTouchListener(new OnSwipeTouchListener(this){
 
             public void onSwipeTop() {
-                slide(downpos,"down",0,(-block_height));
+                slide(downpos,"down",0,(-block_height),500);
             }
             public void onSwipeRight() {
-                slide(leftpos,"left",block_length,0);
+                slide(leftpos,"left",block_length,0,500);
             }
             public void onSwipeLeft() {
-                slide(rightpos,"right",(-block_length),0);
+                slide(rightpos,"right",(-block_length),0,500);
             }
             public void onSwipeBottom() {
-                slide(uppos,"up",0,block_height);
+                slide(uppos,"up",0,block_height,500);
             }
             public boolean onTouch(View v, MotionEvent event) {
                 return gestureDetector.onTouchEvent(event);
