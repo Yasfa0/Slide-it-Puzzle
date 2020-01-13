@@ -398,7 +398,7 @@ public class PuzzleActivity extends AppCompatActivity {
                     next[1] = (block.getPosition()[1]-block.getStartposition()[1])*block_height;
                     Animation animation = new TranslateAnimation(next[0],cur[0],next[1], cur[1]);
                     System.out.println(change);
-                    animation.setDuration(1000);
+                    animation.setDuration(500);
                     animation.setFillAfter(true);
                     img.startAnimation(animation);
                     Change(change,block);
@@ -495,7 +495,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 Animation animation = new TranslateAnimation(next[0],pos[0],next[1], pos[1]);
 //                System.out.println((pos[0])+","+(pos[1]));
                 System.out.println(change);
-                animation.setDuration(1000);
+                animation.setDuration(500);
                 animation.setFillAfter(true);
                 img.startAnimation(animation);
                 Change(change,block);
