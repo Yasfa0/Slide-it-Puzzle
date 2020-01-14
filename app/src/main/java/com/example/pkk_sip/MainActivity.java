@@ -120,19 +120,24 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ujang.clickAnim(exit);
 
-                Runnable run = new Runnable() {
-                    @Override
-                    public void run() {
                     backSound();
 
-                        finish();
-                        System.exit(0);
+                    Runnable run = new Runnable() {
+                        @Override
+                        public void run() {
 
-                    }
-                };
+                            Intent toLauncher = new Intent(Intent.ACTION_MAIN);
+                            toLauncher.addCategory(Intent.CATEGORY_HOME);
+                            toLauncher.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(toLauncher);
+                            CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
 
-                Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                        }
+                    };
+
+                    Handler timer = new Handler();
+                    timer.postDelayed(run,300);
+
             }
         });
 
