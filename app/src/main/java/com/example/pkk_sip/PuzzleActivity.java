@@ -36,6 +36,8 @@ public class PuzzleActivity extends AppCompatActivity {
 
     UjangEffect ujang = new UjangEffect();
 
+    boolean noTime;
+
     Bundle bundle;
     int waktu;
     ImageView no1, no2, no3, start, blur, classic, timed, custom, pause, timeBox;
@@ -116,7 +118,15 @@ public class PuzzleActivity extends AppCompatActivity {
 
         if (bundle != null) {
             waktu = bundle.getInt("waktu");
+
+            if (waktu > 0){
+                noTime = false;
+            }else{
+                noTime = true;
+            }
+
         } else {
+            noTime = true;
             waktu = 0;
         }
 
@@ -215,15 +225,32 @@ public class PuzzleActivity extends AppCompatActivity {
         }.start();
 
 
+        final int detik = waktu%60000/1000;
+        final int menit = waktu/60000/1000;
         if (waktu > 0) {
 
             new CountDownTimer(waktu, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    String waktu = String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
-                            TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
+                    long detik_sisa = millisUntilFinished%60000/1000;
+                    long menit_sisa = millisUntilFinished/60000;
+                    long detik_show= detik-(detik-detik_sisa);
+                    long menit_show= menit-(menit-menit_sisa);
+                    String detik_layout = "";
+                    String menit_layout = "";
+                    if(detik_show<10){
+                        detik_layout = String.valueOf("0"+detik_show);
+                    }else{
+                        detik_layout = String.valueOf(detik_show);
+                    }
 
-                    timer.setText(waktu);
+                    if(menit_show<10){
+                        menit_layout = String.valueOf("0"+menit_show);
+                    }else{
+                        menit_layout = String.valueOf(menit_show);
+                    }
+                    String string_waktu = menit_layout+":"+detik_layout;
+                    timer.setText(string_waktu);
 
                 }
 
@@ -344,11 +371,11 @@ public class PuzzleActivity extends AppCompatActivity {
             //Kalo Butuh Score Tinggal Di Panggil Aja
             //Scorenya mah tinggal pake score yang diatas... langsung aja di panggil
             //kalo waktu kan situ yang ngerjain jadi gk tau
-            System.out.println("Kamu Menang");
-//            Intent result = new Intent(PuzzleActivity.this,HasilActivity.class);
-//            startActivity(result);
-//            PuzzleActivity.super.finish();
-//            CustomIntent.customType(PuzzleActivity.this,"fadein-to-fadeout");
+            //System.out.println("Kamu Menang");
+            Intent result = new Intent(PuzzleActivity.this,HasilActivity.class);
+            startActivity(result);
+            PuzzleActivity.super.finish();
+            CustomIntent.customType(PuzzleActivity.this,"fadein-to-fadeout");
         }
     }
 
