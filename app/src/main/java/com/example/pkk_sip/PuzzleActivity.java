@@ -60,6 +60,7 @@ public class PuzzleActivity extends AppCompatActivity {
     int t = 0;
     int layout_p;
     int layout_t;
+    boolean status_selesai_randomizer =false;
 
     ArrayList<Bitmap> bitmapArrayList = new ArrayList<Bitmap>();
 
@@ -334,7 +335,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 break;
             }
         }
-        if (status == true) {
+        if (status == true&&status_selesai_randomizer==true) {
             //Nanti kan intent ke Activity Menang
             //Parameternya Waktu,Score
             //Nama mah Masukin nanti pake TextField aja di activity menangnya
@@ -455,6 +456,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 slide(uppos, "up", 0, block_height, 1000);
             }
         }
+        status_selesai_randomizer = true;
 
     }
 
