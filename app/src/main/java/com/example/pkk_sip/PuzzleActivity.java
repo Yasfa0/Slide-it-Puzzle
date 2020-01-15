@@ -323,16 +323,27 @@ public class PuzzleActivity extends AppCompatActivity {
 
     private void checkwin() {
         boolean status = false;
+        int score = 0;
+        int point_per_block = ((p+t)/2*1000);
         for (int i = 0; i < listblock.size(); i++) {
             if (listblock.get(i).getPosition() == listblock.get(i).getStartposition()) {
                 status = true;
+                score = score+point_per_block;
             } else {
                 status = false;
                 break;
             }
         }
         if (status == true) {
-            //System.out.println("Kamu Menang");
+            //Nanti kan intent ke Activity Menang
+            //Parameternya Waktu,Score
+            //Nama mah Masukin nanti pake TextField aja di activity menangnya
+            //jangan di activity ini
+            //kalo udah itu masukin aja datanya ke database
+            //Kalo Butuh Score Tinggal Di Panggil Aja
+            //Scorenya mah tinggal pake score yang diatas... langsung aja di panggil
+            //kalo waktu kan situ yang ngerjain jadi gk tau
+            System.out.println("Kamu Menang");
 //            Intent result = new Intent(PuzzleActivity.this,HasilActivity.class);
 //            startActivity(result);
 //            PuzzleActivity.super.finish();
