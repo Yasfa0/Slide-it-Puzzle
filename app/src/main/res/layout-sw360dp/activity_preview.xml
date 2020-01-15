@@ -7,27 +7,55 @@
     android:background="@drawable/gradientbackground"
     tools:context=".Preview">
 
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:adjustViewBounds="true"
+        android:maxWidth="50dp"
+        android:src="@drawable/back"
+        app:layout_constraintLeft_toLeftOf="@id/card"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        >
+
+        <ImageView
+            android:id="@+id/play"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:elevation="3dp"
+            android:src="@drawable/preview" />
+
+        <ImageView
+            android:id="@+id/fruit"
+            android:layout_width="wrap_content"
+            android:layout_height="170dp"
+            android:src="@drawable/fruit" />
+
+
+    </RelativeLayout>
+
+
     <TextView
         android:id="@+id/preview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Preview"
         android:textSize="30dp"
-        app:layout_constraintLeft_toLeftOf="@id/card"
         app:layout_constraintBottom_toTopOf="@+id/card"
-        tools:layout_editor_absoluteX="40dp" />
-
-    <ImageView
-        android:id="@+id/back"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:adjustViewBounds="true"
-        android:maxWidth="50dp"
-        android:src="@drawable/back"
         app:layout_constraintLeft_toLeftOf="@id/card"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="30dp"/>
-
+        tools:layout_editor_absoluteX="40dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
@@ -47,37 +75,9 @@
         <ImageView
             android:id="@+id/gambar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </ImageView>
+            android:layout_height="match_parent"></ImageView>
 
     </androidx.cardview.widget.CardView>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-
-        >
-        <ImageView
-            android:id="@+id/play"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:elevation="3dp"
-            android:src="@drawable/preview"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="20dp"
-            />
-
-        <ImageView
-            android:id="@+id/fruit"
-            android:layout_width="wrap_content"
-            android:layout_height="170dp"
-            android:src="@drawable/fruit" />
-
-
-    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

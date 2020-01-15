@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
     Context context;
     UjangEffect ujang = new UjangEffect();
     TextView testText;
-    ImageView customMenu,ranking,sound,exit;
-    MediaPlayer ok,bgm;
+    ImageView customMenu, ranking, sound, exit;
+    MediaPlayer ok, bgm;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Sound soundController = new Sound();
@@ -40,35 +40,35 @@ public class MainActivity extends AppCompatActivity {
         ranking = (ImageView) findViewById(R.id.ranking);
         exit = (ImageView) findViewById(R.id.exit);
 
-        pref = getSharedPreferences("gamePrefs",Context.MODE_PRIVATE);
+        pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
-        testText.setText(pref.getString("soundSetting",null));
+        testText.setText(pref.getString("soundSetting", null));
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            sound.setColorFilter(Color.argb(0,255,255,255));
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            sound.setColorFilter(Color.argb(0, 255, 255, 255));
 
         }
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("OFF")){
-            sound.setColorFilter(Color.argb(100,20,20,20));
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("OFF")) {
+            sound.setColorFilter(Color.argb(100, 20, 20, 20));
         }
 
         sound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ujang.clickAnim(sound);
-                if(pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
+                if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
                     editor = pref.edit();
-                    editor.putString("soundSetting","OFF");
+                    editor.putString("soundSetting", "OFF");
                     editor.apply();
-                    sound.setColorFilter(Color.argb(100,20,20,20));
-                    testText.setText(pref.getString("soundSetting",null));
-                }else{
+                    sound.setColorFilter(Color.argb(100, 20, 20, 20));
+                    testText.setText(pref.getString("soundSetting", null));
+                } else {
                     editor = pref.edit();
-                    editor.putString("soundSetting","ON");
+                    editor.putString("soundSetting", "ON");
                     editor.apply();
-                    sound.setColorFilter(Color.argb(0,255,255,255));
-                    testText.setText(pref.getString("soundSetting",null));
+                    sound.setColorFilter(Color.argb(0, 255, 255, 255));
+                    testText.setText(pref.getString("soundSetting", null));
                 }
             }
         });
@@ -80,19 +80,19 @@ public class MainActivity extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-                        Intent toRanking = new Intent(MainActivity.this,RankingActivity.class);
+                        Intent toRanking = new Intent(MainActivity.this, RankingActivity.class);
                         playSound();
                         startActivity(toRanking);
-                        CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
+                        CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
 
 
                     }
                 };
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
-                            }
+            }
         });
 
         customMenu.setOnClickListener(new View.OnClickListener() {
@@ -102,17 +102,17 @@ public class MainActivity extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-                        Intent toCustom = new Intent(MainActivity.this,TimeLimitActivity.class);
+                        Intent toCustom = new Intent(MainActivity.this, TimeLimitActivity.class);
                         startActivity(toCustom);
                         playSound();
-                        CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
+                        CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                     }
                 };
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
-                    }
+            }
         });
 
         exit.setOnClickListener(new View.OnClickListener() {
@@ -120,43 +120,43 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ujang.clickAnim(exit);
 
-                    backSound();
+                backSound();
 
-                    Runnable run = new Runnable() {
-                        @Override
-                        public void run() {
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
 
-                            Intent toLauncher = new Intent(Intent.ACTION_MAIN);
-                            toLauncher.addCategory(Intent.CATEGORY_HOME);
-                            toLauncher.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(toLauncher);
-                            CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
+                        Intent toLauncher = new Intent(Intent.ACTION_MAIN);
+                        toLauncher.addCategory(Intent.CATEGORY_HOME);
+                        toLauncher.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(toLauncher);
+                        CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
 
-                        }
-                    };
+                    }
+                };
 
-                    Handler timer = new Handler();
-                    timer.postDelayed(run,300);
+                Handler timer = new Handler();
+                timer.postDelayed(run, 300);
 
             }
         });
 
         //ok = MediaPlayer.create(this,R.raw.tone);
         //ok.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-          //  @Override
-            //public void onCompletion(MediaPlayer mediaPlayer) {
-              //  mediaPlayer.reset();
-                //mediaPlayer.release();
-                //ok = null;
-            //}
-       // });
+        //  @Override
+        //public void onCompletion(MediaPlayer mediaPlayer) {
+        //  mediaPlayer.reset();
+        //mediaPlayer.release();
+        //ok = null;
+        //}
+        // });
 
     }
 
-    public void playSound(){
+    public void playSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            ok = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            ok = MediaPlayer.create(this, R.raw.adriantnt_bubble_clap);
             ok.start();
             ok.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -165,15 +165,15 @@ public class MainActivity extends AppCompatActivity {
                     ok.release();
                 }
             });
-        }else{
+        } else {
 
         }
     }
 
-    public void backSound(){
+    public void backSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            ok = MediaPlayer.create(this,R.raw.bubble_cancel);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            ok = MediaPlayer.create(this, R.raw.bubble_cancel);
             ok.start();
             ok.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -182,10 +182,10 @@ public class MainActivity extends AppCompatActivity {
                     ok.release();
                 }
             });
-        }else{}
+        } else {
+        }
 
     }
-
 
 
 }

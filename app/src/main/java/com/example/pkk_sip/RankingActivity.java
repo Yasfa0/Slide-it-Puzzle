@@ -16,7 +16,7 @@ import maes.tech.intentanim.CustomIntent;
 public class RankingActivity extends AppCompatActivity {
 
     Bundle data;
-    ImageView classic,timed,custom,sip,back;
+    ImageView classic, timed, custom, sip, back;
     MediaPlayer voice;
     SharedPreferences pref;
 
@@ -42,27 +42,27 @@ public class RankingActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Intent back = new Intent(RankingActivity.this,MainActivity.class);
+                        Intent back = new Intent(RankingActivity.this, MainActivity.class);
                         startActivity(back);
-                        CustomIntent.customType(RankingActivity.this,"fadein-to-fadeout");
+                        CustomIntent.customType(RankingActivity.this, "fadein-to-fadeout");
                         backSound();
 
                     }
                 };
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
             }
         });
-        if (getIntent().getExtras() != null){
+        if (getIntent().getExtras() != null) {
 
             Bundle backData;
             backData = getIntent().getExtras();
             int backSound = backData.getInt("sound");
             //soundSet = backSound;
 
-        }else{
+        } else {
 
             //soundSet = 1;
 
@@ -71,10 +71,10 @@ public class RankingActivity extends AppCompatActivity {
 
     }
 
-    public void playSound(){
+    public void playSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -83,15 +83,15 @@ public class RankingActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{
+        } else {
 
         }
     }
 
-    public void backSound(){
+    public void backSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -100,7 +100,8 @@ public class RankingActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{}
+        } else {
+        }
 
     }
 

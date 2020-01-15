@@ -19,10 +19,10 @@ import maes.tech.intentanim.CustomIntent;
 
 public class rowcolumninput extends AppCompatActivity {
 
-    TextView input1,input2;
-    ImageView del,num2,num3,num4,num5,num6,num7,num8,num9;
+    TextView input1, input2;
+    ImageView del, num2, num3, num4, num5, num6, num7, num8, num9;
     int posisi = 1;
-    ImageView next,back;
+    ImageView next, back;
     MediaPlayer voice;
     SharedPreferences pref;
 
@@ -44,9 +44,9 @@ public class rowcolumninput extends AppCompatActivity {
 
         bundleSkipSound = getIntent().getExtras();
 
-        if (bundleSkipSound != null){
+        if (bundleSkipSound != null) {
             waktu = bundleSkipSound.getInt("waktu");
-        }else{
+        } else {
             waktu = 0;
         }
 
@@ -60,17 +60,17 @@ public class rowcolumninput extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                            Intent back = new Intent(rowcolumninput.this, CustomTimeActivity.class);
-                            startActivity(back);
+                        Intent back = new Intent(rowcolumninput.this, CustomTimeActivity.class);
+                        startActivity(back);
 
 
-                        CustomIntent.customType(rowcolumninput.this,"fadein-to-fadeout");
+                        CustomIntent.customType(rowcolumninput.this, "fadein-to-fadeout");
                         backSound();
                     }
                 };
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
             }
         });
@@ -78,7 +78,7 @@ public class rowcolumninput extends AppCompatActivity {
         input1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                posisi =1;
+                posisi = 1;
                 input1.setTextSize(70);
                 input2.setTextSize(50);
                 playSound();
@@ -128,51 +128,52 @@ public class rowcolumninput extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Intent intent = new Intent(rowcolumninput.this,ChooseImageActivity.class);
-                        intent.putExtra("p",input1.getText().toString());
-                        intent.putExtra("l",input2.getText().toString());
-                        intent.putExtra("waktu",waktu);
+                        Intent intent = new Intent(rowcolumninput.this, ChooseImageActivity.class);
+                        intent.putExtra("p", input1.getText().toString());
+                        intent.putExtra("l", input2.getText().toString());
+                        intent.putExtra("waktu", waktu);
                         startActivity(intent);
                         playSound();
-                        CustomIntent.customType(rowcolumninput.this,"fadein-to-fadeout");
+                        CustomIntent.customType(rowcolumninput.this, "fadein-to-fadeout");
                     }
                 };
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
             }
         });
 
-        initnumber(num2,"2");
-        initnumber(num3,"3");
-        initnumber(num4,"4");
-        initnumber(num5,"5");
-        initnumber(num6,"6");
-        initnumber(num7,"7");
-        initnumber(num8,"8");
-        initnumber(num9,"9");
+        initnumber(num2, "2");
+        initnumber(num3, "3");
+        initnumber(num4, "4");
+        initnumber(num5, "5");
+        initnumber(num6, "6");
+        initnumber(num7, "7");
+        initnumber(num8, "8");
+        initnumber(num9, "9");
 
     }
 
     ArrayList<TextView> arrayinput = new ArrayList<TextView>();
-    public void initnumber(final ImageView nomor, final String text){
+
+    public void initnumber(final ImageView nomor, final String text) {
         arrayinput.add(input1);
         arrayinput.add(input2);
 
         nomor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(posisi==0){
-                    posisi =1;
+                if (posisi == 0) {
+                    posisi = 1;
                 }
-                for(int i = 1;i<5;i++){
-                    if(posisi == i){
-                        arrayinput.get(i-1).setText(text);
+                for (int i = 1; i < 5; i++) {
+                    if (posisi == i) {
+                        arrayinput.get(i - 1).setText(text);
 
-                        for(int b = 0;b<2;b++){
-                            if(b==i){
+                        for (int b = 0; b < 2; b++) {
+                            if (b == i) {
                                 arrayinput.get(b).setTextSize(70);
-                            }else{
+                            } else {
                                 arrayinput.get(b).setTextSize(50);
                             }
 
@@ -183,17 +184,17 @@ public class rowcolumninput extends AppCompatActivity {
                 playSound();
 
                 posisi++;
-                if(posisi>2){
+                if (posisi > 2) {
                     posisi = 0;
-                } 
+                }
             }
         });
     }
 
-    public void playSound(){
+    public void playSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -202,15 +203,15 @@ public class rowcolumninput extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{
+        } else {
 
         }
     }
 
-    public void backSound(){
+    public void backSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -219,7 +220,8 @@ public class rowcolumninput extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{}
+        } else {
+        }
 
     }
 

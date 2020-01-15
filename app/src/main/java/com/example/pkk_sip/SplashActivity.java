@@ -24,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
 
-        bgm = MediaPlayer.create(this,R.raw.menubgm);
+        bgm = MediaPlayer.create(this, R.raw.menubgm);
         bgm.setLooping(true);
         bgm.start();
 
@@ -32,19 +32,19 @@ public class SplashActivity extends AppCompatActivity {
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
         editor = pref.edit();
-        editor.putString("soundSetting","ON");
+        editor.putString("soundSetting", "ON");
         editor.apply();
 
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent mainMenu = new Intent(SplashActivity.this,MainActivity.class);
+                Intent mainMenu = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(mainMenu);
-                CustomIntent.customType(SplashActivity.this,"fadein-to-fadeout");
+                CustomIntent.customType(SplashActivity.this, "fadein-to-fadeout");
                 finish();
             }
-        },waktuloading);
+        }, waktuloading);
 
     }
 }

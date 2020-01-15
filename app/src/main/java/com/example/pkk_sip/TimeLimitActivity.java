@@ -17,7 +17,7 @@ import maes.tech.intentanim.CustomIntent;
 
 public class TimeLimitActivity extends AppCompatActivity {
 
-    ImageView back,yes,no;
+    ImageView back, yes, no;
     CountDownTimer jeda;
     MediaPlayer voice;
     SharedPreferences pref;
@@ -42,15 +42,15 @@ public class TimeLimitActivity extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-                        Intent toCustom = new Intent(TimeLimitActivity.this,CustomTimeActivity.class);
+                        Intent toCustom = new Intent(TimeLimitActivity.this, CustomTimeActivity.class);
                         startActivity(toCustom);
                         playSound();
-                        CustomIntent.customType(TimeLimitActivity.this,"fadein-to-fadeout");
+                        CustomIntent.customType(TimeLimitActivity.this, "fadein-to-fadeout");
                     }
                 };
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
             }
         });
@@ -62,16 +62,16 @@ public class TimeLimitActivity extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-                        Intent toCustom = new Intent(TimeLimitActivity.this,rowcolumninput.class);
-                        toCustom.putExtra("waktu",0);
+                        Intent toCustom = new Intent(TimeLimitActivity.this, rowcolumninput.class);
+                        toCustom.putExtra("waktu", 0);
                         startActivity(toCustom);
                         playSound();
-                        CustomIntent.customType(TimeLimitActivity.this,"fadein-to-fadeout");
+                        CustomIntent.customType(TimeLimitActivity.this, "fadein-to-fadeout");
                     }
                 };
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
             }
         });
@@ -83,25 +83,25 @@ public class TimeLimitActivity extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-                        Intent toMenu = new Intent(TimeLimitActivity.this,MainActivity.class);
+                        Intent toMenu = new Intent(TimeLimitActivity.this, MainActivity.class);
                         startActivity(toMenu);
-                        CustomIntent.customType(TimeLimitActivity.this,"fadein-to-fadeout");
+                        CustomIntent.customType(TimeLimitActivity.this, "fadein-to-fadeout");
                         backSound();
                     }
                 };
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
             }
         });
 
     }
 
-    public void playSound(){
+    public void playSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -110,15 +110,15 @@ public class TimeLimitActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{
+        } else {
 
         }
     }
 
-    public void backSound(){
+    public void backSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -127,7 +127,8 @@ public class TimeLimitActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{}
+        } else {
+        }
 
     }
 

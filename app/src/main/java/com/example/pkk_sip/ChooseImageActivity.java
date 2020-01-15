@@ -22,9 +22,9 @@ import java.io.InputStream;
 
 import maes.tech.intentanim.CustomIntent;
 
-public class ChooseImageActivity extends AppCompatActivity{
+public class ChooseImageActivity extends AppCompatActivity {
 
-    ImageView back,next;
+    ImageView back, next;
     MediaPlayer voice;
     SharedPreferences pref;
 
@@ -54,9 +54,9 @@ public class ChooseImageActivity extends AppCompatActivity{
 
         dataBundle = getIntent().getExtras();
 
-        if (dataBundle != null){
+        if (dataBundle != null) {
             waktu = dataBundle.getInt("waktu");
-            }else {
+        } else {
             waktu = 0;
         }
 
@@ -70,34 +70,34 @@ public class ChooseImageActivity extends AppCompatActivity{
                     @Override
                     public void run() {
 
-                        Intent back = new Intent(ChooseImageActivity.this,rowcolumninput.class);
-                        back.putExtra("waktu",waktu);
+                        Intent back = new Intent(ChooseImageActivity.this, rowcolumninput.class);
+                        back.putExtra("waktu", waktu);
                         startActivity(back);
                         backSound();
-                        CustomIntent.customType(ChooseImageActivity.this,"fadein-to-fadeout");
+                        CustomIntent.customType(ChooseImageActivity.this, "fadein-to-fadeout");
                     }
                 };
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
             }
         });
 
         p = Integer.parseInt(getIntent().getStringExtra("p"));
         t = Integer.parseInt(getIntent().getStringExtra("l"));
-        if(p>t){
+        if (p > t) {
             layout_p = 250;
-            layout_t = 250/p*t;
-        }else if(p<t){
+            layout_t = 250 / p * t;
+        } else if (p < t) {
             layout_t = 250;
-            layout_p = 250/t*p;
-        }else{
+            layout_p = 250 / t * p;
+        } else {
             layout_t = 250;
             layout_p = 250;
         }
-        block_p = layout_p/p;
-        block_t = layout_t/t;
+        block_p = layout_p / p;
+        block_t = layout_t / t;
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,39 +107,39 @@ public class ChooseImageActivity extends AppCompatActivity{
                     @Override
                     public void run() {
 
-                        Intent next = new Intent(ChooseImageActivity.this,Preview.class);
-                        next.putExtra("Gambar",sentBitmap);
+                        Intent next = new Intent(ChooseImageActivity.this, Preview.class);
+                        next.putExtra("Gambar", sentBitmap);
                         p = Integer.parseInt(getIntent().getStringExtra("p"));
                         t = Integer.parseInt(getIntent().getStringExtra("l"));
-                        next.putExtra("p",String.valueOf(p));
-                        next.putExtra("l",String.valueOf(t));
-                        next.putExtra("waktu",waktu);
+                        next.putExtra("p", String.valueOf(p));
+                        next.putExtra("l", String.valueOf(t));
+                        next.putExtra("waktu", waktu);
                         startActivity(next);
                         playSound();
-                        CustomIntent.customType(ChooseImageActivity.this,"fadein-to-fadeout");
+                        CustomIntent.customType(ChooseImageActivity.this, "fadein-to-fadeout");
 
                     }
                 };
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
             }
         });
 
 
-
     }
+
     public void Pilih(View v) {
         final Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
-        startActivityForResult(photoPickerIntent,RESULT_LOAD_IMAGE);
+        startActivityForResult(photoPickerIntent, RESULT_LOAD_IMAGE);
     }
 
-    public void playSound(){
+    public void playSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -148,15 +148,15 @@ public class ChooseImageActivity extends AppCompatActivity{
                     voice.release();
                 }
             });
-        }else{
+        } else {
 
         }
     }
 
-    public void backSound(){
+    public void backSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -165,7 +165,8 @@ public class ChooseImageActivity extends AppCompatActivity{
                     voice.release();
                 }
             });
-        }else{}
+        } else {
+        }
 
     }
 
@@ -197,6 +198,7 @@ public class ChooseImageActivity extends AppCompatActivity{
         }
 
     }
+
     public static int pxToDp(int px) {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
@@ -210,7 +212,7 @@ public class ChooseImageActivity extends AppCompatActivity{
         super.onActivityResult(reqCode, resultCode, data);
         ImageView image = findViewById(R.id.image);
 
-        if (resultCode == RESULT_OK&&i == 0) {
+        if (resultCode == RESULT_OK && i == 0) {
             try {
 
                 final Uri imageUri = data.getData();
@@ -222,8 +224,8 @@ public class ChooseImageActivity extends AppCompatActivity{
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-        }else {
-            if (data != null &&!data.equals("")) {
+        } else {
+            if (data != null && !data.equals("")) {
                 System.out.println("theres data");
                 // get the returned data
                 Bundle extras = data.getExtras();

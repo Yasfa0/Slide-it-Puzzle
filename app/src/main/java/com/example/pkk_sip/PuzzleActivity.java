@@ -38,10 +38,10 @@ public class PuzzleActivity extends AppCompatActivity {
 
     Bundle bundle;
     int waktu;
-    ImageView no1,no2,no3,start,blur,classic,timed,custom,pause,timeBox;
-    Button resume,toMenu,restart;
-    CardView card,cardmain;
-    TextView timer,skip;
+    ImageView no1, no2, no3, start, blur, classic, timed, custom, pause, timeBox;
+    Button resume, toMenu, restart;
+    CardView card, cardmain;
+    TextView timer, skip;
     MediaPlayer voice;
     SharedPreferences pref;
 
@@ -50,11 +50,12 @@ public class PuzzleActivity extends AppCompatActivity {
     ImageView rightbtn;
     ImageView upbtn;
     ImageView downbtn;
-    int[] currentpos = new int[]{3,3};
-    int[] leftpos = new int[]{2,3};
-    int[] rightpos = new int[]{4,3};
-    int[] uppos = new int[]{3,2};
-    int[] downpos = new int[]{3,4};
+    ImageView gambar_hint;
+    int[] currentpos = new int[]{3, 3};
+    int[] leftpos = new int[]{2, 3};
+    int[] rightpos = new int[]{4, 3};
+    int[] uppos = new int[]{3, 2};
+    int[] downpos = new int[]{3, 4};
     int p = 0;
     int t = 0;
     int layout_p;
@@ -68,7 +69,6 @@ public class PuzzleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_puzzle);
 
 
-
         toMenu = findViewById(R.id.menu);
         restart = findViewById(R.id.restart);
         timeBox = findViewById(R.id.timer_show);
@@ -80,6 +80,7 @@ public class PuzzleActivity extends AppCompatActivity {
         no3 = (ImageView) findViewById(R.id.no3);
         start = (ImageView) findViewById(R.id.start);
         blur = (ImageView) findViewById(R.id.blur);
+        gambar_hint = findViewById(R.id.hint_image);
 
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
@@ -92,10 +93,10 @@ public class PuzzleActivity extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent result = new Intent(PuzzleActivity.this,HasilActivity.class);
+                Intent result = new Intent(PuzzleActivity.this, HasilActivity.class);
                 startActivity(result);
                 PuzzleActivity.super.finish();
-                CustomIntent.customType(PuzzleActivity.this,"fadein-to-fadeout");
+                CustomIntent.customType(PuzzleActivity.this, "fadein-to-fadeout");
             }
         });
 
@@ -112,13 +113,11 @@ public class PuzzleActivity extends AppCompatActivity {
 
         bundle = getIntent().getExtras();
 
-        if (bundle != null){
+        if (bundle != null) {
             waktu = bundle.getInt("waktu");
-        }else{
+        } else {
             waktu = 0;
         }
-
-
 
 
 //Section
@@ -138,7 +137,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 };
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
             }
         });
@@ -158,7 +157,7 @@ public class PuzzleActivity extends AppCompatActivity {
         toMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toMenu = new Intent(PuzzleActivity.this,MainActivity.class);
+                Intent toMenu = new Intent(PuzzleActivity.this, MainActivity.class);
                 startActivity(toMenu);
                 backSound();
             }
@@ -175,31 +174,31 @@ public class PuzzleActivity extends AppCompatActivity {
         });
 
 
-        new CountDownTimer(5000,1000) {
+        new CountDownTimer(5000, 1000) {
 
-            public void onTick(long waktu){
+            public void onTick(long waktu) {
                 no1.setVisibility(View.VISIBLE);
                 //chimeSound();
 
 
-                if (waktu < 4000){
+                if (waktu < 4000) {
                     no2.setVisibility(View.VISIBLE);
                     //chimeSound();
                 }
 
-                if (waktu < 3000){
+                if (waktu < 3000) {
                     no3.setVisibility(View.VISIBLE);
                     //chimeSound();
                 }
 
-                if (waktu < 2000){
+                if (waktu < 2000) {
                     start.setVisibility(View.VISIBLE);
                     //chimeSound();
                 }
 
-                }
+            }
 
-            public void onFinish(){
+            public void onFinish() {
                 timeBox.setVisibility(View.VISIBLE);
                 timer.setVisibility(View.VISIBLE);
                 blur.setVisibility(View.INVISIBLE);
@@ -233,7 +232,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 }
             }.start();
 
-        }else{
+        } else {
             timer.setText("No Time");
         }
 
@@ -243,34 +242,38 @@ public class PuzzleActivity extends AppCompatActivity {
         int size_t = 250;
         int size_p = 250;
 
-        if(p>t){
+        if (p > t) {
             layout_p = size_p;
-            layout_t = size_p/p*t;
-        }else if(p<t){
+            layout_t = size_p / p * t;
+        } else if (p < t) {
 //            System.out.println("In");
             layout_t = size_t;
-            layout_p = size_t/t*p;
+            layout_p = size_t / t * p;
 //            System.out.println(layout_p);
 //            System.out.println(layout_t);
-        }else{
+        } else {
             layout_t = size_t;
             layout_p = size_p;
         }
         initPicOOP();
-        initBlockOOP(p,t);
+        initBlockOOP(p, t);
         leftbtn = findViewById(R.id.pad_right);
         rightbtn = findViewById(R.id.pad_left);
         upbtn = findViewById(R.id.pad_down);
         downbtn = findViewById(R.id.pad_up);
-        Bearmove(p,t);
+        Bearmove(p, t);
         initslide();
         randomizer();
+
+
+        hint((ImageView) findViewById(R.id.hint_image));
+        hint((ImageView) findViewById(R.id.hint));
     }
 
-    public void playSound(){
+    public void playSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -279,14 +282,14 @@ public class PuzzleActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{
+        } else {
 
         }
     }
 
-    public void chimeSound(){
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.electronic_chime);
+    public void chimeSound() {
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.electronic_chime);
             voice.start();
             voice.setLooping(false);
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -296,14 +299,15 @@ public class PuzzleActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{}
+        } else {
+        }
 
     }
 
-    public void backSound(){
+    public void backSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -312,20 +316,22 @@ public class PuzzleActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{}
+        } else {
+        }
 
     }
-    private void checkwin(){
+
+    private void checkwin() {
         boolean status = false;
-        for(int i = 0;i<listblock.size();i++){
-            if(listblock.get(i).getPosition() == listblock.get(i).getStartposition()){
+        for (int i = 0; i < listblock.size(); i++) {
+            if (listblock.get(i).getPosition() == listblock.get(i).getStartposition()) {
                 status = true;
-            }else{
+            } else {
                 status = false;
                 break;
             }
         }
-        if(status == true){
+        if (status == true) {
             //System.out.println("Kamu Menang");
 //            Intent result = new Intent(PuzzleActivity.this,HasilActivity.class);
 //            startActivity(result);
@@ -333,56 +339,58 @@ public class PuzzleActivity extends AppCompatActivity {
 //            CustomIntent.customType(PuzzleActivity.this,"fadein-to-fadeout");
         }
     }
-    private void Bearmove(int p,int t){
-        int block_length = dpToPx(layout_p/p);
-        int block_height = dpToPx(layout_t/t);
-        if(currentpos[0]==p-1&&currentpos[1]==t-1){
+
+    private void Bearmove(int p, int t) {
+        int block_length = dpToPx(layout_p / p);
+        int block_height = dpToPx(layout_t / t);
+        if (currentpos[0] == p - 1 && currentpos[1] == t - 1) {
             checkwin();
         }
-        if(leftpos[0]>=0){
-            for(int i = 0;i<p*t-1;i++) {
-                if (leftpos[0] == listblock.get(i).getPosition()[0]&&leftpos[1] == listblock.get(i).getPosition()[1]) {
-                    Run(listblock.get(i),leftbtn,block_length,0,"left");
+        if (leftpos[0] >= 0) {
+            for (int i = 0; i < p * t - 1; i++) {
+                if (leftpos[0] == listblock.get(i).getPosition()[0] && leftpos[1] == listblock.get(i).getPosition()[1]) {
+                    Run(listblock.get(i), leftbtn, block_length, 0, "left");
 //                    System.out.print("Its Left /n");
                 }
             }
-        }else{
+        } else {
             EmptyButtonOnClick(leftbtn);
         }
-        if(rightpos[0]<=p-1){
-            for(int i = 0;i<p*t-1;i++) {
-                if (rightpos[0] == listblock.get(i).getPosition()[0]&&rightpos[1] == listblock.get(i).getPosition()[1]) {
-                    Run(listblock.get(i),rightbtn,-block_length,0,"right");
+        if (rightpos[0] <= p - 1) {
+            for (int i = 0; i < p * t - 1; i++) {
+                if (rightpos[0] == listblock.get(i).getPosition()[0] && rightpos[1] == listblock.get(i).getPosition()[1]) {
+                    Run(listblock.get(i), rightbtn, -block_length, 0, "right");
 //                    System.out.print("Its Right/n");
                 }
             }
-        }else{
+        } else {
             EmptyButtonOnClick(rightbtn);
         }
 
-        if(uppos[1]>=0){
-            for(int i = 0;i<p*t-1;i++) {
-                if (uppos[0] == listblock.get(i).getPosition()[0]&&uppos[1] == listblock.get(i).getPosition()[1]) {
-                    Run(listblock.get(i),upbtn,0,block_height,"up");
+        if (uppos[1] >= 0) {
+            for (int i = 0; i < p * t - 1; i++) {
+                if (uppos[0] == listblock.get(i).getPosition()[0] && uppos[1] == listblock.get(i).getPosition()[1]) {
+                    Run(listblock.get(i), upbtn, 0, block_height, "up");
 //                    System.out.print("Its Up/n");
                 }
             }
-        }else{
+        } else {
             EmptyButtonOnClick(upbtn);
         }
 
-        if(downpos[1]<=t-1){
-            for(int i = 0;i<p*t-1;i++) {
-                if (downpos[0] == listblock.get(i).getPosition()[0]&&downpos[1] == listblock.get(i).getPosition()[1]) {
-                    Run(listblock.get(i),downbtn,0,-block_height,"down");
+        if (downpos[1] <= t - 1) {
+            for (int i = 0; i < p * t - 1; i++) {
+                if (downpos[0] == listblock.get(i).getPosition()[0] && downpos[1] == listblock.get(i).getPosition()[1]) {
+                    Run(listblock.get(i), downbtn, 0, -block_height, "down");
                 }
             }
-        }else{
+        } else {
             EmptyButtonOnClick(downbtn);
         }
 
     }
-    private void EmptyButtonOnClick(ImageView btn){
+
+    private void EmptyButtonOnClick(ImageView btn) {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -391,105 +399,140 @@ public class PuzzleActivity extends AppCompatActivity {
         });
     }
 
-    private void randomizer(){
-        final int block_length = dpToPx(layout_p/p);
-        final int block_height = dpToPx(layout_t/t);
+    private void hint(ImageView img) {
+        final ImageView hint = findViewById(R.id.hint_image);
+        final ImageView hint_btn = findViewById(R.id.hint);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (hint.getVisibility() == View.VISIBLE) {
+                    hint.setVisibility(View.INVISIBLE);
+                } else if (hint.getVisibility() == View.INVISIBLE) {
+                    hint.setVisibility(View.VISIBLE);
+                }
+                ujang.clickAnim(hint_btn);
+
+
+            }
+        });
+    }
+
+    private void randomizer() {
+        final int block_length = dpToPx(layout_p / p);
+        final int block_height = dpToPx(layout_t / t);
         int temp = 0;
-        for(int i = 0;i <(p*t*18);i++){
+        for (int i = 0; i < (p * t * 18); i++) {
 
             int random = new Random().nextInt(5);
-            for(int a = 5;a<5;a++){
-                if(temp == random){
+            for (int a = 5; a < 5; a++) {
+                if (temp == random) {
                     random = new Random().nextInt(5);
-                }else{
+                } else {
                     temp = random;
                     break;
                 }
             }
 
 
-            if(random == 1){
-                slide(downpos,"down",0,(-block_height),1000);
-            }else
-            if(random == 2){
-                slide(leftpos,"left",block_length,0,1000);
-            }else
-            if(random == 3){
-                slide(rightpos,"right",(-block_length),0,1000);
-            }else
-            if(random == 4){
-                slide(uppos,"up",0,block_height,1000);
+            if (random == 1) {
+                slide(downpos, "down", 0, (-block_height), 1000);
+            } else if (random == 2) {
+                slide(leftpos, "left", block_length, 0, 1000);
+            } else if (random == 3) {
+                slide(rightpos, "right", (-block_length), 0, 1000);
+            } else if (random == 4) {
+                slide(uppos, "up", 0, block_height, 1000);
             }
         }
 
     }
-    private void Run(Bearblock block,ImageView btn,int x, int y,String change){
-        int block_length = dpToPx(layout_p/p);
-        int block_height = dpToPx(layout_t/t);
+
+    private void Run(Bearblock block, ImageView btn, int x, int y, String change) {
+        int block_length = dpToPx(layout_p / p);
+        int block_height = dpToPx(layout_t / t);
         ImageView img = block.getBlock();
         int[] cur = new int[2];
-        cur[0] = (block.getPosition()[0]-block.getStartposition()[0])*block_length+x;
-        cur[1] = (block.getPosition()[1]-block.getStartposition()[1])*block_height+y;
+        cur[0] = (block.getPosition()[0] - block.getStartposition()[0]) * block_length + x;
+        cur[1] = (block.getPosition()[1] - block.getStartposition()[1]) * block_height + y;
         int[] next = new int[2];
-        next[0] = (block.getPosition()[0]-block.getStartposition()[0])*block_length;
-        next[1] = (block.getPosition()[1]-block.getStartposition()[1])*block_height;
-        initbtn(btn,img,cur,next,block,change);
+        next[0] = (block.getPosition()[0] - block.getStartposition()[0]) * block_length;
+        next[1] = (block.getPosition()[1] - block.getStartposition()[1]) * block_height;
+        initbtn(btn, img, cur, next, block, change);
     }
 
-    private void slide(int[] nextpos,String change,int x,int y,int speed){
-        int block_length = dpToPx(layout_p/p);
-        int block_height = dpToPx(layout_t/t);
-        if(nextpos[1]<t&&nextpos[1]>=0&&nextpos[0]<p&&nextpos[0]>=0){
-            for(int i = 0;i<p*t-1;i++) {
-                if (nextpos[0] == listblock.get(i).getPosition()[0]&&nextpos[1] == listblock.get(i).getPosition()[1]) {
+    private void slide(int[] nextpos, String change, int x, int y, int speed) {
+        int block_length = dpToPx(layout_p / p);
+        int block_height = dpToPx(layout_t / t);
+        if (nextpos[1] < t && nextpos[1] >= 0 && nextpos[0] < p && nextpos[0] >= 0) {
+            for (int i = 0; i < p * t - 1; i++) {
+                if (nextpos[0] == listblock.get(i).getPosition()[0] && nextpos[1] == listblock.get(i).getPosition()[1]) {
 //                    Run(listblock.get(i),downbtn,0,-block_height,"down");
-                    Bearblock block = listblock.get(i);
+                    final Bearblock block = listblock.get(i);
                     ImageView img = block.getBlock();
                     int[] cur = new int[2];
-                    cur[0] = (block.getPosition()[0]-block.getStartposition()[0])*block_length+x;
-                    cur[1] = (block.getPosition()[1]-block.getStartposition()[1])*block_height+y;
+                    cur[0] = (block.getPosition()[0] - block.getStartposition()[0]) * block_length + x;
+                    cur[1] = (block.getPosition()[1] - block.getStartposition()[1]) * block_height + y;
                     int[] next = new int[2];
-                    next[0] = (block.getPosition()[0]-block.getStartposition()[0])*block_length;
-                    next[1] = (block.getPosition()[1]-block.getStartposition()[1])*block_height;
-                    Animation animation = new TranslateAnimation(next[0],cur[0],next[1], cur[1]);
+                    next[0] = (block.getPosition()[0] - block.getStartposition()[0]) * block_length;
+                    next[1] = (block.getPosition()[1] - block.getStartposition()[1]) * block_height;
+                    Animation animation = new TranslateAnimation(next[0], cur[0], next[1], cur[1]);
                     System.out.println(change);
                     animation.setDuration(speed);
                     animation.setFillAfter(true);
                     img.startAnimation(animation);
-                    Change(change,block);
-                    Bearmove(p,t);
+                    Change(change, block);
+                    if (block.getPosition() == block.getStartposition()) {
+                        Runnable owo = new Runnable() {
+                            @Override
+                            public void run() {
+                                ujang.clickAnim(block.getBlock());
+                            }
+                        };
+
+                        Handler hand = new Handler();
+                        hand.postDelayed(owo, 500);
+                    } else {
+
+                    }
+                    Bearmove(p, t);
                     initslide();
 //                    playSound();
                     break;
                 }
             }
-        }else{
+        } else {
 
         }
     }
-    private void initslide(){
-        final int block_length = dpToPx(layout_p/p);
-        final int block_height = dpToPx(layout_t/t);
+
+    private void initslide() {
+        final int block_length = dpToPx(layout_p / p);
+        final int block_height = dpToPx(layout_t / t);
         CardView playarea = findViewById(R.id.card);
-        playarea.setOnTouchListener(new OnSwipeTouchListener(this){
+        playarea.setOnTouchListener(new OnSwipeTouchListener(this) {
 
             public void onSwipeTop() {
-                slide(downpos,"down",0,(-block_height),500);
+                slide(downpos, "down", 0, (-block_height), 500);
             }
+
             public void onSwipeRight() {
-                slide(leftpos,"left",block_length,0,500);
+                slide(leftpos, "left", block_length, 0, 500);
             }
+
             public void onSwipeLeft() {
-                slide(rightpos,"right",(-block_length),0,500);
+                slide(rightpos, "right", (-block_length), 0, 500);
             }
+
             public void onSwipeBottom() {
-                slide(uppos,"up",0,block_height,500);
+                slide(uppos, "up", 0, block_height, 500);
             }
+
             public boolean onTouch(View v, MotionEvent event) {
                 return gestureDetector.onTouchEvent(event);
             }
         });
     }
+
     public static int pxToDp(int px) {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
@@ -498,121 +541,124 @@ public class PuzzleActivity extends AppCompatActivity {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 
-    private void initBlockOOP(int p,int t){
-        p = p-1;
-        t = t-1;
-        currentpos = new int[]{p,t};
-        leftpos = new int[]{p-1,t};
-        rightpos = new int[]{p+1,t};
-        uppos = new int[]{p,t-1};
-        downpos = new int[]{p,t+1};
+    private void initBlockOOP(int p, int t) {
+        p = p - 1;
+        t = t - 1;
+        currentpos = new int[]{p, t};
+        leftpos = new int[]{p - 1, t};
+        rightpos = new int[]{p + 1, t};
+        uppos = new int[]{p, t - 1};
+        downpos = new int[]{p, t + 1};
         ArrayList<LinearLayout> arrayll = new ArrayList<LinearLayout>();
-        int block_length = dpToPx(layout_p/(p+1));
-        int block_height = dpToPx(layout_t/(t+1));
+        int block_length = dpToPx(layout_p / (p + 1));
+        int block_height = dpToPx(layout_t / (t + 1));
         FrameLayout fl = findViewById(R.id.frame);
 //        FrameLayout fl = null;
         listblock = new ArrayList<Bearblock>();
-        for(int i = 0;i<=t;i++){
+        for (int i = 0; i <= t; i++) {
             LinearLayout ll = new LinearLayout(this);
-            FrameLayout.LayoutParams lp =  new FrameLayout.LayoutParams(
-                    dpToPx(layout_p),dpToPx(layout_t)
+            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                    dpToPx(layout_p), dpToPx(layout_t)
             );
 
             lp.setLayoutDirection(LinearLayout.HORIZONTAL);
             arrayll.add(ll);
-            for(int ii = 0;ii<=p;ii++){
-                if(listblock.size()!= ((p+1)*(t+1))-1 ) {
+            for (int ii = 0; ii <= p; ii++) {
+                if (listblock.size() != ((p + 1) * (t + 1)) - 1) {
                     ImageView imv = new ImageView(this);
-                    imv.setImageBitmap(bitmapArrayList.get((i*1)+(i*p)+ii));
+                    imv.setImageBitmap(bitmapArrayList.get((i * 1) + (i * p) + ii));
                     Bearblock block = new Bearblock();
-                    block.setPosition(new int[]{ii % (p+1), i % (t+1)});
+                    block.setPosition(new int[]{ii % (p + 1), i % (t + 1)});
                     block.initDeltaposition();
                     block.setBlock(imv);
                     block.setStartposition();
                     LinearLayout.LayoutParams ip = new LinearLayout.LayoutParams(block_length, block_height);
-                    ip.topMargin = i*block_height;
+                    ip.topMargin = i * block_height;
                     arrayll.get(i).addView(imv, ip);
                     listblock.add(block);
 
                 }
             }
 
-            fl.addView(arrayll.get(i),lp);
+            fl.addView(arrayll.get(i), lp);
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
                     dpToPx(layout_p), dpToPx(layout_t));
             params.gravity = Gravity.CENTER;
             fl.setLayoutParams(params);
         }
     }
-    private void initbtn(ImageView btn, final ImageView img, final int[] pos,final int[]next, final Bearblock block, final String change){
+
+    private void initbtn(ImageView btn, final ImageView img, final int[] pos, final int[] next, final Bearblock block, final String change) {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Animation animation = new TranslateAnimation(next[0],pos[0],next[1], pos[1]);
+                Animation animation = new TranslateAnimation(next[0], pos[0], next[1], pos[1]);
 //                System.out.println((pos[0])+","+(pos[1]));
                 System.out.println(change);
                 animation.setDuration(500);
                 animation.setFillAfter(true);
                 img.startAnimation(animation);
-                Change(change,block);
-                Bearmove(p,t);
+                Change(change, block);
+                Bearmove(p, t);
                 playSound();
             }
         });
     }
-    private void Change(String change,Bearblock block){
-        if(change.equals("left")){
+
+    private void Change(String change, Bearblock block) {
+        if (change.equals("left")) {
             int[] blockpos = block.getPosition();
             block.setPosition(currentpos);
             currentpos = blockpos;
-            rightpos[0] = rightpos[0]-1;
-            leftpos[0] = leftpos[0]-1;
-            uppos[0] = uppos[0]-1;
-            downpos[0] = downpos[0]-1;
-        }else if(change.equals("right")){
+            rightpos[0] = rightpos[0] - 1;
+            leftpos[0] = leftpos[0] - 1;
+            uppos[0] = uppos[0] - 1;
+            downpos[0] = downpos[0] - 1;
+        } else if (change.equals("right")) {
             int[] blockpos = block.getPosition();
             block.setPosition(currentpos);
             currentpos = blockpos;
-            rightpos[0] = rightpos[0]+1;
-            leftpos[0] = leftpos[0]+1;
-            uppos[0] = uppos[0]+1;
-            downpos[0] = downpos[0]+1;
-        }else if(change.equals("up")){
+            rightpos[0] = rightpos[0] + 1;
+            leftpos[0] = leftpos[0] + 1;
+            uppos[0] = uppos[0] + 1;
+            downpos[0] = downpos[0] + 1;
+        } else if (change.equals("up")) {
             int[] blockpos = block.getPosition();
             block.setPosition(currentpos);
             currentpos = blockpos;
-            rightpos[1] = rightpos[1]-1;
-            leftpos[1] = leftpos[1]-1;
-            uppos[1] = uppos[1]-1;
-            downpos[1] = downpos[1]-1;
-        }else if(change.equals("down")){
+            rightpos[1] = rightpos[1] - 1;
+            leftpos[1] = leftpos[1] - 1;
+            uppos[1] = uppos[1] - 1;
+            downpos[1] = downpos[1] - 1;
+        } else if (change.equals("down")) {
             int[] blockpos = block.getPosition();
             block.setPosition(currentpos);
             currentpos = blockpos;
-            rightpos[1] = rightpos[1]+1;
-            leftpos[1] = leftpos[1]+1;
-            uppos[1] = uppos[1]+1;
-            downpos[1] = downpos[1]+1;
+            rightpos[1] = rightpos[1] + 1;
+            leftpos[1] = leftpos[1] + 1;
+            uppos[1] = uppos[1] + 1;
+            downpos[1] = downpos[1] + 1;
         }
     }
 
-    private void initPicOOP(){
+    private void initPicOOP() {
         Bitmap temp = getIntent().getParcelableExtra("Gambar");
-        for(int i = 0; i<t;i++){
-            for(int a = 0;a<p;a++){
-                bitmapArrayList.add(crop(temp,a%p,i%t));
+        gambar_hint.setImageBitmap(temp);
+        for (int i = 0; i < t; i++) {
+            for (int a = 0; a < p; a++) {
+                bitmapArrayList.add(crop(temp, a % p, i % t));
             }
         }
     }
 
-    private Bitmap crop(Bitmap original,int pos_p,int pos_t){
-        int height = layout_t/t;
-        int width = layout_p/p;
+    private Bitmap crop(Bitmap original, int pos_p, int pos_t) {
+        int height = layout_t / t;
+        int width = layout_p / p;
 //        System.out.println("Lebar : "+width);
 //        System.out.println("Pos P : "+pos_p);
 //        System.out.println("Tinggi : "+height);
 //        System.out.println("Pos T : "+pos_t);
-        Bitmap bMap = Bitmap.createBitmap(original, width*pos_p, height*pos_t,
+        Bitmap bMap = Bitmap.createBitmap(original, width * pos_p, height * pos_t,
                 width, height, new Matrix(), true);
 
         return bMap;

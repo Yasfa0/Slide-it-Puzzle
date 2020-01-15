@@ -34,21 +34,21 @@ public class HasilActivity extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent hasil = new Intent(HasilActivity.this,FinalResultActivity.class);
+                Intent hasil = new Intent(HasilActivity.this, FinalResultActivity.class);
                 String nama = input.getText().toString();
-                hasil.putExtra("nama",nama);
+                hasil.putExtra("nama", nama);
                 startActivity(hasil);
-                CustomIntent.customType(HasilActivity.this,"fadein-to-fadeout");
+                CustomIntent.customType(HasilActivity.this, "fadein-to-fadeout");
                 playSound();
             }
         });
 
     }
 
-    public void playSound(){
+    public void playSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.tone);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.tone);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -57,15 +57,15 @@ public class HasilActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{
+        } else {
 
         }
     }
 
-    public void backSound(){
+    public void backSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.computer_error);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.computer_error);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -74,7 +74,8 @@ public class HasilActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{}
+        } else {
+        }
 
     }
 }

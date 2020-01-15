@@ -7,110 +7,103 @@
     android:background="@drawable/gradientbackground"
     tools:context=".MainActivity">
 
-    <TextView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/soundTest"
-        android:text="Tes"
-        android:textSize="30dp"
-        android:textColor="#ffffff"
-        android:layout_margin="10dp"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="top|right"
-        android:id="@+id/sound_setting"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        >
-        <ImageView
-            android:id="@+id/sound"
-            android:layout_height="40dp"
-            android:layout_width="40dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:src="@drawable/sound"
-            android:layout_gravity="top|right"
-            android:layout_margin="5dp"
-
-            />
-        <ImageView
-            android:layout_height="40dp"
-            android:layout_width="40dp"
-            android:src="@drawable/musik"
-            android:layout_gravity="top|right"
-            android:layout_margin="5dp" />
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_height="130dp"
-        android:layout_width="130dp"
-        android:src="@drawable/logo"
-        app:layout_constraintTop_toBottomOf="@+id/sound_setting"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
     <GridLayout
+        android:id="@+id/grid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/grid"
-        android:rowCount="4"
         android:columnCount="1"
-        app:layout_constraintTop_toBottomOf="@id/logo"
+        android:rowCount="4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        >
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo">
 
 
         <ImageView
             android:id="@+id/custom"
-            android:layout_height="85dp"
             android:layout_width="wrap_content"
-            android:src="@drawable/custom"
+            android:layout_height="85dp"
+            android:layout_margin="20dp"
             android:adjustViewBounds="true"
             android:maxHeight="100dp"
-            android:layout_margin="20dp"
             android:scaleType="centerInside"
-            />
-
-
-
+            android:src="@drawable/custom" />
 
 
         <ImageView
             android:id="@+id/ranking"
-            android:layout_height="85dp"
-            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
-            android:src="@drawable/ranking"
+            android:layout_height="85dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="5dp"
             android:adjustViewBounds="true"
             android:maxHeight="100dp"
-            android:layout_margin="20dp"
             android:scaleType="centerInside"
-            />
+            android:src="@drawable/ranking" />
 
         <ImageView
             android:id="@+id/exit"
-            android:layout_height="85dp"
-            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
-            android:src="@drawable/exit"
+            android:layout_height="85dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="5dp"
             android:adjustViewBounds="true"
             android:maxHeight="100dp"
             android:scaleType="centerInside"
-            android:layout_margin="20dp"
-            />
+            android:src="@drawable/exit" />
 
     </GridLayout>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/logo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sound_setting" />
+
+    <LinearLayout
+        android:id="@+id/sound_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|right"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/sound"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top|right"
+            android:layout_margin="5dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/sound"
+
+            />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top|right"
+            android:layout_margin="5dp"
+            android:src="@drawable/musik" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/soundTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Tes"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

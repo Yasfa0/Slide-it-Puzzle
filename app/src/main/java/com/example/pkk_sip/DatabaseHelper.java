@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseHelper extends SQLiteOpenHelper{
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
     private static final String DB_NAME = "DB_SIP";
@@ -24,12 +24,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 
     public DatabaseHelper(Context context) {
-        super(context,DB_NAME,null,DB_VERSION);
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createScoreTable = "Create Table " + TABLE_NAME + "( " + SCORE_ID + " INTEGER PRIMARY KEY, " + SCORE_USER + " TEXT,"  + SCORE_VALUE + " INTEGER," + SCORE_TIME + " INTEGER)";
+        String createScoreTable = "Create Table " + TABLE_NAME + "( " + SCORE_ID + " INTEGER PRIMARY KEY, " + SCORE_USER + " TEXT," + SCORE_VALUE + " INTEGER," + SCORE_TIME + " INTEGER)";
         db.execSQL(createScoreTable);
     }
 
@@ -41,14 +41,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     // Select Data
-    public List<Score> selectUserData(){
+    public List<Score> selectUserData() {
         ArrayList<Score> scoreList = new ArrayList<Score>();
 
         SQLiteDatabase db = getReadableDatabase();
-        String [] columns = {SCORE_ID, SCORE_USER, SCORE_VALUE, SCORE_TIME};
+        String[] columns = {SCORE_ID, SCORE_USER, SCORE_VALUE, SCORE_TIME};
         Cursor c = db.query(TABLE_NAME, columns, null, null, null, null, null);
 
-        while (c.moveToNext()){
+        while (c.moveToNext()) {
             int id = c.getInt(0);
             String user = c.getString(1);
             int value = c.getInt(2);
@@ -65,38 +65,38 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     // Delete Data
-    public void delete(int id){
+    public void delete(int id) {
         SQLiteDatabase db = getWritableDatabase();
         String WhereClause = SCORE_ID + "='" + id + "'";
         db.delete(TABLE_NAME, WhereClause, null);
     }
 
     //Insert Data
-    public void insert(Score score){
+    public void insert(Score score) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues konten = new ContentValues();
 
-        konten.put(SCORE_ID,score.getId_score());
-        konten.put(SCORE_USER,score.getUser());
-        konten.put(SCORE_VALUE,score.getValue());
-        konten.put(SCORE_TIME,score.getTime());
+        konten.put(SCORE_ID, score.getId_score());
+        konten.put(SCORE_USER, score.getUser());
+        konten.put(SCORE_VALUE, score.getValue());
+        konten.put(SCORE_TIME, score.getTime());
 
-        db.insert(TABLE_NAME,null,konten);
+        db.insert(TABLE_NAME, null, konten);
     }
 
     //Update Data
-    public void update(Score score){
+    public void update(Score score) {
         SQLiteDatabase db = getReadableDatabase();
         ContentValues konten = new ContentValues();
 
-        konten.put(SCORE_ID,score.getId_score());
-        konten.put(SCORE_USER,score.getUser());
-        konten.put(SCORE_VALUE,score.getValue());
-        konten.put(SCORE_TIME,score.getTime());
+        konten.put(SCORE_ID, score.getId_score());
+        konten.put(SCORE_USER, score.getUser());
+        konten.put(SCORE_VALUE, score.getValue());
+        konten.put(SCORE_TIME, score.getTime());
 
-        String indikator = SCORE_ID + " = '"+score.getId_score()+"'";
+        String indikator = SCORE_ID + " = '" + score.getId_score() + "'";
 
-        db.update(TABLE_NAME,konten,indikator,null);
+        db.update(TABLE_NAME, konten, indikator, null);
     }
 
 }

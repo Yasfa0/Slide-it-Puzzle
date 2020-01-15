@@ -8,6 +8,16 @@
     android:paddingLeft="10dp"
     android:paddingTop="10dp">
 
+    <EditText
+        android:id="@+id/inputnama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/colorAccent"
+        android:clickable="true"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,16 +26,6 @@
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/inputnama"
-        android:backgroundTint="@color/colorAccent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:clickable="true"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
 
 
 </LinearLayout>

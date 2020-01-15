@@ -3,7 +3,7 @@ package com.example.pkk_sip;
 import android.widget.ImageView;
 
 public class Bearblock {
-    int[] position ;
+    int[] position;
     ImageView block;
     int[] deltaposition = new int[2];
 
@@ -38,14 +38,9 @@ public class Bearblock {
     }
 
     public void initDeltaposition() {
-        deltaposition[0] = position[0]*180;
-        deltaposition[1] = position[1]*180;
+        deltaposition[0] = position[0] * 180;
+        deltaposition[1] = position[1] * 180;
     }
-
-
-
-
-
 
 
 }

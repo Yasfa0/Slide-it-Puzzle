@@ -34,19 +34,19 @@ public class ImageOptionActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toMenu = new Intent(ImageOptionActivity.this,MainActivity.class);
+                Intent toMenu = new Intent(ImageOptionActivity.this, MainActivity.class);
                 startActivity(toMenu);
                 backSound();
-                CustomIntent.customType(ImageOptionActivity.this,"fadein-to-fadeout");
+                CustomIntent.customType(ImageOptionActivity.this, "fadein-to-fadeout");
             }
         });
 
     }
 
-    public void playSound(){
+    public void playSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.tone);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.tone);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -55,15 +55,15 @@ public class ImageOptionActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{
+        } else {
 
         }
     }
 
-    public void backSound(){
+    public void backSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.computer_error);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.computer_error);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -72,7 +72,8 @@ public class ImageOptionActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{}
+        } else {
+        }
 
     }
 }

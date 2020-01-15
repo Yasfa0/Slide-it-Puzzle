@@ -17,7 +17,7 @@ public class FinalResultActivity extends AppCompatActivity {
 
     Bundle hasil;
     TextView nama;
-    ImageButton restart,menu;
+    ImageButton restart, menu;
     MediaPlayer voice;
     SharedPreferences pref;
 
@@ -44,9 +44,9 @@ public class FinalResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ujang.clickButtonAnim(menu);
-                Intent keMenu = new Intent(FinalResultActivity.this,MainActivity.class);
+                Intent keMenu = new Intent(FinalResultActivity.this, MainActivity.class);
                 startActivity(keMenu);
-                CustomIntent.customType(FinalResultActivity.this,"fadein-to-fadeout");
+                CustomIntent.customType(FinalResultActivity.this, "fadein-to-fadeout");
                 backSound();
             }
         });
@@ -56,9 +56,9 @@ public class FinalResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ujang.clickButtonAnim(restart);
-                Intent restart = new Intent(FinalResultActivity.this,PuzzleActivity.class);
+                Intent restart = new Intent(FinalResultActivity.this, PuzzleActivity.class);
                 startActivity(restart);
-                CustomIntent.customType(FinalResultActivity.this,"fadein-to-fadeout");
+                CustomIntent.customType(FinalResultActivity.this, "fadein-to-fadeout");
                 playSound();
             }
         });
@@ -66,10 +66,10 @@ public class FinalResultActivity extends AppCompatActivity {
 
     }
 
-    public void playSound(){
+    public void playSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -78,15 +78,15 @@ public class FinalResultActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{
+        } else {
 
         }
     }
 
-    public void backSound(){
+    public void backSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -95,7 +95,8 @@ public class FinalResultActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{}
+        } else {
+        }
 
     }
 }

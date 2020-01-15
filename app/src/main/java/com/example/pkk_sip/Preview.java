@@ -16,7 +16,7 @@ import maes.tech.intentanim.CustomIntent;
 
 public class Preview extends AppCompatActivity {
 
-    ImageView back,play;
+    ImageView back, play;
     MediaPlayer voice;
     SharedPreferences pref;
 
@@ -35,9 +35,9 @@ public class Preview extends AppCompatActivity {
 
         dataBundle = getIntent().getExtras();
 
-        if (dataBundle != null){
+        if (dataBundle != null) {
             waktu = dataBundle.getInt("waktu");
-        }else {
+        } else {
             waktu = 0;
         }
 
@@ -52,17 +52,17 @@ public class Preview extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Intent back = new Intent(Preview.this,ChooseImageActivity.class);
-                        back.putExtra("waktu",waktu);
+                        Intent back = new Intent(Preview.this, ChooseImageActivity.class);
+                        back.putExtra("waktu", waktu);
                         startActivity(back);
-                        CustomIntent.customType(Preview.this,"fadein-to-fadeout");
+                        CustomIntent.customType(Preview.this, "fadein-to-fadeout");
                         backSound();
 
                     }
                 };
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
             }
         });
 
@@ -73,34 +73,34 @@ public class Preview extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Bundle data = new Bundle();
-                data.putString("difficulty","custom");
-                data.putString("mode","custom");
+                data.putString("difficulty", "custom");
+                data.putString("mode", "custom");
 
                 Bitmap sentBitmap = getIntent().getParcelableExtra("Gambar");
                 String p = getIntent().getStringExtra("p");
                 String t = getIntent().getStringExtra("l");
-                System.out.println("Preview P : "+p);
-                System.out.println("Preview T : "+t);
+                System.out.println("Preview P : " + p);
+                System.out.println("Preview T : " + t);
 
                 ujang.clickAnim(play);
-                Intent play = new Intent(Preview.this,PuzzleActivity.class);
-                play.putExtra("Gambar",sentBitmap);
-                play.putExtra("p",p);
-                play.putExtra("l",t);
+                Intent play = new Intent(Preview.this, PuzzleActivity.class);
+                play.putExtra("Gambar", sentBitmap);
+                play.putExtra("p", p);
+                play.putExtra("l", t);
                 play.putExtras(data);
-                play.putExtra("waktu",waktu);
+                play.putExtra("waktu", waktu);
                 startActivity(play);
-                CustomIntent.customType(Preview.this,"fadein-to-fadeout");
+                CustomIntent.customType(Preview.this, "fadein-to-fadeout");
                 playSound();
             }
         });
 
     }
 
-    public void playSound(){
+    public void playSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -109,15 +109,15 @@ public class Preview extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{
+        } else {
 
         }
     }
 
-    public void backSound(){
+    public void backSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -126,7 +126,8 @@ public class Preview extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{}
+        } else {
+        }
 
     }
 }

@@ -20,13 +20,13 @@ import maes.tech.intentanim.CustomIntent;
 
 public class CustomTimeActivity extends AppCompatActivity {
 
-    TextView input1,input2,input3,input4;
-    ImageView del,num0,num1,num2,num3,num4,num5,num6,num7,num8,num9,clear,left,right;
+    TextView input1, input2, input3, input4;
+    ImageView del, num0, num1, num2, num3, num4, num5, num6, num7, num8, num9, clear, left, right;
     int posisi = 0;
     MediaPlayer voice;
     SharedPreferences pref;
 
-    String val1,val2,val3,val4;
+    String val1, val2, val3, val4;
 
     UjangEffect ujang = new UjangEffect();
 
@@ -54,7 +54,7 @@ public class CustomTimeActivity extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-                        Intent preview = new Intent(CustomTimeActivity.this,rowcolumninput.class);
+                        Intent preview = new Intent(CustomTimeActivity.this, rowcolumninput.class);
                         val1 = input1.getText().toString();
                         val2 = input2.getText().toString();
                         val3 = input3.getText().toString();
@@ -63,26 +63,26 @@ public class CustomTimeActivity extends AppCompatActivity {
                         String angkaDetik = val3 + val4;
                         String angkaMenit = val1 + val2;
 
-                        int milisDetik =  Integer.parseInt(angkaDetik) * 1000;
+                        int milisDetik = Integer.parseInt(angkaDetik) * 1000;
                         int milisMenit = Integer.parseInt(angkaMenit) * 60000;
 
                         int milisTotal = milisMenit + milisDetik;
 
-                        if (milisTotal > 0){
+                        if (milisTotal > 0) {
                             milisTotal = milisTotal + 6000;
                         }
 
-                        preview.putExtra("waktu",milisTotal);
+                        preview.putExtra("waktu", milisTotal);
                         startActivity(preview);
                         playSound();
-                        CustomIntent.customType(CustomTimeActivity.this,"fadein-to-fadeout");
+                        CustomIntent.customType(CustomTimeActivity.this, "fadein-to-fadeout");
 
                     }
                 };
 
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
             }
         });
@@ -97,15 +97,15 @@ public class CustomTimeActivity extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-                        Intent back = new Intent(CustomTimeActivity.this,TimeLimitActivity.class);
+                        Intent back = new Intent(CustomTimeActivity.this, TimeLimitActivity.class);
                         startActivity(back);
                         backSound();
-                        CustomIntent.customType(CustomTimeActivity.this,"fadein-to-fadeout");
+                        CustomIntent.customType(CustomTimeActivity.this, "fadein-to-fadeout");
                     }
                 };
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
             }
         });
@@ -113,7 +113,7 @@ public class CustomTimeActivity extends AppCompatActivity {
         input1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                posisi =1;
+                posisi = 1;
                 input1.setTextSize(70);
                 input2.setTextSize(50);
                 input3.setTextSize(50);
@@ -122,42 +122,42 @@ public class CustomTimeActivity extends AppCompatActivity {
             }
         });
 
-       input2.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               posisi =2;
-               input1.setTextSize(50);
-               input2.setTextSize(70);
-               input3.setTextSize(50);
-               input4.setTextSize(50);
-               playSound();
-           }
-       });
+        input2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                posisi = 2;
+                input1.setTextSize(50);
+                input2.setTextSize(70);
+                input3.setTextSize(50);
+                input4.setTextSize(50);
+                playSound();
+            }
+        });
 
 
-       input3.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               posisi =3;
-               input1.setTextSize(50);
-               input2.setTextSize(50);
-               input3.setTextSize(70);
-               input4.setTextSize(50);
-               playSound();
-           }
-       });
+        input3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                posisi = 3;
+                input1.setTextSize(50);
+                input2.setTextSize(50);
+                input3.setTextSize(70);
+                input4.setTextSize(50);
+                playSound();
+            }
+        });
 
-       input4.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               posisi =4;
-               input1.setTextSize(50);
-               input2.setTextSize(50);
-               input3.setTextSize(50);
-               input4.setTextSize(70);
-               playSound();
-           }
-       });
+        input4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                posisi = 4;
+                input1.setTextSize(50);
+                input2.setTextSize(50);
+                input3.setTextSize(50);
+                input4.setTextSize(70);
+                playSound();
+            }
+        });
 
         num0 = (ImageView) findViewById(R.id.num0);
         num1 = (ImageView) findViewById(R.id.num1);
@@ -197,42 +197,41 @@ public class CustomTimeActivity extends AppCompatActivity {
                 };
 
                 Handler timer = new Handler();
-                timer.postDelayed(run,300);
+                timer.postDelayed(run, 300);
 
             }
 
         });
 
 
-
-        initnumber(num0,"0");
-        initnumber(num1,"1");
-        initnumber(num2,"2");
-        initnumber(num3,"3");
-        initnumber(num4,"4");
-        initnumber(num5,"5");
-        initnumber(num6,"6");
-        initnumber(num7,"7");
-        initnumber(num8,"8");
-        initnumber(num9,"9");
+        initnumber(num0, "0");
+        initnumber(num1, "1");
+        initnumber(num2, "2");
+        initnumber(num3, "3");
+        initnumber(num4, "4");
+        initnumber(num5, "5");
+        initnumber(num6, "6");
+        initnumber(num7, "7");
+        initnumber(num8, "8");
+        initnumber(num9, "9");
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(posisi==0){
-                    posisi =4;
+                if (posisi == 0) {
+                    posisi = 4;
                 }
-                arrayinput.get(posisi-1).setText("0");
-                for(int i = 0;i<4;i++){
-                    if((i+1)==posisi){
+                arrayinput.get(posisi - 1).setText("0");
+                for (int i = 0; i < 4; i++) {
+                    if ((i + 1) == posisi) {
                         arrayinput.get(i).setTextSize(70);
-                    }else{
+                    } else {
                         arrayinput.get(posisi).setTextSize(50);
                     }
                 }
 
 
 //                if(posisi != 1){
-                    posisi--;
+                posisi--;
 //                }
                 ujang.clickAnim(del);
                 playSound();
@@ -299,7 +298,8 @@ public class CustomTimeActivity extends AppCompatActivity {
 
 
     ArrayList<TextView> arrayinput = new ArrayList<TextView>();
-    public void initnumber(final ImageView nomor, final String text){
+
+    public void initnumber(final ImageView nomor, final String text) {
         arrayinput.add(input1);
         arrayinput.add(input2);
         arrayinput.add(input3);
@@ -308,17 +308,17 @@ public class CustomTimeActivity extends AppCompatActivity {
         nomor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(posisi==0){
-                    posisi =1;
+                if (posisi == 0) {
+                    posisi = 1;
                 }
-                for(int i = 1;i<5;i++){
-                    if(posisi == i){
-                        arrayinput.get(i-1).setText(text);
+                for (int i = 1; i < 5; i++) {
+                    if (posisi == i) {
+                        arrayinput.get(i - 1).setText(text);
 
-                        for(int b = 0;b<4;b++){
-                            if(b==i){
+                        for (int b = 0; b < 4; b++) {
+                            if (b == i) {
                                 arrayinput.get(b).setTextSize(70);
-                            }else{
+                            } else {
                                 arrayinput.get(b).setTextSize(50);
                             }
 
@@ -329,17 +329,17 @@ public class CustomTimeActivity extends AppCompatActivity {
                 playSound();
 
                 posisi++;
-                if(posisi>4){
+                if (posisi > 4) {
                     posisi = 0;
                 }
             }
         });
     }
 
-    public void playSound(){
+    public void playSound() {
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.adriantnt_bubble_clap);
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.adriantnt_bubble_clap);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -348,14 +348,15 @@ public class CustomTimeActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{
+        } else {
 
         }
     }
-    public void backSound(){
 
-        if (pref.getString("soundSetting",null).equalsIgnoreCase("ON")){
-            voice = MediaPlayer.create(this,R.raw.bubble_cancel);
+    public void backSound() {
+
+        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+            voice = MediaPlayer.create(this, R.raw.bubble_cancel);
             voice.start();
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -364,10 +365,10 @@ public class CustomTimeActivity extends AppCompatActivity {
                     voice.release();
                 }
             });
-        }else{}
+        } else {
+        }
 
     }
-
 
 
 }
