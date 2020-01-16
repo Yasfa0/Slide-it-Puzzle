@@ -123,11 +123,12 @@ public class PuzzleActivity extends AppCompatActivity {
                 noTime = false;
             }else{
                 noTime = true;
+                waktu = 3959000;
             }
 
         } else {
             noTime = true;
-            waktu = 0;
+            waktu = 3959000;
         }
 
 
@@ -184,7 +185,6 @@ public class PuzzleActivity extends AppCompatActivity {
             }
         });
 
-
         new CountDownTimer(5000, 1000) {
 
             public void onTick(long waktu) {
@@ -227,7 +227,9 @@ public class PuzzleActivity extends AppCompatActivity {
 
         final int detik = waktu%60000/1000;
         final int menit = waktu/60000/1000;
-        if (waktu > 0) {
+        final int menitup = waktu/60000;
+
+        if (noTime == false) {
 
             new CountDownTimer(waktu, 1000) {
                 @Override
@@ -251,7 +253,6 @@ public class PuzzleActivity extends AppCompatActivity {
                     }
                     String string_waktu = menit_layout+":"+detik_layout;
                     timer.setText(string_waktu);
-
                 }
 
                 @Override
@@ -261,7 +262,38 @@ public class PuzzleActivity extends AppCompatActivity {
             }.start();
 
         } else {
-            timer.setText("No Time");
+
+            //timer.setText("No Time");
+            new CountDownTimer(waktu, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    long detik_sisa = millisUntilFinished%60000/1000;
+                    long menit_sisa = millisUntilFinished/60000;
+                    long detik_show= detik - detik_sisa;
+                    long menit_show= menitup - menit_sisa;
+                    String detik_layout = "";
+                    String menit_layout = "";
+                    if(detik_show<10){
+                        detik_layout = String.valueOf("0"+detik_show);
+                    }else{
+                        detik_layout = String.valueOf(detik_show);
+                    }
+
+                    if(menit_show<10){
+                        menit_layout = String.valueOf("0"+menit_show);
+                    }else{
+                        menit_layout = String.valueOf(menit_show);
+                    }
+                    String string_waktu = menit_layout+":"+detik_layout;
+                    timer.setText(string_waktu);
+                }
+
+                @Override
+                public void onFinish() {
+
+                }
+            }.start();
+
         }
 
         p = Integer.parseInt(getIntent().getStringExtra("p"));
