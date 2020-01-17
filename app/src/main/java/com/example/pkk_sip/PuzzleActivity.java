@@ -62,7 +62,7 @@ public class PuzzleActivity extends AppCompatActivity {
     int t = 0;
     int layout_p;
     int layout_t;
-    boolean status_selesai_randomizer =false;
+    boolean status_selesai_randomizer = false;
 
     ArrayList<Bitmap> bitmapArrayList = new ArrayList<Bitmap>();
 
@@ -119,9 +119,9 @@ public class PuzzleActivity extends AppCompatActivity {
         if (bundle != null) {
             waktu = bundle.getInt("waktu");
 
-            if (waktu > 0){
+            if (waktu > 0) {
                 noTime = false;
-            }else{
+            } else {
                 noTime = true;
                 waktu = 3959000;
             }
@@ -225,33 +225,33 @@ public class PuzzleActivity extends AppCompatActivity {
         }.start();
 
 
-        final int detik = waktu%60000/1000;
-        final int menit = waktu/60000/1000;
-        final int menitup = waktu/60000;
+        final int detik = waktu % 60000 / 1000;
+        final int menit = waktu / 60000 / 1000;
+        final int menitup = waktu / 60000;
 
         if (noTime == false) {
 
             new CountDownTimer(waktu, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    long detik_sisa = millisUntilFinished%60000/1000;
-                    long menit_sisa = millisUntilFinished/60000;
-                    long detik_show= detik-(detik-detik_sisa);
-                    long menit_show= menit-(menit-menit_sisa);
+                    long detik_sisa = millisUntilFinished % 60000 / 1000;
+                    long menit_sisa = millisUntilFinished / 60000;
+                    long detik_show = detik - (detik - detik_sisa);
+                    long menit_show = menit - (menit - menit_sisa);
                     String detik_layout = "";
                     String menit_layout = "";
-                    if(detik_show<10){
-                        detik_layout = String.valueOf("0"+detik_show);
-                    }else{
+                    if (detik_show < 10) {
+                        detik_layout = String.valueOf("0" + detik_show);
+                    } else {
                         detik_layout = String.valueOf(detik_show);
                     }
 
-                    if(menit_show<10){
-                        menit_layout = String.valueOf("0"+menit_show);
-                    }else{
+                    if (menit_show < 10) {
+                        menit_layout = String.valueOf("0" + menit_show);
+                    } else {
                         menit_layout = String.valueOf(menit_show);
                     }
-                    String string_waktu = menit_layout+":"+detik_layout;
+                    String string_waktu = menit_layout + ":" + detik_layout;
                     timer.setText(string_waktu);
                 }
 
@@ -267,24 +267,24 @@ public class PuzzleActivity extends AppCompatActivity {
             new CountDownTimer(waktu, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    long detik_sisa = millisUntilFinished%60000/1000;
-                    long menit_sisa = millisUntilFinished/60000;
-                    long detik_show= detik - detik_sisa;
-                    long menit_show= menitup - menit_sisa;
+                    long detik_sisa = millisUntilFinished % 60000 / 1000;
+                    long menit_sisa = millisUntilFinished / 60000;
+                    long detik_show = detik - detik_sisa;
+                    long menit_show = menitup - menit_sisa;
                     String detik_layout = "";
                     String menit_layout = "";
-                    if(detik_show<10){
-                        detik_layout = String.valueOf("0"+detik_show);
-                    }else{
+                    if (detik_show < 10) {
+                        detik_layout = String.valueOf("0" + detik_show);
+                    } else {
                         detik_layout = String.valueOf(detik_show);
                     }
 
-                    if(menit_show<10){
-                        menit_layout = String.valueOf("0"+menit_show);
-                    }else{
+                    if (menit_show < 10) {
+                        menit_layout = String.valueOf("0" + menit_show);
+                    } else {
                         menit_layout = String.valueOf(menit_show);
                     }
-                    String string_waktu = menit_layout+":"+detik_layout;
+                    String string_waktu = menit_layout + ":" + detik_layout;
                     timer.setText(string_waktu);
                 }
 
@@ -385,29 +385,33 @@ public class PuzzleActivity extends AppCompatActivity {
         boolean status = false;
         int score = 0;
 
-        if(noTime){
-            score = p*t*1000;
-        }else{
-            score = (p+t)/2*1000*p*t/2;
-            int point_per_second = (p+t)/2*1000*p*t/6000/2;
+        if (noTime) {
+            score = p * t * 1000;
+        } else {
+            score = (p + t) / 2 * 1000 * p * t / 2;
+            int point_per_second = (p + t) / 2 * 1000 * p * t / 6000 / 2;
             String waktu = timer.getText().toString();
-            int sisa_menit = Integer.parseInt(waktu.substring(0,1));
-            int sisa_detik = Integer.parseInt(waktu.substring(3,4));
-            int sisa_waktu = sisa_detik+sisa_menit*60;
-            score = score - point_per_second*sisa_waktu;
+            int sisa_menit = Integer.parseInt(waktu.substring(0, 1));
+            int sisa_detik = Integer.parseInt(waktu.substring(3, 4));
+            int sisa_waktu = sisa_detik + sisa_menit * 60;
+            score = score - point_per_second * sisa_waktu;
         }
-        int point_per_block = (p+t)/2*1000;
+        int point_per_block = (p + t) / 2 * 1000;
 
         for (int i = 0; i < listblock.size(); i++) {
             if (listblock.get(i).getPosition() == listblock.get(i).getStartposition()) {
                 status = true;
-                score = score+point_per_block;
+                score = score + point_per_block;
             } else {
                 status = false;
+
                 break;
             }
         }
-        if (status == true&&status_selesai_randomizer==true) {
+        if (!noTime && timer.getText().toString().equals("00:00")) {
+            status = true;
+        }
+        if (status == true && status_selesai_randomizer == true) {
             //Nanti kan intent ke Activity Menang
             //Parameternya Waktu,Score
             //Nama mah Masukin nanti pake TextField aja di activity menangnya
@@ -417,10 +421,10 @@ public class PuzzleActivity extends AppCompatActivity {
             //Scorenya mah tinggal pake score yang diatas... langsung aja di panggil
             //kalo waktu kan situ yang ngerjain jadi gk tau
             //System.out.println("Kamu Menang");
-            Intent result = new Intent(PuzzleActivity.this,HasilActivity.class);
+            Intent result = new Intent(PuzzleActivity.this, HasilActivity.class);
             startActivity(result);
             PuzzleActivity.super.finish();
-            CustomIntent.customType(PuzzleActivity.this,"fadein-to-fadeout");
+            CustomIntent.customType(PuzzleActivity.this, "fadein-to-fadeout");
         }
     }
 
