@@ -3,6 +3,9 @@ package com.example.pkk_sip;
 public class Player {
     String nama,skor,time,ukuran,id;
 
+    public Player(){
+
+    }
     public Player(String nama,String skor,String time,String ukuran,String id){
         this.nama =nama;
         this.id = id;
