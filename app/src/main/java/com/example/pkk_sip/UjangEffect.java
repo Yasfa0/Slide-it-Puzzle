@@ -35,7 +35,7 @@ public class UjangEffect {
                         ujangImage.setScaleX((float) 0.9 + i / 500);
                         ujangImage.setScaleY((float) 0.9 + i / 500);
                     }
-                } else if (millisUntilFinished > 20) {
+                } else if (millisUntilFinished > 30) {
                     float i = millisUntilFinished % 100;
 
                     if (i == 0) {
