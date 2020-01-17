@@ -256,17 +256,17 @@ public class ChooseImageActivity extends AppCompatActivity {
         data_Gambar.add(data10);
         data_Gambar.add(data11);
 
-        int random = new Random().nextInt(12) - 1;
+        int random = new Random().nextInt(12);
         Bitmap src = data_Gambar.get(random);
 
         if (p > t) {
-            int height = 800 * t / p;
-            src = scaleCenterCrop(src, height, 800);
+            int height = 400 / p * t;
+            src = scaleCenterCrop(src, height, 400);
         } else if (p < t) {
-            int width = 800 / t * p;
-            src = scaleCenterCrop(src, 800, width);
+            int width = 400 / t * p;
+            src = scaleCenterCrop(src, 400, width);
         } else {
-            src = scaleCenterCrop(src, 800, 800);
+            src = scaleCenterCrop(src, 400, 400);
         }
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         src.compress(Bitmap.CompressFormat.PNG, 100, out);
