@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Random;
 
 import maes.tech.intentanim.CustomIntent;
 
@@ -27,9 +30,11 @@ public class ChooseImageActivity extends AppCompatActivity {
     ImageView back, next;
     MediaPlayer voice;
     SharedPreferences pref;
+    ArrayList<Uri> data_Gambar = new ArrayList<Uri>();
 
     Bundle dataBundle;
     int waktu;
+    boolean noImage;
 
     UjangEffect ujang = new UjangEffect();
 
@@ -49,6 +54,8 @@ public class ChooseImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_image);
 
+        initgambar();
+
         back = (ImageView) findViewById(R.id.back);
         next = (ImageView) findViewById(R.id.next_img);
 
@@ -56,6 +63,7 @@ public class ChooseImageActivity extends AppCompatActivity {
 
         if (dataBundle != null) {
             waktu = dataBundle.getInt("waktu");
+            noImage = dataBundle.getBoolean("noImage");
         } else {
             waktu = 0;
         }
@@ -207,22 +215,63 @@ public class ChooseImageActivity extends AppCompatActivity {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 
+    public void initgambar() {
+        Uri data1 = Uri.parse("android.resource://com.example.pkk_sip/drawable/def_img1");
+        Uri data2 = Uri.parse("android.resource://com.example.pkk_sip/drawable/def_img2");
+        Uri data3 = Uri.parse("android.resource://com.example.pkk_sip/drawable/def_img3");
+        Uri data4 = Uri.parse("android.resource://com.example.pkk_sip/drawable/def_img4");
+        Uri data5 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img5.png");
+        Uri data6 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img6.png");
+        Uri data7 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img7.png");
+        Uri data8 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img8.png");
+        Uri data9 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img9.png");
+        Uri data10 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img10.png");
+        Uri data11 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img11.png");
+        data_Gambar.add(data1);
+        data_Gambar.add(data2);
+        data_Gambar.add(data3);
+        data_Gambar.add(data4);
+        data_Gambar.add(data5);
+        data_Gambar.add(data6);
+        data_Gambar.add(data7);
+        data_Gambar.add(data8);
+        data_Gambar.add(data9);
+        data_Gambar.add(data10);
+        data_Gambar.add(data11);
+
+    }
+
     @Override
     protected void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
         ImageView image = findViewById(R.id.image);
 
         if (resultCode == RESULT_OK && i == 0) {
-            try {
+            boolean status_gambar = false;
+            boolean bun = dataBundle.getBoolean("status_gambar");
+            if(bun){
+                status_gambar = true;
+            }
 
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+            if (status_gambar) {
+                int random = new Random().nextInt(4);
+                Uri gambar = data_Gambar.get(random);
+                performCrop(gambar);
+
+            } else {
+
+
+                try {
+
+                    final Uri imageUri = data.getData();
+                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
 //                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                i = 1;
-                performCrop(imageUri);
+                    i = 1;
+                    performCrop(imageUri);
 //                image.setImageBitmap(selectedImage);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         } else {
             if (data != null && !data.equals("")) {

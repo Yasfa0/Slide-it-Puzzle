@@ -128,7 +128,7 @@ public class rowcolumninput extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Intent intent = new Intent(rowcolumninput.this, ChooseImageActivity.class);
+                        Intent intent = new Intent(rowcolumninput.this, TimeLimitActivity.class);
                         intent.putExtra("p", input1.getText().toString());
                         intent.putExtra("l", input2.getText().toString());
                         intent.putExtra("waktu", waktu);

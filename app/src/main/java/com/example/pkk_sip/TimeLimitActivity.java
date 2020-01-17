@@ -12,15 +12,23 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import maes.tech.intentanim.CustomIntent;
 
 public class TimeLimitActivity extends AppCompatActivity {
 
     ImageView back, yes, no;
+    int waktu;
+    TextView questionTextView;
     CountDownTimer jeda;
     MediaPlayer voice;
     SharedPreferences pref;
+    Bundle bundle;
+    String questionTeks;
+    boolean noImage;
+
+    String p,l;
 
     UjangEffect ujang = new UjangEffect();
 
@@ -29,9 +37,24 @@ public class TimeLimitActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timed_difficulty);
 
+        questionTextView = findViewById(R.id.labelDifficulty);
         back = (ImageView) findViewById(R.id.back);
         yes = (ImageView) findViewById(R.id.yes);
         no = (ImageView) findViewById(R.id.no);
+
+        bundle = getIntent().getExtras();
+
+        if (bundle != null){
+            waktu = bundle.getInt("waktu");
+            questionTeks = " Play with \n Custom Image?";
+            questionTextView.setText(questionTeks);
+            p = bundle.getString("p");
+            l = bundle.getString("l");
+        }else{
+            waktu = 0;
+            questionTeks = " Play with \n Time Limit?";
+            questionTextView.setText(questionTeks);
+        }
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
@@ -43,6 +66,18 @@ public class TimeLimitActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent toCustom = new Intent(TimeLimitActivity.this, CustomTimeActivity.class);
+
+
+                        if (bundle != null){
+                            toCustom = new Intent(TimeLimitActivity.this,ChooseImageActivity.class);
+                            toCustom.putExtra("waktu", waktu);
+                            toCustom.putExtra("p",p);
+                            toCustom.putExtra("l",l);
+                            toCustom.putExtra("status_gambar",false);
+                        }else{
+                            toCustom.putExtra("waktu", 0);
+                        }
+
                         startActivity(toCustom);
                         playSound();
                         CustomIntent.customType(TimeLimitActivity.this, "fadein-to-fadeout");
@@ -63,7 +98,17 @@ public class TimeLimitActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent toCustom = new Intent(TimeLimitActivity.this, rowcolumninput.class);
-                        toCustom.putExtra("waktu", 0);
+
+                        if (bundle != null){
+                            toCustom = new Intent(TimeLimitActivity.this,ChooseImageActivity.class);
+                            toCustom.putExtra("waktu",waktu);
+                            toCustom.putExtra("status_gambar",true);
+                            toCustom.putExtra("p",p);
+                            toCustom.putExtra("l",l);
+                        }else{
+                            toCustom.putExtra("waktu", 0);
+                        }
+
                         startActivity(toCustom);
                         playSound();
                         CustomIntent.customType(TimeLimitActivity.this, "fadein-to-fadeout");
@@ -84,6 +129,12 @@ public class TimeLimitActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent toMenu = new Intent(TimeLimitActivity.this, MainActivity.class);
+
+                        if (bundle != null){
+                            toMenu = new Intent(TimeLimitActivity.this,rowcolumninput.class);
+                            toMenu.putExtra("waktu",waktu);
+                        }
+
                         startActivity(toMenu);
                         CustomIntent.customType(TimeLimitActivity.this, "fadein-to-fadeout");
                         backSound();
