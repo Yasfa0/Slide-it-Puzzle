@@ -9,7 +9,11 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import maes.tech.intentanim.CustomIntent;
 
@@ -19,6 +23,8 @@ public class RankingActivity extends AppCompatActivity {
     ImageView classic, timed, custom, sip, back;
     MediaPlayer voice;
     SharedPreferences pref;
+    Button firebase;
+    DatabaseReference db;
 
     UjangEffect ujang = new UjangEffect();
 
@@ -29,10 +35,26 @@ public class RankingActivity extends AppCompatActivity {
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
+        db = FirebaseDatabase.getInstance().getReference("childScore");
+//        final DatabaseReference mChildScore = mRootRef.child("childScore");
+
         sip = findViewById(R.id.logo);
         back = findViewById(R.id.back);
 
         data = getIntent().getExtras();
+
+        firebase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                mChildScore.child("unique");
+
+//                DatabaseReference mFiller = mChildScore.child("Unique");
+                String id = db.push().getKey();
+                Player baru = new Player("Ujang","2000","56:23","4x4",id);
+                db.child(id).setValue(baru);
+            }
+        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -58,95 +58,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rankText">
 
-        <GridLayout
-            android:id="@+id/grid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:columnCount="4"
-            android:rowCount="4">
 
-            <TextView
-                android:id="@+id/no"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="No"
-                android:textColor="#111"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/nama"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Name"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/skor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Score"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20dp" />
-
-
-            <TextView
-                android:id="@+id/waktu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Time"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20dp" />
-
-
-            <TextView
-                android:id="@+id/noUser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="1"
-                android:textColor="#111"
-                android:textSize="20dp" />
-
-
-            <TextView
-                android:id="@+id/namaUser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:maxLength="8"
-                android:text="John"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20dp" />
-
-
-            <TextView
-                android:id="@+id/skorUser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="0"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20dp" />
-
-
-            <TextView
-                android:id="@+id/waktuUser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20dp" />
-
-        </GridLayout>
-
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
 
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
