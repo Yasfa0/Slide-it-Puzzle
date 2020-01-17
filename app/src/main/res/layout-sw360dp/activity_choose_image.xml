@@ -44,7 +44,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="30dp"
-        android:onClick="Pilih"
         android:src="@drawable/select_image"
         app:layout_constraintBottom_toTopOf="@id/pad_icon"
         app:layout_constraintLeft_toLeftOf="parent"

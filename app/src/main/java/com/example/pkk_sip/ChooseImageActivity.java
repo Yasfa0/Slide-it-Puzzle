@@ -9,6 +9,8 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +20,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -30,7 +34,7 @@ public class ChooseImageActivity extends AppCompatActivity {
     ImageView back, next;
     MediaPlayer voice;
     SharedPreferences pref;
-    ArrayList<Uri> data_Gambar = new ArrayList<Uri>();
+    ArrayList<Bitmap> data_Gambar = new ArrayList<Bitmap>();
 
     Bundle dataBundle;
     int waktu;
@@ -48,18 +52,20 @@ public class ChooseImageActivity extends AppCompatActivity {
     int p = 0;
     int t = 0;
     Bitmap sentBitmap;
+    boolean bun = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dataBundle = getIntent().getExtras();
         setContentView(R.layout.activity_choose_image);
+        bun = dataBundle.getBoolean("status_gambar");
+        ImageView imgpilih = findViewById(R.id.image);
 
-        initgambar();
 
         back = (ImageView) findViewById(R.id.back);
         next = (ImageView) findViewById(R.id.next_img);
 
-        dataBundle = getIntent().getExtras();
 
         if (dataBundle != null) {
             waktu = dataBundle.getInt("waktu");
@@ -135,6 +141,17 @@ public class ChooseImageActivity extends AppCompatActivity {
             }
         });
 
+        if (bun) {
+            initgambar();
+            EmptyButtonOnClick(imgpilih);
+        } else {
+            imgpilih.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Pilih(v);
+                }
+            });
+        }
 
     }
 
@@ -216,17 +233,17 @@ public class ChooseImageActivity extends AppCompatActivity {
     }
 
     public void initgambar() {
-        Uri data1 = Uri.parse("android.resource://com.example.pkk_sip/drawable/def_img1");
-        Uri data2 = Uri.parse("android.resource://com.example.pkk_sip/drawable/def_img2");
-        Uri data3 = Uri.parse("android.resource://com.example.pkk_sip/drawable/def_img3");
-        Uri data4 = Uri.parse("android.resource://com.example.pkk_sip/drawable/def_img4");
-        Uri data5 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img5.png");
-        Uri data6 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img6.png");
-        Uri data7 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img7.png");
-        Uri data8 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img8.png");
-        Uri data9 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img9.png");
-        Uri data10 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img10.png");
-        Uri data11 = Uri.parse("android.resource://com.example.pkk_sip/drawable-v24/def_img11.png");
+        Bitmap data1 = BitmapFactory.decodeResource(this.getResources(), R.drawable.def_img1);
+        Bitmap data2 = BitmapFactory.decodeResource(this.getResources(), R.drawable.def_img2);
+        Bitmap data3 = BitmapFactory.decodeResource(this.getResources(), R.drawable.def_img3);
+        Bitmap data4 = BitmapFactory.decodeResource(this.getResources(), R.drawable.def_img4);
+        Bitmap data5 = BitmapFactory.decodeResource(this.getResources(), R.drawable.def_img5);
+        Bitmap data6 = BitmapFactory.decodeResource(this.getResources(), R.drawable.def_img6);
+        Bitmap data7 = BitmapFactory.decodeResource(this.getResources(), R.drawable.def_img7);
+        Bitmap data8 = BitmapFactory.decodeResource(this.getResources(), R.drawable.def_img8);
+        Bitmap data9 = BitmapFactory.decodeResource(this.getResources(), R.drawable.def_img9);
+        Bitmap data10 = BitmapFactory.decodeResource(this.getResources(), R.drawable.def_img10);
+        Bitmap data11 = BitmapFactory.decodeResource(this.getResources(), R.drawable.def_img11);
         data_Gambar.add(data1);
         data_Gambar.add(data2);
         data_Gambar.add(data3);
@@ -239,6 +256,52 @@ public class ChooseImageActivity extends AppCompatActivity {
         data_Gambar.add(data10);
         data_Gambar.add(data11);
 
+        int random = new Random().nextInt(12) - 1;
+        Bitmap src = data_Gambar.get(random);
+
+        if (p > t) {
+            int height = 800 * t / p;
+            src = scaleCenterCrop(src, height, 800);
+        } else if (p < t) {
+            int width = 800 / t * p;
+            src = scaleCenterCrop(src, 800, width);
+        } else {
+            src = scaleCenterCrop(src, 800, 800);
+        }
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        src.compress(Bitmap.CompressFormat.PNG, 100, out);
+        src = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));
+        sentBitmap = src;
+
+        ((ImageView) findViewById(R.id.image)).setImageBitmap(src);
+
+
+    }
+
+    public Bitmap scaleCenterCrop(Bitmap source, int newHeight, int newWidth) {
+        int sourceWidth = source.getWidth();
+        int sourceHeight = source.getHeight();
+
+        float xScale = (float) newWidth / sourceWidth;
+        float yScale = (float) newHeight / sourceHeight;
+        float scale = Math.max(xScale, yScale);
+
+        // Now get the size of the source bitmap when scaled
+        float scaledWidth = scale * sourceWidth;
+        float scaledHeight = scale * sourceHeight;
+
+        float left = (newWidth - scaledWidth) / 2;
+        float top = (newHeight - scaledHeight) / 2;
+
+        RectF targetRect = new RectF(left, top, left + scaledWidth, top
+                + scaledHeight);//from ww w  .j a va 2s. co m
+
+        Bitmap dest = Bitmap.createBitmap(newWidth, newHeight,
+                source.getConfig());
+        Canvas canvas = new Canvas(dest);
+        canvas.drawBitmap(source, null, targetRect, null);
+
+        return dest;
     }
 
     @Override
@@ -247,32 +310,19 @@ public class ChooseImageActivity extends AppCompatActivity {
         ImageView image = findViewById(R.id.image);
 
         if (resultCode == RESULT_OK && i == 0) {
-            boolean status_gambar = false;
-            boolean bun = dataBundle.getBoolean("status_gambar");
-            if(bun){
-                status_gambar = true;
-            }
 
-            if (status_gambar) {
-                int random = new Random().nextInt(4);
-                Uri gambar = data_Gambar.get(random);
-                performCrop(gambar);
+            try {
 
-            } else {
-
-
-                try {
-
-                    final Uri imageUri = data.getData();
-                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
 //                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                    i = 1;
-                    performCrop(imageUri);
+                i = 1;
+                performCrop(imageUri);
 //                image.setImageBitmap(selectedImage);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
+
         } else {
             if (data != null && !data.equals("")) {
                 System.out.println("theres data");
@@ -287,6 +337,15 @@ public class ChooseImageActivity extends AppCompatActivity {
                 this.i = 0;
             }
         }
+    }
+
+    private void EmptyButtonOnClick(ImageView btn) {
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 
