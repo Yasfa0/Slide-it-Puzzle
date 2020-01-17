@@ -384,7 +384,20 @@ public class PuzzleActivity extends AppCompatActivity {
     private void checkwin() {
         boolean status = false;
         int score = 0;
-        int point_per_block = ((p+t)/2*1000);
+
+        if(noTime){
+            score = p*t*1000;
+        }else{
+            score = (p+t)/2*1000*p*t/2;
+            int point_per_second = (p+t)/2*1000*p*t/6000/2;
+            String waktu = timer.getText().toString();
+            int sisa_menit = Integer.parseInt(waktu.substring(0,1));
+            int sisa_detik = Integer.parseInt(waktu.substring(3,4));
+            int sisa_waktu = sisa_detik+sisa_menit*60;
+            score = score - point_per_second*sisa_waktu;
+        }
+        int point_per_block = (p+t)/2*1000;
+
         for (int i = 0; i < listblock.size(); i++) {
             if (listblock.get(i).getPosition() == listblock.get(i).getStartposition()) {
                 status = true;
