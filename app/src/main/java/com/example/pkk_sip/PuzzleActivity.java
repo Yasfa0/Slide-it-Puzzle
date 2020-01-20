@@ -37,6 +37,7 @@ public class PuzzleActivity extends AppCompatActivity {
     UjangEffect ujang = new UjangEffect();
 
     boolean noTime;
+    String detik_layout,menit_layout;
 
     Bundle bundle;
     int waktu;
@@ -219,7 +220,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 start.setVisibility(View.INVISIBLE);
                 cardmain.setVisibility(View.VISIBLE);
                 pause.setVisibility(View.VISIBLE);
-                skip.setVisibility(View.VISIBLE);
+                //skip.setVisibility(View.VISIBLE);
             }
 
         }.start();
@@ -238,8 +239,8 @@ public class PuzzleActivity extends AppCompatActivity {
                     long menit_sisa = millisUntilFinished / 60000;
                     long detik_show = detik - (detik - detik_sisa);
                     long menit_show = menit - (menit - menit_sisa);
-                    String detik_layout = "";
-                    String menit_layout = "";
+                    detik_layout = "";
+                    menit_layout = "";
                     if (detik_show < 10) {
                         detik_layout = String.valueOf("0" + detik_show);
                     } else {
@@ -271,8 +272,8 @@ public class PuzzleActivity extends AppCompatActivity {
                     long menit_sisa = millisUntilFinished / 60000;
                     long detik_show = detik - detik_sisa;
                     long menit_show = menitup - menit_sisa;
-                    String detik_layout = "";
-                    String menit_layout = "";
+                    detik_layout = "";
+                    menit_layout = "";
                     if (detik_show < 10) {
                         detik_layout = String.valueOf("0" + detik_show);
                     } else {
@@ -422,6 +423,11 @@ public class PuzzleActivity extends AppCompatActivity {
             //kalo waktu kan situ yang ngerjain jadi gk tau
             //System.out.println("Kamu Menang");
             Intent result = new Intent(PuzzleActivity.this, HasilActivity.class);
+            String ukuran = p + " X " + t;
+            String stringScore = score + " ";
+            result.putExtra("ukuran", ukuran);
+            result.putExtra("score",stringScore);
+            result.putExtra("waktu",menit_layout + ":" + detik_layout);
             startActivity(result);
             PuzzleActivity.super.finish();
             CustomIntent.customType(PuzzleActivity.this, "fadein-to-fadeout");
