@@ -25,171 +25,110 @@
             android:layout_height="match_parent">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="50dp"
-        android:textColor="#111"
-        app:layout_constraintBottom_toTopOf="@id/yourScore"
-        app:layout_constraintRight_toRightOf="@id/grid"
-        app:layout_constraintLeft_toLeftOf="@id/grid"
-        android:layout_marginBottom="10dp"
-        />
+            <TextView
+                android:id="@+id/scoreValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="50dp"
+                android:textColor="#111"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginBottom="10dp"
+                />
 
 
             <TextView
                 android:id="@+id/yourScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Score"
+                android:text="Final Score"
                 android:textSize="20dp"
                 android:textColor="#189EDA"
-                app:layout_constraintLeft_toLeftOf="@id/grid"
-                app:layout_constraintRight_toRightOf="@id/grid"
-                app:layout_constraintBottom_toTopOf="@id/grid"
                 android:layout_marginBottom="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scoreValue"
+                />
+
+            <TextView
+                android:layout_marginTop="40dp"
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="20dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/yourScore"
+                android:textColor="#123"
                 />
 
 
-    <ImageButton
-        android:id="@+id/menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:maxWidth="200dp"
-        android:maxHeight="200dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/menu"
-        android:background="#00000000"
-        app:layout_constraintTop_toTopOf="@id/restart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_margin="20dp"
-        />
-
-     <ImageButton
-         android:id="@+id/restart"
-         android:background="#00000000"
-         android:maxWidth="150dp"
-         android:maxHeight="150dp"
-         android:src="@drawable/restart"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         app:layout_constraintLeft_toRightOf="@id/menu"
-         app:layout_constraintBottom_toBottomOf="@id/menu"
-         app:layout_constraintRight_toRightOf="parent"
-         />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4 X 4"
+                android:textSize="20dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                android:textColor="#123"
+                />
 
 
-         <GridLayout
-             android:id="@+id/grid"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:columnCount="4"
-             android:rowCount="4"
-             app:layout_constraintTop_toTopOf="parent"
-             app:layout_constraintRight_toRightOf="parent"
-             app:layout_constraintLeft_toLeftOf="parent"
-             app:layout_constraintBottom_toTopOf="@id/menu"
-             >
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14 : 14"
+                android:textSize="20dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/size"
+                android:textColor="#123"
+                />
 
-             <TextView
-                 android:id="@+id/no"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="No"
-                 android:textSize="20dp"
-                 android:textColor="#111"
-                 android:layout_margin="10dp"
-                 />
+            <ImageButton
+                android:id="@+id/menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxWidth="200dp"
+                android:maxHeight="200dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/menu"
+                android:background="#00000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_margin="20dp"
+                />
 
+            <ImageButton
+                android:id="@+id/restart"
+                android:background="#00000000"
+                android:maxWidth="150dp"
+                android:maxHeight="150dp"
+                android:src="@drawable/restart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/menu"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginBottom="10dp"
+                />
 
-             <TextView
-                 android:id="@+id/nama"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="Name"
-                 android:layout_margin="10dp"
-                 android:textSize="20dp"
-                 android:textColor="@color/colorPrimaryDark"
-                 />
-
-
-             <TextView
-                 android:id="@+id/skor"
-                 android:layout_margin="10dp"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="Score"
-                 android:textSize="20dp"
-                 android:textColor="@color/colorPrimaryDark"
-                 />
-
-
-             <TextView
-                 android:id="@+id/waktu"
-                 android:layout_margin="10dp"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="Time"
-                 android:textSize="20dp"
-                 android:textColor="@color/colorPrimaryDark"
-                 />
-
-
-             <TextView
-                 android:id="@+id/noUser"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="1"
-                 android:textSize="20dp"
-                 android:textColor="#111"
-                 android:layout_margin="10dp"
-                 />
-
-
-             <TextView
-                 android:id="@+id/namaUser"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="John"
-                 android:layout_margin="10dp"
-                 android:maxLength="8"
-                 android:textSize="20dp"
-                 android:textColor="@color/colorPrimaryDark"
-                 />
-
-
-             <TextView
-                 android:id="@+id/skorUser"
-                 android:layout_margin="10dp"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="0"
-                 android:textSize="20dp"
-                 android:textColor="@color/colorPrimaryDark"
-                 />
-
-
-             <TextView
-                 android:id="@+id/waktuUser"
-                 android:layout_margin="10dp"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="00:00"
-                 android:textSize="20dp"
-                 android:textColor="@color/colorPrimaryDark"
-                 />
-
-
-         </GridLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.cardview.widget.CardView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

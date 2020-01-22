@@ -24,9 +24,6 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
 
-        bgm = MediaPlayer.create(this, R.raw.menubgm);
-        bgm.setLooping(true);
-        bgm.start();
 
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
@@ -40,6 +37,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent mainMenu = new Intent(SplashActivity.this, MainActivity.class);
+                mainMenu.putExtra("firstTime",true);
                 startActivity(mainMenu);
                 CustomIntent.customType(SplashActivity.this, "fadein-to-fadeout");
                 finish();

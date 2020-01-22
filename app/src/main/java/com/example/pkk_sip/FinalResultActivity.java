@@ -1,7 +1,6 @@
 package com.example.pkk_sip;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,16 +9,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import maes.tech.intentanim.CustomIntent;
+
 
 public class FinalResultActivity extends AppCompatActivity {
 
     Bundle hasil;
-    TextView nama;
+    DatabaseReference db;
+    TextView nama,layout_time,layout_size,layout_score;
     ImageButton restart, menu;
     MediaPlayer voice;
     SharedPreferences pref;
+
+    String nameValue,timeValue,sizeValue,scoreValue;
 
     UjangEffect ujang = new UjangEffect();
 
@@ -29,15 +34,39 @@ public class FinalResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final_result);
 
+        db = FirebaseDatabase.getInstance().getReference("childScore");
+
         restart = findViewById(R.id.restart);
         menu = findViewById(R.id.menu);
+        nama = findViewById(R.id.name);
+        layout_time = findViewById(R.id.time);
+        layout_size = findViewById(R.id.size);
+        layout_score = findViewById(R.id.scoreValue);
+
         hasil = getIntent().getExtras();
-        nama = findViewById(R.id.namaUser);
-        String name = hasil.getString("nama");
+
+        if (hasil != null){
+            nameValue = hasil.getString("nama");
+            timeValue = hasil.getString("waktu");
+            sizeValue = hasil.getString("ukuran");
+            scoreValue = hasil.getString("score");
+
+            db.child("unique");
+            DatabaseReference mFiller = db.child("Unique");
+            String id = db.push().getKey();
+            Player baru = new Player(nameValue,scoreValue,timeValue,sizeValue,id);
+            db.child(id).setValue(baru);
+
+        }
+
+        nama.setText(nameValue);
+        layout_time.setText(timeValue);
+        layout_size.setText(sizeValue);
+        layout_score.setText(scoreValue);
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
-        nama.setText(name);
+        nama.setText(nameValue);
 
 
         menu.setOnClickListener(new View.OnClickListener() {
@@ -55,11 +84,11 @@ public class FinalResultActivity extends AppCompatActivity {
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ujang.clickButtonAnim(restart);
-                Intent restart = new Intent(FinalResultActivity.this, PuzzleActivity.class);
-                startActivity(restart);
-                CustomIntent.customType(FinalResultActivity.this, "fadein-to-fadeout");
-                playSound();
+//                ujang.clickButtonAnim(restart);
+//                Intent restart = new Intent(FinalResultActivity.this, PuzzleActivity.class);
+//                startActivity(restart);
+//                CustomIntent.customType(FinalResultActivity.this, "fadein-to-fadeout");
+//                playSound();
             }
         });
 

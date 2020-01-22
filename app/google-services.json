@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "644910174610",
+    "firebase_url": "https://slide-it-puzzle.firebaseio.com",
+    "project_id": "slide-it-puzzle",
+    "storage_bucket": "slide-it-puzzle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644910174610:android:9e868f2f8178df7626314b",
+        "android_client_info": {
+          "package_name": "com.example.pkk_sip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644910174610-d5bmbpfqehgitsper1f9inifceplphri.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pkk_sip",
+            "certificate_hash": "70fc5ccf3e05d4dd15dccbeaf0cc0cddac5944de"
+          }
+        },
+        {
+          "client_id": "644910174610-bcss0vb96qrkh9aii57l960a7on9scr1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pkk_sip",
+            "certificate_hash": "622942dfb827832922d579eb07f673360cd8cb1b"
+          }
+        },
+        {
+          "client_id": "644910174610-n2ot0ki9hge4a21ah7r2rc04k3ctca5c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi_BNn42tmXMaxRxm69ylQdMICmXs9tX4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644910174610-n2ot0ki9hge4a21ah7r2rc04k3ctca5c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

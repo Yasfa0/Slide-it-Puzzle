@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     TextView testText;
     ImageView customMenu, ranking, sound, exit;
     MediaPlayer ok, bgm;
+    Bundle firstBundle;
+    boolean firstTime;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Sound soundController = new Sound();
@@ -33,6 +35,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        firstBundle = getIntent().getExtras();
+        if (firstBundle != null){
+            firstTime = firstBundle.getBoolean("firstTime");
+        }else {
+            firstTime = false;
+        }
+
+        //Sementara
+        if (firstTime) {
+            bgm = MediaPlayer.create(this, R.raw.bgm_menu);
+            bgm.setLooping(true);
+            bgm.start();
+        }
 
         sound = findViewById(R.id.sound);
         testText = findViewById(R.id.soundTest);
@@ -52,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         if (pref.getString("soundSetting", null).equalsIgnoreCase("OFF")) {
             sound.setColorFilter(Color.argb(100, 20, 20, 20));
         }
+
 
         sound.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +146,18 @@ public class MainActivity extends AppCompatActivity {
                         Intent toLauncher = new Intent(Intent.ACTION_MAIN);
                         toLauncher.addCategory(Intent.CATEGORY_HOME);
                         toLauncher.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        bgm.stop();
                         startActivity(toLauncher);
+
+//                        if(android.os.Build.VERSION.SDK_INT >= 21)
+//                        {
+//                            finishAndRemoveTask();
+//                        }
+//                        else
+//                        {
+                            finish();
+//                        }
+
                         CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
 
                     }
