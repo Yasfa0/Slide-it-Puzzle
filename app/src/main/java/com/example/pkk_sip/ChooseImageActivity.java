@@ -311,7 +311,6 @@ public class ChooseImageActivity extends AppCompatActivity {
         ImageView image = findViewById(R.id.image);
 
         if (resultCode == RESULT_OK && i == 0) {
-
             try {
 
                 final Uri imageUri = data.getData();
@@ -323,7 +322,6 @@ public class ChooseImageActivity extends AppCompatActivity {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-
         } else {
             if (data != null && !data.equals("")) {
                 System.out.println("theres data");
@@ -336,8 +334,14 @@ public class ChooseImageActivity extends AppCompatActivity {
                 sentBitmap = selectedBitmap;
 
                 this.i = 0;
+            }else{
+                i = 0;
+                final Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                photoPickerIntent.setType("image/*");
+                startActivityForResult(photoPickerIntent, RESULT_LOAD_IMAGE);
             }
         }
+
     }
 
     private void EmptyButtonOnClick(ImageView btn) {
