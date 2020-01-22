@@ -46,13 +46,13 @@ public class TimeLimitActivity extends AppCompatActivity {
 
         if (bundle != null){
             waktu = bundle.getInt("waktu");
-            questionTeks = " Play with \n Custom Image?";
+            questionTeks = "Pilih Gambar \n dari Galeri?";
             questionTextView.setText(questionTeks);
             p = bundle.getString("p");
             l = bundle.getString("l");
         }else{
             waktu = 0;
-            questionTeks = " Play with \n Time Limit?";
+            questionTeks = " Main dengan \n Batas Waktu?";
             questionTextView.setText(questionTeks);
         }
 

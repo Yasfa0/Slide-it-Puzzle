@@ -21,7 +21,8 @@ import maes.tech.intentanim.CustomIntent;
 public class CustomTimeActivity extends AppCompatActivity {
 
     TextView input1, input2, input3, input4;
-    ImageView del, num0, num1, num2, num3, num4, num5, num6, num7, num8, num9, clear, left, right;
+    ImageView left,right;
+    TextView del, num0, num1, num2, num3, num4, num5, num6, num7, num8, num9, clear;
     int posisi = 0;
     MediaPlayer voice;
     SharedPreferences pref;
@@ -159,18 +160,18 @@ public class CustomTimeActivity extends AppCompatActivity {
             }
         });
 
-        num0 = (ImageView) findViewById(R.id.num0);
-        num1 = (ImageView) findViewById(R.id.num1);
-        num2 = (ImageView) findViewById(R.id.num2);
-        num3 = (ImageView) findViewById(R.id.num3);
-        num4 = (ImageView) findViewById(R.id.num4);
-        num5 = (ImageView) findViewById(R.id.num5);
-        num6 = (ImageView) findViewById(R.id.num6);
-        num7 = (ImageView) findViewById(R.id.num7);
-        num8 = (ImageView) findViewById(R.id.num8);
-        num9 = (ImageView) findViewById(R.id.num9);
-        del = (ImageView) findViewById(R.id.del);
-        clear = (ImageView) findViewById(R.id.clear);
+        num0 =  findViewById(R.id.num0);
+        num1 =  findViewById(R.id.num1);
+        num2 =  findViewById(R.id.num2);
+        num3 =  findViewById(R.id.num3);
+        num4 =  findViewById(R.id.num4);
+        num5 =  findViewById(R.id.num5);
+        num6 =  findViewById(R.id.num6);
+        num8 =  findViewById(R.id.num8);
+        num9 =  findViewById(R.id.num9);
+        del =  findViewById(R.id.del);
+        clear = findViewById(R.id.clear);
+        num7 = findViewById(R.id.num7);
 
 
         clear.setOnClickListener(new View.OnClickListener() {
@@ -299,7 +300,7 @@ public class CustomTimeActivity extends AppCompatActivity {
 
     ArrayList<TextView> arrayinput = new ArrayList<TextView>();
 
-    public void initnumber(final ImageView nomor, final String text) {
+    public void initnumber(final TextView nomor, final String text) {
         arrayinput.add(input1);
         arrayinput.add(input2);
         arrayinput.add(input3);

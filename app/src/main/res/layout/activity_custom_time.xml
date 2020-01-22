@@ -7,188 +7,166 @@
     android:background="@drawable/gradientbackground"
     tools:context=".rowcolumninput">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card"
-        app:cardElevation="2dp"
-        app:contentPadding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white2"
-        app:cardCornerRadius="40dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        app:layout_constraintBottom_toTopOf="@id/numpad"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:outlineAmbientShadowColor="@color/white2"
-        >
-
-        <GridLayout
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            >
-
-            <TextView
-                android:id="@+id/input1"
-                style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="0"
-                android:textSize="50dp"
-                android:fontFamily="quicksand"
-                android:layout_marginRight="20dp"
-                android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/input2"
-                style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="0"
-                android:textSize="50dp"
-                android:fontFamily="quicksand"
-                android:layout_marginRight="20dp"
-                android:textAlignment="center"/>
-
-            <TextView
-                style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text=":"
-                android:textSize="50dp"
-                android:fontFamily="quicksand"
-                android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/input3"
-                style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="0"
-                android:textSize="50dp"
-                android:layout_marginLeft="20dp"
-                android:fontFamily="quicksand"
-                android:textAlignment="center"/>
-
-
-            <TextView
-                android:id="@+id/input4"
-                style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="0"
-                android:textSize="50dp"
-                android:fontFamily="quicksand"
-                android:layout_marginLeft="20dp"
-                android:textAlignment="center"/>
-
-        </GridLayout>
-
-    </androidx.cardview.widget.CardView>
-
     <GridLayout
         android:id="@+id/numpad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:columnCount="3"
         android:rowCount="4"
-        app:layout_constraintTop_toBottomOf="@id/card"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@id/pad_icon"
-        >
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card">
 
-        <ImageView
+        <TextView
             android:id="@+id/num1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/num1"
-            android:layout_margin="10dp"
-            />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:background="@drawable/kotak"
+            android:text="1"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="25sp" />
 
 
-
-        <ImageView
+        <TextView
             android:id="@+id/num2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/num2"
-            android:layout_margin="10dp" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/kotak"
+            android:text="2"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="25sp" />
 
-        <ImageView
+
+        <TextView
             android:id="@+id/num3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/num3"
-            android:layout_margin="10dp" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/kotak"
+            android:text="3"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="25sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/num4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/num4"
-            android:layout_margin="10dp" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/kotak"
+            android:text="4"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="25sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/num5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/num5"
-            android:layout_margin="10dp" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/kotak"
+            android:text="5"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="25sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/num6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/num6"
-            android:layout_margin="10dp" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/kotak"
+            android:text="6"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="25sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/num7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/num7"
-            android:layout_margin="10dp" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/kotak"
+            android:text="7"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="25sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/num8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/num8"
-            android:layout_margin="10dp" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/kotak"
+            android:text="8"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="25sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/num9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/num9"
-            android:layout_margin="10dp" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/kotak"
+            android:text="9"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="25sp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/del"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/del"
-            android:layout_margin="10dp"
-            />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/kotak"
+            android:text="Del"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="25sp" />
 
-        <ImageView
+
+        <TextView
             android:id="@+id/num0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/num0"
-            android:layout_margin="10dp"
-            />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/kotak"
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="25sp" />
 
-        <ImageView
+
+        <TextView
             android:id="@+id/clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/clear"
-            android:layout_margin="10dp"
-            />
-
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/kotak"
+            android:text="Clear"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="25sp" />
 
 
 
@@ -207,24 +185,116 @@
 
     <ImageView
         android:id="@+id/right"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/right"
-        android:layout_marginLeft="40dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/btn_selanjutnya"
+        android:layout_marginLeft="20dp"
         app:layout_constraintLeft_toRightOf="@id/pad_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="40dp"
-        />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageView
         android:id="@+id/left"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/left"
-        android:layout_marginRight="40dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/btn_kembali"
+        android:layout_marginRight="20dp"
         app:layout_constraintRight_toLeftOf="@id/pad_icon"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="9dp"
         />
+
+    <TextView
+        android:id="@+id/TextWaktu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Masukan Batas Waktu"
+        android:textSize="25sp"
+        android:textColor="@color/white2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/card"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@color/white2"
+        android:outlineAmbientShadowColor="@color/white2"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="2dp"
+        app:contentPadding="16dp"
+        app:layout_constraintBottom_toTopOf="@id/numpad"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TextWaktu"
+        >
+
+        <GridLayout
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/input1"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="20dp"
+                android:fontFamily="quicksand"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="50dp" />
+
+            <TextView
+                android:id="@+id/input2"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="20dp"
+                android:fontFamily="quicksand"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="50dp" />
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="quicksand"
+                android:text=":"
+                android:textAlignment="center"
+                android:textSize="50dp" />
+
+            <TextView
+                android:id="@+id/input3"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="quicksand"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="50dp" />
+
+
+            <TextView
+                android:id="@+id/input4"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="quicksand"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="50dp" />
+
+        </GridLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
