@@ -231,86 +231,86 @@ public class PuzzleActivity extends AppCompatActivity {
             public void run() {
 
 
-        if (noTime == false) {
+                if (noTime == false) {
 
-            new CountDownTimer(waktu, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    long detik_sisa = millisUntilFinished % 60000 / 1000;
-                    long menit_sisa = millisUntilFinished / 60000;
-                    long detik_show = detik - (detik - detik_sisa);
-                    long menit_show = menit - (menit - menit_sisa);
-                    detik_layout = "";
-                    menit_layout = "";
-                    if (detik_show < 10) {
-                        detik_layout = String.valueOf("0" + detik_show);
-                    } else {
-                        detik_layout = String.valueOf(detik_show);
-                    }
+                    new CountDownTimer(waktu, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            long detik_sisa = millisUntilFinished % 60000 / 1000;
+                            long menit_sisa = millisUntilFinished / 60000;
+                            long detik_show = detik - (detik - detik_sisa);
+                            long menit_show = menit - (menit - menit_sisa);
+                            detik_layout = "";
+                            menit_layout = "";
+                            if (detik_show < 10) {
+                                detik_layout = String.valueOf("0" + detik_show);
+                            } else {
+                                detik_layout = String.valueOf(detik_show);
+                            }
 
-                    if (menit_show < 10) {
-                        menit_layout = String.valueOf("0" + menit_show);
-                    } else {
-                        menit_layout = String.valueOf(menit_show);
-                    }
-                    String string_waktu = menit_layout + ":" + detik_layout;
-                    timer.setText(string_waktu);
-                    total_waktu = total_waktu + 1;
-                    if (millisUntilFinished <= 1000) {
-                        checkwin();
-                    }
+                            if (menit_show < 10) {
+                                menit_layout = String.valueOf("0" + menit_show);
+                            } else {
+                                menit_layout = String.valueOf(menit_show);
+                            }
+                            String string_waktu = menit_layout + ":" + detik_layout;
+                            timer.setText(string_waktu);
+                            total_waktu = total_waktu + 1;
+                            if (millisUntilFinished <= 1000) {
+                                checkwin();
+                            }
+                        }
+
+                        @Override
+                        public void onFinish() {
+
+                        }
+                    }.start();
+
+                } else {
+
+                    //timer.setText("No Time");
+                    new CountDownTimer(waktu, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            long detik_sisa = millisUntilFinished % 60000 / 1000;
+                            long menit_sisa = millisUntilFinished / 60000;
+                            long detik_show = detik - detik_sisa;
+                            long menit_show = menitup - menit_sisa;
+                            detik_layout = "";
+                            menit_layout = "";
+                            if (detik_show < 10) {
+                                detik_layout = String.valueOf("0" + detik_show);
+                            } else {
+                                detik_layout = String.valueOf(detik_show);
+                            }
+
+                            if (menit_show < 10) {
+                                menit_layout = String.valueOf("0" + menit_show);
+                            } else {
+                                menit_layout = String.valueOf(menit_show);
+                            }
+                            String string_waktu = menit_layout + ":" + detik_layout;
+                            timer.setText(string_waktu);
+
+                            if (millisUntilFinished <= 1000) {
+                                checkwin();
+                            }
+                        }
+
+                        @Override
+                        public void onFinish() {
+
+                        }
+                    }.start();
+
                 }
-
-                @Override
-                public void onFinish() {
-
-                }
-            }.start();
-
-        } else {
-
-            //timer.setText("No Time");
-            new CountDownTimer(waktu, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    long detik_sisa = millisUntilFinished % 60000 / 1000;
-                    long menit_sisa = millisUntilFinished / 60000;
-                    long detik_show = detik - detik_sisa;
-                    long menit_show = menitup - menit_sisa;
-                    detik_layout = "";
-                    menit_layout = "";
-                    if (detik_show < 10) {
-                        detik_layout = String.valueOf("0" + detik_show);
-                    } else {
-                        detik_layout = String.valueOf(detik_show);
-                    }
-
-                    if (menit_show < 10) {
-                        menit_layout = String.valueOf("0" + menit_show);
-                    } else {
-                        menit_layout = String.valueOf(menit_show);
-                    }
-                    String string_waktu = menit_layout + ":" + detik_layout;
-                    timer.setText(string_waktu);
-
-                    if (millisUntilFinished <= 1000) {
-                        checkwin();
-                    }
-                }
-
-                @Override
-                public void onFinish() {
-
-                }
-            }.start();
-
-        }
 
             }
         };
 
         Handler hand = new Handler();
-        hand.postDelayed(run,5000);
+        hand.postDelayed(run, 5000);
 
         p = Integer.parseInt(getIntent().getStringExtra("p"));
         t = Integer.parseInt(getIntent().getStringExtra("l"));
@@ -396,7 +396,9 @@ public class PuzzleActivity extends AppCompatActivity {
         }
 
     }
+
     boolean status_menang = false;
+
     private void checkwin() {
         boolean status = false;
         int score = 0;
@@ -423,15 +425,15 @@ public class PuzzleActivity extends AppCompatActivity {
         if (!noTime && timer.getText().toString().equals("00:00")) {
             status = true;
         }
-        if (status_menang == false&&status == true && status_selesai_randomizer == true) {
+        if (status_menang == false && status == true && status_selesai_randomizer == true) {
             Intent result = new Intent(PuzzleActivity.this, HasilActivity.class);
             String ukuran = p + " X " + t;
             String stringScore = String.valueOf(score);
             result.putExtra("ukuran", ukuran);
             result.putExtra("score", stringScore);
-            if(!noTime){
+            if (!noTime) {
                 int detik = total_waktu % 60;
-                int menit = total_waktu/ 60;
+                int menit = total_waktu / 60;
                 if (detik < 10) {
                     detik_layout = "0" + detik;
                 } else {
@@ -714,6 +716,19 @@ public class PuzzleActivity extends AppCompatActivity {
                 animation.setFillAfter(true);
                 img.startAnimation(animation);
                 Change(change, block);
+                if (block.getPosition() == block.getStartposition()) {
+                    Runnable owo = new Runnable() {
+                        @Override
+                        public void run() {
+                            ujang.clickAnim(block.getBlock());
+                        }
+                    };
+
+                    Handler hand = new Handler();
+                    hand.postDelayed(owo, 500);
+                } else {
+
+                }
                 Bearmove(p, t);
                 playSound();
             }
