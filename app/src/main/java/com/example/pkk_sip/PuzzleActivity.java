@@ -396,7 +396,7 @@ public class PuzzleActivity extends AppCompatActivity {
         }
 
     }
-
+    boolean status_menang = false;
     private void checkwin() {
         boolean status = false;
         int score = 0;
@@ -423,7 +423,7 @@ public class PuzzleActivity extends AppCompatActivity {
         if (!noTime && timer.getText().toString().equals("00:00")) {
             status = true;
         }
-        if (status == true && status_selesai_randomizer == true) {
+        if (status_menang == false&&status == true && status_selesai_randomizer == true) {
             Intent result = new Intent(PuzzleActivity.this, HasilActivity.class);
             String ukuran = p + " X " + t;
             String stringScore = String.valueOf(score);
@@ -445,6 +445,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 detik_layout = detik_layout + " T";
             }
             result.putExtra("waktu", menit_layout + ":" + detik_layout);
+            status_menang = true;
             startActivity(result);
             PuzzleActivity.super.finish();
             CustomIntent.customType(PuzzleActivity.this, "fadein-to-fadeout");
