@@ -69,10 +69,6 @@ public class CustomTimeActivity extends AppCompatActivity {
 
                         int milisTotal = milisMenit + milisDetik;
 
-                        if (milisTotal > 0) {
-                            milisTotal = milisTotal + 6000;
-                        }
-
                         preview.putExtra("waktu", milisTotal);
                         startActivity(preview);
                         playSound();
