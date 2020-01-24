@@ -21,7 +21,7 @@ import maes.tech.intentanim.CustomIntent;
 public class CustomTimeActivity extends AppCompatActivity {
 
     TextView input1, input2, input3, input4;
-    ImageView left,right;
+    ImageView left, right;
     TextView del, num0, num1, num2, num3, num4, num5, num6, num7, num8, num9, clear;
     int posisi = 0;
     MediaPlayer voice;
@@ -160,16 +160,16 @@ public class CustomTimeActivity extends AppCompatActivity {
             }
         });
 
-        num0 =  findViewById(R.id.num0);
-        num1 =  findViewById(R.id.num1);
-        num2 =  findViewById(R.id.num2);
-        num3 =  findViewById(R.id.num3);
-        num4 =  findViewById(R.id.num4);
-        num5 =  findViewById(R.id.num5);
-        num6 =  findViewById(R.id.num6);
-        num8 =  findViewById(R.id.num8);
-        num9 =  findViewById(R.id.num9);
-        del =  findViewById(R.id.del);
+        num0 = findViewById(R.id.num0);
+        num1 = findViewById(R.id.num1);
+        num2 = findViewById(R.id.num2);
+        num3 = findViewById(R.id.num3);
+        num4 = findViewById(R.id.num4);
+        num5 = findViewById(R.id.num5);
+        num6 = findViewById(R.id.num6);
+        num8 = findViewById(R.id.num8);
+        num9 = findViewById(R.id.num9);
+        del = findViewById(R.id.del);
         clear = findViewById(R.id.clear);
         num7 = findViewById(R.id.num7);
 

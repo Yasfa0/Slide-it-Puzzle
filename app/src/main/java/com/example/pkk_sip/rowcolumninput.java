@@ -99,7 +99,7 @@ public class rowcolumninput extends AppCompatActivity {
         num2 = findViewById(R.id.num2);
         num3 = findViewById(R.id.num3);
         num4 = findViewById(R.id.num4);
-        num5 =  findViewById(R.id.num5);
+        num5 = findViewById(R.id.num5);
         num6 = findViewById(R.id.num6);
         num7 = findViewById(R.id.num7);
         num8 = findViewById(R.id.num8);

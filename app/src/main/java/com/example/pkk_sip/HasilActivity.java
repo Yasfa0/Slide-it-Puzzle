@@ -21,7 +21,7 @@ public class HasilActivity extends AppCompatActivity {
     MediaPlayer voice;
     SharedPreferences pref;
 
-    String waktu,score,ukuran;
+    String waktu, score, ukuran;
 
     Bundle hasilAkhir;
 
@@ -32,14 +32,14 @@ public class HasilActivity extends AppCompatActivity {
 
         hasilAkhir = getIntent().getExtras();
 
-        if (hasilAkhir != null){
+        if (hasilAkhir != null) {
             waktu = hasilAkhir.getString("waktu");
             ukuran = hasilAkhir.getString("ukuran");
             score = hasilAkhir.getString("score");
-        }else {
+        } else {
             waktu = "??:??";
             ukuran = "???";
-            score="???";
+            score = "???";
         }
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
@@ -53,9 +53,9 @@ public class HasilActivity extends AppCompatActivity {
                 Intent hasil = new Intent(HasilActivity.this, FinalResultActivity.class);
                 String nama = input.getText().toString();
                 hasil.putExtra("nama", nama);
-                hasil.putExtra("waktu",waktu);
-                hasil.putExtra("ukuran",ukuran);
-                hasil.putExtra("score",score);
+                hasil.putExtra("waktu", waktu);
+                hasil.putExtra("ukuran", ukuran);
+                hasil.putExtra("score", score);
                 startActivity(hasil);
                 CustomIntent.customType(HasilActivity.this, "fadein-to-fadeout");
                 playSound();

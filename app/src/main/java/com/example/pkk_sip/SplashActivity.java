@@ -24,8 +24,6 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
 
-
-
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
         editor = pref.edit();
@@ -37,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent mainMenu = new Intent(SplashActivity.this, MainActivity.class);
-                mainMenu.putExtra("firstTime",true);
+                mainMenu.putExtra("firstTime", true);
                 startActivity(mainMenu);
                 CustomIntent.customType(SplashActivity.this, "fadein-to-fadeout");
                 finish();

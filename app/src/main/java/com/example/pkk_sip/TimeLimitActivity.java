@@ -28,7 +28,7 @@ public class TimeLimitActivity extends AppCompatActivity {
     String questionTeks;
     boolean noImage;
 
-    String p,l;
+    String p, l;
 
     UjangEffect ujang = new UjangEffect();
 
@@ -44,13 +44,13 @@ public class TimeLimitActivity extends AppCompatActivity {
 
         bundle = getIntent().getExtras();
 
-        if (bundle != null){
+        if (bundle != null) {
             waktu = bundle.getInt("waktu");
             questionTeks = "Pilih Gambar \n dari Galeri?";
             questionTextView.setText(questionTeks);
             p = bundle.getString("p");
             l = bundle.getString("l");
-        }else{
+        } else {
             waktu = 0;
             questionTeks = " Main dengan \n Batas Waktu?";
             questionTextView.setText(questionTeks);
@@ -68,13 +68,13 @@ public class TimeLimitActivity extends AppCompatActivity {
                         Intent toCustom = new Intent(TimeLimitActivity.this, CustomTimeActivity.class);
 
 
-                        if (bundle != null){
-                            toCustom = new Intent(TimeLimitActivity.this,ChooseImageActivity.class);
+                        if (bundle != null) {
+                            toCustom = new Intent(TimeLimitActivity.this, ChooseImageActivity.class);
                             toCustom.putExtra("waktu", waktu);
-                            toCustom.putExtra("p",p);
-                            toCustom.putExtra("l",l);
-                            toCustom.putExtra("status_gambar",false);
-                        }else{
+                            toCustom.putExtra("p", p);
+                            toCustom.putExtra("l", l);
+                            toCustom.putExtra("status_gambar", false);
+                        } else {
                             toCustom.putExtra("waktu", 0);
                         }
 
@@ -99,13 +99,13 @@ public class TimeLimitActivity extends AppCompatActivity {
                     public void run() {
                         Intent toCustom = new Intent(TimeLimitActivity.this, rowcolumninput.class);
 
-                        if (bundle != null){
-                            toCustom = new Intent(TimeLimitActivity.this,ChooseImageActivity.class);
-                            toCustom.putExtra("waktu",waktu);
-                            toCustom.putExtra("status_gambar",true);
-                            toCustom.putExtra("p",p);
-                            toCustom.putExtra("l",l);
-                        }else{
+                        if (bundle != null) {
+                            toCustom = new Intent(TimeLimitActivity.this, ChooseImageActivity.class);
+                            toCustom.putExtra("waktu", waktu);
+                            toCustom.putExtra("status_gambar", true);
+                            toCustom.putExtra("p", p);
+                            toCustom.putExtra("l", l);
+                        } else {
                             toCustom.putExtra("waktu", 0);
                         }
 
@@ -130,9 +130,9 @@ public class TimeLimitActivity extends AppCompatActivity {
                     public void run() {
                         Intent toMenu = new Intent(TimeLimitActivity.this, MainActivity.class);
 
-                        if (bundle != null){
-                            toMenu = new Intent(TimeLimitActivity.this,rowcolumninput.class);
-                            toMenu.putExtra("waktu",waktu);
+                        if (bundle != null) {
+                            toMenu = new Intent(TimeLimitActivity.this, rowcolumninput.class);
+                            toMenu.putExtra("waktu", waktu);
                         }
 
                         startActivity(toMenu);

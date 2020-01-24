@@ -255,7 +255,7 @@ public class PuzzleActivity extends AppCompatActivity {
                     }
                     String string_waktu = menit_layout + ":" + detik_layout;
                     timer.setText(string_waktu);
-                    total_waktu = total_waktu +1;
+                    total_waktu = total_waktu + 1;
                     if (millisUntilFinished <= 1000) {
                         checkwin();
                     }
@@ -399,8 +399,8 @@ public class PuzzleActivity extends AppCompatActivity {
             score = p * t * 1000;
         } else {
             score = (p + t) / 2 * 1000 * p * t / 2;
-            int point_per_second = score/1800;
-            score = score + point_per_second * (1800-total_waktu);
+            int point_per_second = score / 1800;
+            score = score + point_per_second * (1800 - total_waktu);
         }
         int point_per_block = (p + t) / 2 * 1000;
 

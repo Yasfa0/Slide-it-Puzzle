@@ -1,6 +1,7 @@
 package com.example.pkk_sip;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,12 +21,12 @@ public class FinalResultActivity extends AppCompatActivity {
 
     Bundle hasil;
     DatabaseReference db;
-    TextView nama,layout_time,layout_size,layout_score;
+    TextView nama, layout_time, layout_size, layout_score;
     ImageButton restart, menu;
     MediaPlayer voice;
     SharedPreferences pref;
 
-    String nameValue,timeValue,sizeValue,scoreValue;
+    String nameValue, timeValue, sizeValue, scoreValue;
 
     UjangEffect ujang = new UjangEffect();
 
@@ -45,7 +47,7 @@ public class FinalResultActivity extends AppCompatActivity {
 
         hasil = getIntent().getExtras();
 
-        if (hasil != null){
+        if (hasil != null) {
             nameValue = hasil.getString("nama");
             timeValue = hasil.getString("waktu");
             sizeValue = hasil.getString("ukuran");
@@ -54,7 +56,7 @@ public class FinalResultActivity extends AppCompatActivity {
             db.child("unique");
             DatabaseReference mFiller = db.child("Unique");
             String id = db.push().getKey();
-            Player baru = new Player(nameValue,Long.parseLong(scoreValue),timeValue,sizeValue,id);
+            Player baru = new Player(nameValue, Long.parseLong(scoreValue), timeValue, sizeValue, id);
             db.child(id).setValue(baru);
 
         }

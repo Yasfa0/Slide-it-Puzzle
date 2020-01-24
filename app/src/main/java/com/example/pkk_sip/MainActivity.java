@@ -22,14 +22,14 @@ public class MainActivity extends AppCompatActivity {
 
     Context context;
     UjangEffect ujang = new UjangEffect();
-//    TextView testText;
+    //    TextView testText;
     ImageView customMenu, ranking, sound, exit;
     MediaPlayer ok, bgm;
     Bundle firstBundle;
     boolean firstTime;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-    Sound soundController = new Sound();
+//    Sound soundController = new Sound();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         firstBundle = getIntent().getExtras();
-        if (firstBundle != null){
+        if (firstBundle != null) {
             firstTime = firstBundle.getBoolean("firstTime");
-        }else {
+        } else {
             firstTime = false;
         }
 
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 //                        }
 //                        else
 //                        {
-                            finish();
+                        finish();
 //                        }
 
                         CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");

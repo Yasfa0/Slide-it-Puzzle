@@ -1,14 +1,15 @@
 package com.example.pkk_sip;
 
 public class Player {
-    String nama,time,ukuran,id;
+    String nama, time, ukuran, id;
     Long skor;
 
-    public Player(){
+    public Player() {
 
     }
-    public Player(String nama,Long skor,String time,String ukuran,String id){
-        this.nama =nama;
+
+    public Player(String nama, Long skor, String time, String ukuran, String id) {
+        this.nama = nama;
         this.id = id;
         this.skor = skor;
         this.ukuran = ukuran;

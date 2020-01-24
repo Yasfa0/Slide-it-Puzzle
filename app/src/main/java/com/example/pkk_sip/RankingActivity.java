@@ -50,17 +50,17 @@ public class RankingActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 blist.clear();
-                for(DataSnapshot bearss: dataSnapshot.getChildren()){
+                for (DataSnapshot bearss : dataSnapshot.getChildren()) {
                     Player bear = bearss.getValue(Player.class);
 
                     blist.add(bear);
                 }
 
                 ArrayList<Player> flippedblist = new ArrayList<Player>();
-                for(int i = blist.size()-1;i>=0;i--){
+                for (int i = blist.size() - 1; i >= 0; i--) {
                     flippedblist.add(blist.get(i));
                 }
-                ArrayAdapter adapter = new BearList(RankingActivity.this,flippedblist);
+                ArrayAdapter adapter = new BearList(RankingActivity.this, flippedblist);
                 lv.setAdapter(adapter);
             }
 

@@ -334,7 +334,7 @@ public class ChooseImageActivity extends AppCompatActivity {
                 sentBitmap = selectedBitmap;
 
                 this.i = 0;
-            }else{
+            } else {
                 i = 0;
                 final Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
                 photoPickerIntent.setType("image/*");

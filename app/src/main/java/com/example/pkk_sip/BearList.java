@@ -15,18 +15,18 @@ public class BearList extends ArrayAdapter {
     private Activity con;
     private List<Player> bearlist;
 
-    public BearList(Activity con, List<Player> list){
-        super(con, R.layout.bear_list,list);
+    public BearList(Activity con, List<Player> list) {
+        super(con, R.layout.bear_list, list);
         this.con = con;
         this.bearlist = list;
     }
 
     @NonNull
     @Override
-    public View getView(int position, View cview, ViewGroup parent){
+    public View getView(int position, View cview, ViewGroup parent) {
         LayoutInflater inflater = con.getLayoutInflater();
 
-        View ListViewBear = inflater.inflate(R.layout.bear_list,null,true);
+        View ListViewBear = inflater.inflate(R.layout.bear_list, null, true);
 
         TextView txt_nama = ListViewBear.findViewById(R.id.nama);
         TextView txt_waktu = ListViewBear.findViewById(R.id.waktu);
