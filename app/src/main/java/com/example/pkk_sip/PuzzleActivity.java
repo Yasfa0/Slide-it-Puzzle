@@ -1,5 +1,6 @@
 package com.example.pkk_sip;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -98,6 +99,7 @@ public class PuzzleActivity extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ujang.clickAnim(skip);
                 Intent result = new Intent(PuzzleActivity.this, HasilActivity.class);
                 startActivity(result);
                 PuzzleActivity.super.finish();
@@ -159,6 +161,7 @@ public class PuzzleActivity extends AppCompatActivity {
         resume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ujang.clickAnim(resume);
 
 
                 card.setVisibility(View.INVISIBLE);
@@ -171,6 +174,7 @@ public class PuzzleActivity extends AppCompatActivity {
         toMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ujang.clickAnim(toMenu);
                 Intent toMenu = new Intent(PuzzleActivity.this, MainActivity.class);
                 startActivity(toMenu);
                 backSound();
@@ -180,10 +184,12 @@ public class PuzzleActivity extends AppCompatActivity {
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent restart = getIntent();
-                finish();
-                startActivity(restart);
+                ujang.clickAnim(restart);
+//                Intent restart = getIntent();
+//                finish();
+//                startActivity(restart);
                 playSound();
+                onBackPressed();
             }
         });
 
@@ -602,7 +608,7 @@ public class PuzzleActivity extends AppCompatActivity {
                     Bearmove(p, t);
                     initslide();
                     if(status_suara){
-                        playSound();
+//                        playSound();
                     }
 
                     break;
@@ -708,12 +714,14 @@ public class PuzzleActivity extends AppCompatActivity {
         }
     }
 
-    private void initbtn(ImageView btn, final ImageView img, final int[] pos, final int[] next, final Bearblock block, final String change) {
+    private void initbtn(final ImageView btn, final ImageView img, final int[] pos, final int[] next, final Bearblock block, final String change) {
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Animation animation = new TranslateAnimation(next[0], pos[0], next[1], pos[1]);
 //                System.out.println((pos[0])+","+(pos[1]));
+                ujang.clickAnim(btn);
                 System.out.println(change);
                 animation.setDuration(500);
                 animation.setFillAfter(true);
