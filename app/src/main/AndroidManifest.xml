@@ -16,8 +16,6 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".HasilActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ResultActivity"
-            android:screenOrientation="portrait"/>
         <activity android:name=".bottom_sheet"
             android:screenOrientation="portrait"/>
         <activity android:name=".Preview"
@@ -45,7 +43,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4421007444474437~1240453304"/>
     </application>
 
 </manifest>
