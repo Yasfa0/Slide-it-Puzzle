@@ -20,7 +20,7 @@ import maes.tech.intentanim.CustomIntent;
 public class rowcolumninput extends AppCompatActivity {
 
     TextView input1, input2;
-    ImageView del, num2, num3, num4, num5, num6, num7, num8, num9;
+    TextView del, num2, num3, num4, num5, num6, num7, num8, num9;
     int posisi = 1;
     ImageView next, back;
     MediaPlayer voice;
@@ -96,15 +96,15 @@ public class rowcolumninput extends AppCompatActivity {
         });
 
 
-        num2 = (ImageView) findViewById(R.id.num2);
-        num3 = (ImageView) findViewById(R.id.num3);
-        num4 = (ImageView) findViewById(R.id.num4);
-        num5 = (ImageView) findViewById(R.id.num5);
-        num6 = (ImageView) findViewById(R.id.num6);
-        num7 = (ImageView) findViewById(R.id.num7);
-        num8 = (ImageView) findViewById(R.id.num8);
-        num9 = (ImageView) findViewById(R.id.num9);
-        del = (ImageView) findViewById(R.id.del);
+        num2 = findViewById(R.id.num2);
+        num3 = findViewById(R.id.num3);
+        num4 = findViewById(R.id.num4);
+        num5 =  findViewById(R.id.num5);
+        num6 = findViewById(R.id.num6);
+        num7 = findViewById(R.id.num7);
+        num8 = findViewById(R.id.num8);
+        num9 = findViewById(R.id.num9);
+        del = findViewById(R.id.del1);
         next = (ImageView) findViewById(R.id.right);
 
         del.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +156,7 @@ public class rowcolumninput extends AppCompatActivity {
 
     ArrayList<TextView> arrayinput = new ArrayList<TextView>();
 
-    public void initnumber(final ImageView nomor, final String text) {
+    public void initnumber(final TextView nomor, final String text) {
         arrayinput.add(input1);
         arrayinput.add(input2);
 

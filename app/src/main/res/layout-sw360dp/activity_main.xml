@@ -7,62 +7,6 @@
     android:background="@drawable/gradientbackground"
     tools:context=".MainActivity">
 
-    <GridLayout
-        android:id="@+id/grid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:columnCount="1"
-        android:rowCount="4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo">
-
-
-        <ImageView
-            android:id="@+id/custom"
-            android:layout_width="wrap_content"
-            android:layout_height="85dp"
-            android:layout_margin="20dp"
-            android:adjustViewBounds="true"
-            android:maxHeight="100dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/custom" />
-
-
-        <ImageView
-            android:id="@+id/ranking"
-            android:layout_width="wrap_content"
-            android:layout_height="85dp"
-            android:layout_margin="20dp"
-            android:layout_marginTop="5dp"
-            android:adjustViewBounds="true"
-            android:maxHeight="100dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ranking" />
-
-        <ImageView
-            android:id="@+id/exit"
-            android:layout_width="wrap_content"
-            android:layout_height="85dp"
-            android:layout_margin="20dp"
-            android:layout_marginTop="5dp"
-            android:adjustViewBounds="true"
-            android:maxHeight="100dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/exit" />
-
-    </GridLayout>
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:src="@drawable/logo"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sound_setting" />
-
     <LinearLayout
         android:id="@+id/sound_setting"
         android:layout_width="match_parent"
@@ -94,16 +38,59 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/soundTest"
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/logo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sound_setting" />
+
+    <GridLayout
+        android:id="@+id/grid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Tes"
-        android:textColor="#ffffff"
-        android:textSize="30dp"
+        android:columnCount="1"
+        android:rowCount="4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo">
+
+
+        <ImageView
+            android:id="@+id/custom"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="100dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_mulai_game" />
+
+
+        <ImageView
+            android:id="@+id/ranking"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="100dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_ranking" />
+
+        <ImageView
+            android:id="@+id/exit"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="100dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_keluar_game" />
+
+    </GridLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

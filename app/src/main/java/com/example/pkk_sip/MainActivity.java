@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     Context context;
     UjangEffect ujang = new UjangEffect();
-    TextView testText;
+//    TextView testText;
     ImageView customMenu, ranking, sound, exit;
     MediaPlayer ok, bgm;
     Bundle firstBundle;
@@ -51,14 +51,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         sound = findViewById(R.id.sound);
-        testText = findViewById(R.id.soundTest);
+//        testText = findViewById(R.id.soundTest);
         customMenu = (ImageView) findViewById(R.id.custom);
         ranking = (ImageView) findViewById(R.id.ranking);
         exit = (ImageView) findViewById(R.id.exit);
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
-        testText.setText(pref.getString("soundSetting", null));
+//        testText.setText(pref.getString("soundSetting", null));
 
         if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
             sound.setColorFilter(Color.argb(0, 255, 255, 255));
@@ -79,13 +79,13 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("soundSetting", "OFF");
                     editor.apply();
                     sound.setColorFilter(Color.argb(100, 20, 20, 20));
-                    testText.setText(pref.getString("soundSetting", null));
+//                    testText.setText(pref.getString("soundSetting", null));
                 } else {
                     editor = pref.edit();
                     editor.putString("soundSetting", "ON");
                     editor.apply();
                     sound.setColorFilter(Color.argb(0, 255, 255, 255));
-                    testText.setText(pref.getString("soundSetting", null));
+//                    testText.setText(pref.getString("soundSetting", null));
                 }
             }
         });
