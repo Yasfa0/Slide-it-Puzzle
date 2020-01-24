@@ -143,11 +143,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Intent toLauncher = new Intent(Intent.ACTION_MAIN);
-                        toLauncher.addCategory(Intent.CATEGORY_HOME);
-                        toLauncher.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        bgm.stop();
-                        startActivity(toLauncher);
+//                        Intent toLauncher = new Intent(Intent.ACTION_MAIN);
+//                        toLauncher.addCategory(Intent.CATEGORY_HOME);
+//                        toLauncher.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        bgm.stop();
+//                        startActivity(toLauncher);
 
 //                        if(android.os.Build.VERSION.SDK_INT >= 21)
 //                        {
@@ -155,11 +155,12 @@ public class MainActivity extends AppCompatActivity {
 //                        }
 //                        else
 //                        {
-                        finish();
+//                        finish();
 //                        }
 
-                        CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
+//                        CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
 
+                        System.exit(0);
                     }
                 };
 

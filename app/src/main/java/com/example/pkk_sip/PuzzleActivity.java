@@ -432,6 +432,21 @@ public class PuzzleActivity extends AppCompatActivity {
             String stringScore = String.valueOf(score);
             result.putExtra("ukuran", ukuran);
             result.putExtra("score", stringScore);
+            if(!noTime){
+                int detik = waktu % 60000 / 1000;
+                int menit = waktu / 60000 / 1000;
+                if (detik < 10) {
+                    detik_layout = "0" + detik;
+                } else {
+                    detik_layout = String.valueOf(detik);
+                }
+                if (menit < 10) {
+                    menit_layout = "0" + menit;
+                } else {
+                    menit_layout = String.valueOf(menit);
+                }
+                detik_layout = detik_layout + " T";
+            }
             result.putExtra("waktu", menit_layout + ":" + detik_layout);
             startActivity(result);
             PuzzleActivity.super.finish();
