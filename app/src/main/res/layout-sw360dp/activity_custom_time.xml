@@ -212,10 +212,24 @@
         android:fontFamily="@font/gothic"
         android:textColor="@color/white2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/card"
+        app:layout_constraintBottom_toTopOf="@id/Penjelasan"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         />
+    <TextView
+        android:id="@+id/Penjelasan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:fontFamily="@font/gothic"
+        android:textColor="@color/white2"
+        app:layout_constraintTop_toBottomOf="@id/TextWaktu"
+        app:layout_constraintLeft_toLeftOf="@id/TextWaktu"
+        app:layout_constraintRight_toRightOf="@id/TextWaktu"
+        app:layout_constraintBottom_toTopOf="@id/card"
+        android:text="Menit    :    Detik">
+
+    </TextView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"

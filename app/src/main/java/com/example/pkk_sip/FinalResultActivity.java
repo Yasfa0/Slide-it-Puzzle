@@ -75,7 +75,7 @@ public class FinalResultActivity extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ujang.clickAnim(restart);
+                ujang.clickAnim(menu);
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {

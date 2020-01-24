@@ -23,14 +23,14 @@
             android:id="@+id/del1"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_column="0"
             android:layout_margin="10dp"
             android:layout_row="0"
-            android:layout_column="0"
             android:background="@drawable/kotak"
+            android:gravity="center"
             android:text="Del"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:gravity="center"
             android:textSize="25sp" />
 
         <TextView
@@ -39,21 +39,22 @@
             android:layout_height="80dp"
             android:layout_margin="10dp"
             android:background="@drawable/kotak"
+            android:gravity="center"
             android:text="2"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:gravity="center"
             android:textSize="25sp" />
+
         <TextView
             android:id="@+id/num3"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
             android:background="@drawable/kotak"
+            android:gravity="center"
             android:text="3"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:gravity="center"
             android:textSize="25sp" />
 
         <TextView
@@ -62,10 +63,10 @@
             android:layout_height="80dp"
             android:layout_margin="10dp"
             android:background="@drawable/kotak"
+            android:gravity="center"
             android:text="4"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:gravity="center"
             android:textSize="25sp" />
 
         <TextView
@@ -74,10 +75,10 @@
             android:layout_height="80dp"
             android:layout_margin="10dp"
             android:background="@drawable/kotak"
+            android:gravity="center"
             android:text="5"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:gravity="center"
             android:textSize="25sp" />
 
         <TextView
@@ -86,10 +87,10 @@
             android:layout_height="80dp"
             android:layout_margin="10dp"
             android:background="@drawable/kotak"
+            android:gravity="center"
             android:text="6"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:gravity="center"
             android:textSize="25sp" />
 
         <TextView
@@ -98,10 +99,10 @@
             android:layout_height="80dp"
             android:layout_margin="10dp"
             android:background="@drawable/kotak"
+            android:gravity="center"
             android:text="7"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:gravity="center"
             android:textSize="25sp" />
 
         <TextView
@@ -110,21 +111,22 @@
             android:layout_height="80dp"
             android:layout_margin="10dp"
             android:background="@drawable/kotak"
+            android:gravity="center"
             android:text="8"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:gravity="center"
             android:textSize="25sp" />
+
         <TextView
             android:id="@+id/num9"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
             android:background="@drawable/kotak"
+            android:gravity="center"
             android:text="9"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:gravity="center"
             android:textSize="25sp" />
 
     </GridLayout>
@@ -143,35 +145,48 @@
         android:id="@+id/right"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/btn_selanjutnya"
         android:layout_marginLeft="20dp"
-        app:layout_constraintLeft_toRightOf="@id/pad_icon"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:src="@drawable/btn_selanjutnya"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/pad_icon" />
 
     <ImageView
         android:id="@+id/left"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/btn_kembali"
-        android:layout_marginRight="20dp"
-        app:layout_constraintRight_toLeftOf="@id/pad_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="9dp"
-        />
+        android:layout_marginRight="20dp"
+        android:src="@drawable/btn_kembali"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/pad_icon" />
 
     <TextView
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/textUkuran"
-        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="26sp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="Masukan ukuran Puzzle"
         android:textColor="@color/white2"
-        android:gravity="center"
-        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="26sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Penjelasan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gothic"
+        android:text="Panjang    X    Lebar"
+        android:textColor="@color/white2"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@id/card"
+        app:layout_constraintLeft_toLeftOf="@id/textUkuran"
+        app:layout_constraintRight_toRightOf="@id/textUkuran"
+        app:layout_constraintTop_toBottomOf="@id/textUkuran">
+
+    </TextView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
@@ -179,6 +194,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
+        android:layout_marginTop="35dp"
         android:background="@color/white2"
         android:outlineAmbientShadowColor="@color/white2"
         app:cardCornerRadius="40dp"
@@ -187,7 +203,6 @@
         app:layout_constraintBottom_toTopOf="@id/numpad"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="35dp"
         app:layout_constraintTop_toTopOf="@id/textUkuran">
 
         <GridLayout
