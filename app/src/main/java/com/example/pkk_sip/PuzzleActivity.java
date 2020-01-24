@@ -192,23 +192,18 @@ public class PuzzleActivity extends AppCompatActivity {
             public void onTick(long waktu) {
                 no1.setVisibility(View.VISIBLE);
                 //chimeSound();
-
-
                 if (waktu < 4000) {
                     no2.setVisibility(View.VISIBLE);
                     //chimeSound();
                 }
-
                 if (waktu < 3000) {
                     no3.setVisibility(View.VISIBLE);
                     //chimeSound();
                 }
-
                 if (waktu < 2000) {
                     start.setVisibility(View.VISIBLE);
                     //chimeSound();
                 }
-
             }
 
             public void onFinish() {
@@ -230,6 +225,11 @@ public class PuzzleActivity extends AppCompatActivity {
         final int detik = waktu % 60000 / 1000;
         final int menit = waktu / 60000 / 1000;
         final int menitup = waktu / 60000;
+
+        Runnable run = new Runnable() {
+            @Override
+            public void run() {
+
 
         if (noTime == false) {
 
@@ -305,6 +305,12 @@ public class PuzzleActivity extends AppCompatActivity {
             }.start();
 
         }
+
+            }
+        };
+
+        Handler hand = new Handler();
+        hand.postDelayed(run,5000);
 
         p = Integer.parseInt(getIntent().getStringExtra("p"));
         t = Integer.parseInt(getIntent().getStringExtra("l"));
@@ -418,23 +424,14 @@ public class PuzzleActivity extends AppCompatActivity {
             status = true;
         }
         if (status == true && status_selesai_randomizer == true) {
-            //Nanti kan intent ke Activity Menang
-            //Parameternya Waktu,Score
-            //Nama mah Masukin nanti pake TextField aja di activity menangnya
-            //jangan di activity ini
-            //kalo udah itu masukin aja datanya ke database
-            //Kalo Butuh Score Tinggal Di Panggil Aja
-            //Scorenya mah tinggal pake score yang diatas... langsung aja di panggil
-            //kalo waktu kan situ yang ngerjain jadi gk tau
-            //System.out.println("Kamu Menang");
             Intent result = new Intent(PuzzleActivity.this, HasilActivity.class);
             String ukuran = p + " X " + t;
             String stringScore = String.valueOf(score);
             result.putExtra("ukuran", ukuran);
             result.putExtra("score", stringScore);
             if(!noTime){
-                int detik = waktu % 60000 / 1000;
-                int menit = waktu / 60000 / 1000;
+                int detik = total_waktu % 60;
+                int menit = total_waktu/ 60;
                 if (detik < 10) {
                     detik_layout = "0" + detik;
                 } else {
@@ -538,16 +535,6 @@ public class PuzzleActivity extends AppCompatActivity {
         for (int i = 0; i < (p * t * 18); i++) {
 
             int random = new Random().nextInt(5);
-            for (int a = 5; a < 5; a++) {
-                if (temp == random) {
-                    random = new Random().nextInt(5);
-                } else {
-                    temp = random;
-                    break;
-                }
-            }
-
-
             if (random == 1) {
                 slide(downpos, "down", 0, (-block_height), 1000);
             } else if (random == 2) {

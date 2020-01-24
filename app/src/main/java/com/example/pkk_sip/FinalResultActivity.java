@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -74,11 +75,18 @@ public class FinalResultActivity extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ujang.clickButtonAnim(menu);
-                Intent keMenu = new Intent(FinalResultActivity.this, MainActivity.class);
-                startActivity(keMenu);
-                CustomIntent.customType(FinalResultActivity.this, "fadein-to-fadeout");
-                backSound();
+                ujang.clickAnim(restart);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent keMenu = new Intent(FinalResultActivity.this, MainActivity.class);
+                        startActivity(keMenu);
+                        CustomIntent.customType(FinalResultActivity.this, "fadein-to-fadeout");
+                        backSound();
+                    }
+                };
+                    Handler timer = new Handler();
+                    timer.postDelayed(run, 300);
             }
         });
 
@@ -86,11 +94,16 @@ public class FinalResultActivity extends AppCompatActivity {
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                ujang.clickButtonAnim(restart);
-//                Intent restart = new Intent(FinalResultActivity.this, PuzzleActivity.class);
-//                startActivity(restart);
-//                CustomIntent.customType(FinalResultActivity.this, "fadein-to-fadeout");
-//                playSound();
+                ujang.clickAnim(restart);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+                        onBackPressed();
+                    }
+                };
+
+                Handler timer = new Handler();
+                timer.postDelayed(run, 300);
             }
         });
 

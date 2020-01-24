@@ -24,6 +24,23 @@ public class HasilActivity extends AppCompatActivity {
     String waktu, score, ukuran;
 
     Bundle hasilAkhir;
+    int i = 0;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(i==1) {
+
+
+            onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        i = 1;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
