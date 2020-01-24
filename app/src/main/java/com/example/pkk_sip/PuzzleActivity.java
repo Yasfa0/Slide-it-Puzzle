@@ -354,7 +354,7 @@ public class PuzzleActivity extends AppCompatActivity {
             voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
-                    voice.stop();
+//                    voice.stop();
                     voice.release();
                 }
             });
@@ -601,7 +601,7 @@ public class PuzzleActivity extends AppCompatActivity {
                     }
                     Bearmove(p, t);
                     initslide();
-//                    playSound();
+                    playSound();
                     break;
                 }
             }
