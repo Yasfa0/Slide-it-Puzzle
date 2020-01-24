@@ -2,7 +2,6 @@ package com.example.pkk_sip;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,21 +14,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import maes.tech.intentanim.CustomIntent;
 
 public class MainActivity extends AppCompatActivity {
 
     Context context;
     UjangEffect ujang = new UjangEffect();
-    //    TextView testText;
+//    TextView testText;
     ImageView customMenu, ranking, sound, exit;
     MediaPlayer ok, bgm;
     Bundle firstBundle;
     boolean firstTime;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-//    Sound soundController = new Sound();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         firstBundle = getIntent().getExtras();
-        if (firstBundle != null) {
+        if (firstBundle != null){
             firstTime = firstBundle.getBoolean("firstTime");
-        } else {
+        }else {
             firstTime = false;
         }
 
@@ -143,24 +140,26 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-//                        Intent toLauncher = new Intent(Intent.ACTION_MAIN);
-//                        toLauncher.addCategory(Intent.CATEGORY_HOME);
-//                        toLauncher.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                        bgm.stop();
-//                        startActivity(toLauncher);
 
-//                        if(android.os.Build.VERSION.SDK_INT >= 21)
-//                        {
-//                            finishAndRemoveTask();
-//                        }
-//                        else
-//                        {
-//                        finish();
-//                        }
+                        Intent toLauncher = new Intent(Intent.ACTION_MAIN);
+                        toLauncher.addCategory(Intent.CATEGORY_HOME);
+                        toLauncher.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        //bgm.pause();
 
-//                        CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
+                        if(android.os.Build.VERSION.SDK_INT >= 21)
+                        {
+                            finishAndRemoveTask();
+                        }
+                        else
+                        {
 
-                        System.exit(0);
+                            finish();
+                            //System.exit(1);
+                        }
+
+                        startActivity(toLauncher);
+                        //finish();
+                        CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                     }
                 };
 
