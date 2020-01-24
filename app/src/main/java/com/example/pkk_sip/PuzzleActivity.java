@@ -539,13 +539,13 @@ public class PuzzleActivity extends AppCompatActivity {
 
             int random = new Random().nextInt(5);
             if (random == 1) {
-                slide(downpos, "down", 0, (-block_height), 1000);
+                slide(downpos, "down", 0, (-block_height), 1000,false);
             } else if (random == 2) {
-                slide(leftpos, "left", block_length, 0, 1000);
+                slide(leftpos, "left", block_length, 0, 1000,false);
             } else if (random == 3) {
-                slide(rightpos, "right", (-block_length), 0, 1000);
+                slide(rightpos, "right", (-block_length), 0, 1000,false);
             } else if (random == 4) {
-                slide(uppos, "up", 0, block_height, 1000);
+                slide(uppos, "up", 0, block_height, 1000,false);
             }
         }
         status_selesai_randomizer = true;
@@ -565,7 +565,7 @@ public class PuzzleActivity extends AppCompatActivity {
         initbtn(btn, img, cur, next, block, change);
     }
 
-    private void slide(int[] nextpos, String change, int x, int y, int speed) {
+    private void slide(int[] nextpos, String change, int x, int y, int speed,boolean status_suara) {
         int block_length = dpToPx(layout_p / p);
         int block_height = dpToPx(layout_t / t);
         if (nextpos[1] < t && nextpos[1] >= 0 && nextpos[0] < p && nextpos[0] >= 0) {
@@ -601,7 +601,10 @@ public class PuzzleActivity extends AppCompatActivity {
                     }
                     Bearmove(p, t);
                     initslide();
-                    playSound();
+                    if(status_suara){
+                        playSound();
+                    }
+
                     break;
                 }
             }
@@ -617,28 +620,28 @@ public class PuzzleActivity extends AppCompatActivity {
         playarea.setOnTouchListener(new OnSwipeTouchListener(this) {
 
             public void onSwipeTop() {
-                slide(downpos, "down", 0, (-block_height), 500);
+                slide(downpos, "down", 0, (-block_height), 500,true);
                 if (!noTime && timer.getText().toString().equals("00:00")) {
                     checkwin();
                 }
             }
 
             public void onSwipeRight() {
-                slide(leftpos, "left", block_length, 0, 500);
+                slide(leftpos, "left", block_length, 0, 500,true);
                 if (!noTime && timer.getText().toString().equals("00:00")) {
                     checkwin();
                 }
             }
 
             public void onSwipeLeft() {
-                slide(rightpos, "right", (-block_length), 0, 500);
+                slide(rightpos, "right", (-block_length), 0, 500,true);
                 if (!noTime && timer.getText().toString().equals("00:00")) {
                     checkwin();
                 }
             }
 
             public void onSwipeBottom() {
-                slide(uppos, "up", 0, block_height, 500);
+                slide(uppos, "up", 0, block_height, 500,true);
                 if (!noTime && timer.getText().toString().equals("00:00")) {
                     checkwin();
                 }
