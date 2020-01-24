@@ -46,7 +46,7 @@ public class RankingActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        db.addValueEventListener(new ValueEventListener() {
+        db.orderByValue().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 blist.clear();

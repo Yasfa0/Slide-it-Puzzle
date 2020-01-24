@@ -37,7 +37,7 @@ public class PuzzleActivity extends AppCompatActivity {
     UjangEffect ujang = new UjangEffect();
 
     boolean noTime;
-    String detik_layout,menit_layout;
+    String detik_layout, menit_layout;
 
     Bundle bundle;
     int waktu;
@@ -287,6 +287,10 @@ public class PuzzleActivity extends AppCompatActivity {
                     }
                     String string_waktu = menit_layout + ":" + detik_layout;
                     timer.setText(string_waktu);
+
+                    if (millisUntilFinished <= 1000) {
+                        checkwin();
+                    }
                 }
 
                 @Override
@@ -426,8 +430,8 @@ public class PuzzleActivity extends AppCompatActivity {
             String ukuran = p + " X " + t;
             String stringScore = score + " ";
             result.putExtra("ukuran", ukuran);
-            result.putExtra("score",stringScore);
-            result.putExtra("waktu",menit_layout + ":" + detik_layout);
+            result.putExtra("score", stringScore);
+            result.putExtra("waktu", menit_layout + ":" + detik_layout);
             startActivity(result);
             PuzzleActivity.super.finish();
             CustomIntent.customType(PuzzleActivity.this, "fadein-to-fadeout");
@@ -608,18 +612,30 @@ public class PuzzleActivity extends AppCompatActivity {
 
             public void onSwipeTop() {
                 slide(downpos, "down", 0, (-block_height), 500);
+                if (!noTime && timer.getText().toString().equals("00:00")) {
+                    checkwin();
+                }
             }
 
             public void onSwipeRight() {
                 slide(leftpos, "left", block_length, 0, 500);
+                if (!noTime && timer.getText().toString().equals("00:00")) {
+                    checkwin();
+                }
             }
 
             public void onSwipeLeft() {
                 slide(rightpos, "right", (-block_length), 0, 500);
+                if (!noTime && timer.getText().toString().equals("00:00")) {
+                    checkwin();
+                }
             }
 
             public void onSwipeBottom() {
                 slide(uppos, "up", 0, block_height, 500);
+                if (!noTime && timer.getText().toString().equals("00:00")) {
+                    checkwin();
+                }
             }
 
             public boolean onTouch(View v, MotionEvent event) {
