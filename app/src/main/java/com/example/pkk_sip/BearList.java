@@ -36,7 +36,7 @@ public class BearList extends ArrayAdapter {
         Player bear = bearlist.get(position);
 
         txt_nama.setText(bear.getNama());
-        txt_skor.setText(bear.getSkor());
+        txt_skor.setText(String.valueOf(bear.getSkor()));
         txt_ukuran.setText(bear.getUkuran());
         txt_waktu.setText(bear.getTime());
 

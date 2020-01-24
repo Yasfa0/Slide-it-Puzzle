@@ -256,7 +256,7 @@ public class ChooseImageActivity extends AppCompatActivity {
         data_Gambar.add(data10);
         data_Gambar.add(data11);
 
-        int random = new Random().nextInt(12)-1;
+        int random = new Random().nextInt(11);
         Bitmap src = data_Gambar.get(random);
 
         if (p > t) {

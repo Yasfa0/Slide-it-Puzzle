@@ -54,7 +54,7 @@ public class FinalResultActivity extends AppCompatActivity {
             db.child("unique");
             DatabaseReference mFiller = db.child("Unique");
             String id = db.push().getKey();
-            Player baru = new Player(nameValue,scoreValue,timeValue,sizeValue,id);
+            Player baru = new Player(nameValue,Long.parseLong(scoreValue),timeValue,sizeValue,id);
             db.child(id).setValue(baru);
 
         }

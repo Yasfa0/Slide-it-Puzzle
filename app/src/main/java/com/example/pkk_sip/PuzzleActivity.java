@@ -59,6 +59,7 @@ public class PuzzleActivity extends AppCompatActivity {
     int[] rightpos = new int[]{4, 3};
     int[] uppos = new int[]{3, 2};
     int[] downpos = new int[]{3, 4};
+    int total_waktu = 0;
     int p = 0;
     int t = 0;
     int layout_p;
@@ -254,6 +255,10 @@ public class PuzzleActivity extends AppCompatActivity {
                     }
                     String string_waktu = menit_layout + ":" + detik_layout;
                     timer.setText(string_waktu);
+                    total_waktu = total_waktu +1;
+                    if (millisUntilFinished <= 1000) {
+                        checkwin();
+                    }
                 }
 
                 @Override
@@ -394,12 +399,8 @@ public class PuzzleActivity extends AppCompatActivity {
             score = p * t * 1000;
         } else {
             score = (p + t) / 2 * 1000 * p * t / 2;
-            int point_per_second = (p + t) / 2 * 1000 * p * t / 6000 / 2;
-            String waktu = timer.getText().toString();
-            int sisa_menit = Integer.parseInt(waktu.substring(0, 1));
-            int sisa_detik = Integer.parseInt(waktu.substring(3, 4));
-            int sisa_waktu = sisa_detik + sisa_menit * 60;
-            score = score - point_per_second * sisa_waktu;
+            int point_per_second = score/1800;
+            score = score + point_per_second * (1800-total_waktu);
         }
         int point_per_block = (p + t) / 2 * 1000;
 
@@ -428,7 +429,7 @@ public class PuzzleActivity extends AppCompatActivity {
             //System.out.println("Kamu Menang");
             Intent result = new Intent(PuzzleActivity.this, HasilActivity.class);
             String ukuran = p + " X " + t;
-            String stringScore = score + " ";
+            String stringScore = String.valueOf(score);
             result.putExtra("ukuran", ukuran);
             result.putExtra("score", stringScore);
             result.putExtra("waktu", menit_layout + ":" + detik_layout);

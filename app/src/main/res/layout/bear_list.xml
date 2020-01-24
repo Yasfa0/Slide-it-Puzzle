@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
-            android:fontFamily="@font/quicksand_book"
+            android:fontFamily="@font/gothic"
             android:text="12:30"
             android:textSize="14sp">
 
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
-            android:fontFamily="@font/quicksand_book"
+            android:fontFamily="@font/gothic"
             android:text="5X6"
             android:textSize="14sp">
 
@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="right"
-        android:fontFamily="@font/quicksand_book"
+        android:fontFamily="@font/gothic"
         android:text="170000"
         android:layout_weight="1"
         android:textColor="#000000"

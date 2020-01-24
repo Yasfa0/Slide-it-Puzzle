@@ -1,12 +1,13 @@
 package com.example.pkk_sip;
 
 public class Player {
-    String nama,skor,time,ukuran,id;
+    String nama,time,ukuran,id;
+    Long skor;
 
     public Player(){
 
     }
-    public Player(String nama,String skor,String time,String ukuran,String id){
+    public Player(String nama,Long skor,String time,String ukuran,String id){
         this.nama =nama;
         this.id = id;
         this.skor = skor;
@@ -14,11 +15,11 @@ public class Player {
         this.time = time;
     }
 
-    public String getSkor() {
+    public Long getSkor() {
         return skor;
     }
 
-    public void setSkor(String skor) {
+    public void setSkor(Long skor) {
         this.skor = skor;
     }
 

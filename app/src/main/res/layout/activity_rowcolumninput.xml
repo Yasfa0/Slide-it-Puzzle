@@ -245,7 +245,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="20dp"
-                android:fontFamily="quicksand"
+                android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
                 android:textSize="50dp" />
@@ -256,7 +256,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="20dp"
-                android:fontFamily="quicksand"
+                android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
                 android:textSize="50dp" />
@@ -265,7 +265,7 @@
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="quicksand"
+                android:fontFamily="@font/gothic"
                 android:text=":"
                 android:textAlignment="center"
                 android:textSize="50dp" />
@@ -276,7 +276,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
-                android:fontFamily="quicksand"
+                android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
                 android:textSize="50dp" />
@@ -288,7 +288,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
-                android:fontFamily="quicksand"
+                android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
                 android:textSize="50dp" />

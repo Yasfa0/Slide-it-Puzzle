@@ -209,7 +209,7 @@
         android:layout_height="wrap_content"
         android:text="Masukan Batas Waktu"
         android:textSize="25sp"
-        android:fontFamily="@font/quicksand_bold"
+        android:fontFamily="@font/gothic"
         android:textColor="@color/white2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/card"
@@ -246,7 +246,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="20dp"
-                android:fontFamily="quicksand"
+                android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
                 android:textSize="50dp" />
@@ -257,7 +257,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="20dp"
-                android:fontFamily="quicksand"
+                android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
                 android:textSize="50dp" />
@@ -266,7 +266,7 @@
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="quicksand"
+                android:fontFamily="@font/gothic"
                 android:text=":"
                 android:textAlignment="center"
                 android:textSize="50dp" />
@@ -277,7 +277,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
-                android:fontFamily="quicksand"
+                android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
                 android:textSize="50dp" />
@@ -289,7 +289,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
-                android:fontFamily="quicksand"
+                android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
                 android:textSize="50dp" />

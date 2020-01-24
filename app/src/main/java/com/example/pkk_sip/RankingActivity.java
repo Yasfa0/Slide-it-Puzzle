@@ -46,7 +46,7 @@ public class RankingActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        db.orderByValue().addValueEventListener(new ValueEventListener() {
+        db.orderByChild("skor").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 blist.clear();
@@ -56,7 +56,11 @@ public class RankingActivity extends AppCompatActivity {
                     blist.add(bear);
                 }
 
-                ArrayAdapter adapter = new BearList(RankingActivity.this,blist);
+                ArrayList<Player> flippedblist = new ArrayList<Player>();
+                for(int i = blist.size()-1;i>=0;i--){
+                    flippedblist.add(blist.get(i));
+                }
+                ArrayAdapter adapter = new BearList(RankingActivity.this,flippedblist);
                 lv.setAdapter(adapter);
             }
 
