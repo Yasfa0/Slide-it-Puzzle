@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +36,7 @@ public class RankingActivity extends AppCompatActivity {
     MediaPlayer voice;
     SharedPreferences pref;
     Button firebase;
+    TextView loadingText;
 
     ListView lv;
     List<Player> blist;
@@ -50,6 +52,7 @@ public class RankingActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 blist.clear();
+                loadingText.setVisibility(View.INVISIBLE);
                 for (DataSnapshot bearss : dataSnapshot.getChildren()) {
                     Player bear = bearss.getValue(Player.class);
 
@@ -75,6 +78,8 @@ public class RankingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
+
+        loadingText = findViewById(R.id.loadingText);
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
 
