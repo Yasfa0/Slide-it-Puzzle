@@ -87,26 +87,24 @@
 
     <ImageView
         android:id="@+id/hint"
-        android:layout_width="120dp"
+        android:layout_width="160dp"
         android:layout_height="70dp"
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="20dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@drawable/btn_pratinjau"
-        app:layout_constraintRight_toLeftOf="@id/pad_left"
         app:layout_constraintBottom_toTopOf="@id/adsLinear"
         app:layout_constraintLeft_toLeftOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
         android:id="@+id/pad_left"
-        app:layout_constraintBottom_toTopOf="@id/adsLinear"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginBottom="30dp"
         android:src="@drawable/pad_left"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/adsLinear"
         app:layout_constraintRight_toLeftOf="@id/pad_down" />
 
     <ImageView
@@ -163,7 +161,6 @@
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/quicksand_bold"
         android:text="00:00"
         android:textSize="25dp"
         android:visibility="invisible"
@@ -177,12 +174,12 @@
         android:layout_width="280dp"
         android:layout_height="280dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="70dp"
         android:layout_marginTop="20dp"
         android:elevation="0dp"
         android:orientation="vertical"
         android:paddingTop="40dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:cardBackgroundColor="@color/white2"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@id/pad_up"
@@ -248,7 +245,6 @@
                     android:id="@+id/labelpause"
                     android:layout_width="match_parent"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/quicksand_bold"
                     android:text="PAUSE"
                     android:textAlignment="center"
                     android:textColor="#000000"

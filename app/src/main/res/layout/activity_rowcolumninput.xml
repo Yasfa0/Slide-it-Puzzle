@@ -21,120 +21,129 @@
 
         <TextView
             android:id="@+id/del1"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
             android:layout_column="0"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/_5sdp"
             android:layout_row="0"
             android:background="@drawable/kotak"
             android:gravity="center"
+            android:fontFamily="@font/quicksand_bold"
             android:text="Del"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="23sp" />
+            android:textSize="@dimen/_18sdp" />
 
         <TextView
             android:id="@+id/num2"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/kotak"
             android:gravity="center"
+            android:fontFamily="@font/quicksand_bold"
             android:text="2"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="23sp" />
+            android:textSize="@dimen/_18sdp" />
 
         <TextView
             android:id="@+id/num3"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/kotak"
             android:gravity="center"
+            android:fontFamily="@font/quicksand_bold"
             android:text="3"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="23sp" />
+            android:textSize="@dimen/_18sdp" />
 
         <TextView
             android:id="@+id/num4"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
             android:layout_margin="5dp"
             android:background="@drawable/kotak"
             android:gravity="center"
+            android:fontFamily="@font/quicksand_bold"
             android:text="4"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="23sp" />
+            android:textSize="@dimen/_18sdp" />
 
         <TextView
             android:id="@+id/num5"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
             android:layout_margin="5dp"
             android:background="@drawable/kotak"
             android:gravity="center"
+            android:fontFamily="@font/quicksand_bold"
             android:text="5"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="23sp" />
+            android:textSize="@dimen/_18sdp" />
 
         <TextView
             android:id="@+id/num6"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
             android:layout_margin="5dp"
             android:background="@drawable/kotak"
             android:gravity="center"
+            android:fontFamily="@font/quicksand_bold"
             android:text="6"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="23sp" />
+            android:textSize="@dimen/_18sdp" />
 
         <TextView
             android:id="@+id/num7"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
             android:layout_margin="5dp"
             android:background="@drawable/kotak"
             android:gravity="center"
+            android:fontFamily="@font/quicksand_bold"
             android:text="7"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="23sp" />
+            android:textSize="@dimen/_18sdp" />
 
         <TextView
             android:id="@+id/num8"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
             android:layout_margin="5dp"
             android:background="@drawable/kotak"
             android:gravity="center"
+            android:fontFamily="@font/quicksand_bold"
             android:text="8"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="23sp" />
+            android:textSize="@dimen/_18sdp" />
 
         <TextView
             android:id="@+id/num9"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
             android:layout_margin="5dp"
             android:background="@drawable/kotak"
             android:gravity="center"
+            android:fontFamily="@font/quicksand_bold"
             android:text="9"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="23sp" />
+            android:textSize="@dimen/_18sdp" />
 
     </GridLayout>
 
     <ImageView
         android:id="@+id/pad_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
         android:layout_marginBottom="40dp"
         android:src="@drawable/pad_icon"
         app:layout_constraintBottom_toTopOf="@id/adsLinear"
@@ -144,8 +153,8 @@
 
     <ImageView
         android:id="@+id/right"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
         android:layout_marginLeft="20dp"
         app:layout_constraintBottom_toTopOf="@id/adsLinear"
         android:src="@drawable/btn_selanjutnya"
@@ -153,8 +162,8 @@
 
     <ImageView
         android:id="@+id/left"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
         android:layout_marginBottom="9dp"
         android:layout_marginRight="20dp"
         android:src="@drawable/btn_kembali"
@@ -168,6 +177,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Masukan ukuran Puzzle"
+        android:fontFamily="@font/quicksand_bold"
         android:textColor="@color/white2"
         android:textSize="26sp"
         app:layout_constraintLeft_toLeftOf="parent"

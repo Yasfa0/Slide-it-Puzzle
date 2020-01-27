@@ -45,8 +45,9 @@
                     android:layout_gravity="center"
                     android:id="@+id/pause"
                     android:layout_width="match_parent"
+                    android:fontFamily="@font/quicksand_bold"
                     android:text="PAUSE"
-                    android:textSize="50dp"
+                    android:textSize="@dimen/_45sdp"
                     android:textColor="#000000"
                     android:textAlignment="center"
                     />

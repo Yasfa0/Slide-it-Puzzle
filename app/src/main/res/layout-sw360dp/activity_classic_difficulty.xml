@@ -52,7 +52,7 @@
             android:layout_marginBottom="25dp"
             android:textSize="25dp"
             android:layout_gravity="center"
-            android:fontFamily="@font/quicksand_bold"
+            android:fontFamily="sans-serif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />

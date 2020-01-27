@@ -72,6 +72,7 @@ public class PuzzleActivity extends AppCompatActivity {
     int layout_p;
     int layout_t;
     boolean status_selesai_randomizer = false;
+    CountDownTimer jam;
 
     ArrayList<Bitmap> bitmapArrayList = new ArrayList<Bitmap>();
 
@@ -157,7 +158,7 @@ public class PuzzleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ujang.clickAnim(pause);
-
+                timerstop();
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
@@ -165,6 +166,7 @@ public class PuzzleActivity extends AppCompatActivity {
                         card.setVisibility(View.VISIBLE);
                         blur.setVisibility(View.VISIBLE);
                         cardmain.setVisibility(View.INVISIBLE);
+
                     }
                 };
 
@@ -178,11 +180,21 @@ public class PuzzleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ujang.clickAnim(resume);
+                timercontinue();
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
 
+                        card.setVisibility(View.INVISIBLE);
+                        blur.setVisibility(View.INVISIBLE);
+                        cardmain.setVisibility(View.VISIBLE);
 
-                card.setVisibility(View.INVISIBLE);
-                blur.setVisibility(View.INVISIBLE);
-                cardmain.setVisibility(View.VISIBLE);
+                    }
+                };
+
+                Handler timer = new Handler();
+                timer.postDelayed(run, 300);
+
                 playSound();
             }
         });
@@ -191,8 +203,19 @@ public class PuzzleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ujang.clickAnim(toMenu);
-                Intent toMenu = new Intent(PuzzleActivity.this, MainActivity.class);
-                startActivity(toMenu);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Intent toMenu = new Intent(PuzzleActivity.this, MainActivity.class);
+                        startActivity(toMenu);
+
+                    }
+                };
+
+                Handler timer = new Handler();
+                timer.postDelayed(run, 300);
+
                 backSound();
             }
         });
@@ -201,11 +224,16 @@ public class PuzzleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ujang.clickAnim(restart);
-//                Intent restart = getIntent();
-//                finish();
-//                startActivity(restart);
+                Runnable run = new Runnable() {
+                    @Override
+                    public void run() {
+                        onBackPressed();
+                    }
+                };
+                Handler timer = new Handler();
+                timer.postDelayed(run, 300);
                 playSound();
-                onBackPressed();
+
             }
         });
 
@@ -244,6 +272,7 @@ public class PuzzleActivity extends AppCompatActivity {
         }.start();
 
 
+
         final int detik = waktu % 60000 / 1000;
         final int menit = waktu / 60000 / 1000;
         final int menitup = waktu / 60000;
@@ -251,11 +280,9 @@ public class PuzzleActivity extends AppCompatActivity {
         Runnable run = new Runnable() {
             @Override
             public void run() {
-
-
                 if (noTime == false) {
 
-                    new CountDownTimer(waktu, 1000) {
+                    jam = new CountDownTimer(waktu, 1000) {
                         @Override
                         public void onTick(long millisUntilFinished) {
                             long detik_sisa = millisUntilFinished % 60000 / 1000;
@@ -287,12 +314,12 @@ public class PuzzleActivity extends AppCompatActivity {
                         public void onFinish() {
 
                         }
-                    }.start();
+                    };
 
                 } else {
 
                     //timer.setText("No Time");
-                    new CountDownTimer(waktu, 1000) {
+                    jam = new CountDownTimer(waktu, 1000) {
                         @Override
                         public void onTick(long millisUntilFinished) {
                             long detik_sisa = millisUntilFinished % 60000 / 1000;
@@ -314,7 +341,7 @@ public class PuzzleActivity extends AppCompatActivity {
                             }
                             String string_waktu = menit_layout + ":" + detik_layout;
                             timer.setText(string_waktu);
-
+                            total_waktu = total_waktu +1;
                             if (millisUntilFinished <= 1000) {
                                 checkwin();
                             }
@@ -324,10 +351,10 @@ public class PuzzleActivity extends AppCompatActivity {
                         public void onFinish() {
 
                         }
-                    }.start();
+                    };
 
                 }
-
+                jam.start();
             }
         };
 
@@ -368,6 +395,89 @@ public class PuzzleActivity extends AppCompatActivity {
         hint((ImageView) findViewById(R.id.hint));
     }
 
+    public void timerstop(){
+        jam.cancel();
+    }
+    public void timercontinue(){
+        int curtime = waktu-(total_waktu*1000);
+        final int detik = curtime % 60000 / 1000;
+        final int menit = curtime / 60000 / 1000;
+        final int menitup = curtime / 60000;
+        if (noTime == false) {
+            jam = new CountDownTimer(curtime, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    long detik_sisa = millisUntilFinished % 60000 / 1000;
+                    long menit_sisa = millisUntilFinished / 60000;
+                    long detik_show = detik - (detik - detik_sisa);
+                    long menit_show = menit - (menit - menit_sisa);
+                    detik_layout = "";
+                    menit_layout = "";
+                    if (detik_show < 10) {
+                        detik_layout = String.valueOf("0" + detik_show);
+                    } else {
+                        detik_layout = String.valueOf(detik_show);
+                    }
+
+                    if (menit_show < 10) {
+                        menit_layout = String.valueOf("0" + menit_show);
+                    } else {
+                        menit_layout = String.valueOf(menit_show);
+                    }
+                    String string_waktu = menit_layout + ":" + detik_layout;
+                    timer.setText(string_waktu);
+                    total_waktu = total_waktu + 1;
+                    if (millisUntilFinished <= 1000) {
+                        checkwin();
+                    }
+                }
+
+                @Override
+                public void onFinish() {
+
+                }
+            };
+        } else {
+            //timer.setText("No Time");
+            jam = new CountDownTimer(curtime, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    long detik_sisa = millisUntilFinished % 60000 / 1000;
+                    long menit_sisa = millisUntilFinished / 60000;
+                    long detik_show = detik - detik_sisa;
+                    long menit_show = menitup - menit_sisa;
+                    detik_layout = "";
+                    menit_layout = "";
+                    if (detik_show < 10) {
+                        detik_layout = String.valueOf("0" + detik_show);
+                    } else {
+                        detik_layout = String.valueOf(detik_show);
+                    }
+
+                    if (menit_show < 10) {
+                        menit_layout = String.valueOf("0" + menit_show);
+                    } else {
+                        menit_layout = String.valueOf(menit_show);
+                    }
+                    String string_waktu = menit_layout + ":" + detik_layout;
+                    timer.setText(string_waktu);
+                    total_waktu = total_waktu +1;
+                    if (millisUntilFinished <= 1000) {
+                        checkwin();
+                    }
+                }
+
+                @Override
+                public void onFinish() {
+
+                }
+            };
+
+        }
+
+        jam.start();
+    }
+
     public void playSound() {
 
         if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
@@ -383,6 +493,13 @@ public class PuzzleActivity extends AppCompatActivity {
         } else {
 
         }
+    }
+
+    public void imagefixer(){
+        for(int i = 0;i<listblock.size();i++){
+            ujang.clickAnim(listblock.get(i).getBlock());
+        }
+
     }
 
     public void chimeSound() {
@@ -571,6 +688,8 @@ public class PuzzleActivity extends AppCompatActivity {
             }
         }
         status_selesai_randomizer = true;
+
+        imagefixer();
 
     }
 

@@ -7,74 +7,65 @@
     android:background="@drawable/gradientbackground"
     tools:context=".TimeLimitActivity">
 
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/difficulty"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        />
+    <GridLayout
+        android:id="@+id/gridlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="1"
+        android:rowCount="4"
+        app:layout_constraintBottom_toBottomOf="@+id/difficulty"
+        app:layout_constraintLeft_toLeftOf="@id/difficulty"
+        app:layout_constraintRight_toRightOf="@id/difficulty"
+        app:layout_constraintTop_toTopOf="@+id/difficulty">
+
+        <ImageView
+            android:id="@+id/yes"
+            android:layout_width="200dp"
+            android:layout_height="90dp"
+            android:src="@drawable/yes" />
+
+        <ImageView
+            android:id="@+id/no"
+            android:layout_width="200dp"
+            android:layout_height="90dp"
+            android:src="@drawable/no" />
+
+
+        <TextView
+            android:id="@+id/labelDifficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:fontFamily="@font/gothic"
+            android:text=" Use Time Limit?"
+            android:textColor="#ffffff"
+            android:textSize="25dp" />
+
+
+    </GridLayout>
 
     <ImageView
         android:id="@+id/difficulty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="45dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:src="@drawable/blankspace"
-        ></ImageView>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
 
 
-    <GridLayout
-        android:id="@+id/gridlayout"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_200sdp"
-        android:rowCount="4"
-        android:columnCount="1"
-        app:layout_constraintLeft_toLeftOf="@id/difficulty"
-        app:layout_constraintRight_toRightOf="@id/difficulty"
-        app:layout_constraintTop_toTopOf="@+id/difficulty"
-        app:layout_constraintBottom_toBottomOf="@+id/difficulty"
-        >
-        <TextView
-            android:id="@+id/labelDifficulty"
-            android:text="Use Time Limit?"
-            android:textColor="#ffffff"
-            android:layout_gravity="center"
-            android:layout_marginBottom="50dp"
-            android:textSize="25dp"
-            android:fontFamily="@font/quicksand_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-        <ImageView
-            android:id="@+id/yes"
-            android:src="@drawable/yes"
-            android:layout_width="200dp"
-            android:layout_gravity="center"
-            android:layout_height="90dp"
-            />
-
-
-        <ImageView
-            android:id="@+id/no"
-            android:src="@drawable/no"
-            android:layout_width="200dp"
-            android:layout_gravity="center"
-            android:layout_height="90dp"
-            />
-
-
-
-    </GridLayout>
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/back"
+        app:layout_constraintBottom_toTopOf="@id/difficulty"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"

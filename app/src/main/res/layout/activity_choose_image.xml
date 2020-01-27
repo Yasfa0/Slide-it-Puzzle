@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/back"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
         android:src="@drawable/btn_kembali"
         android:layout_marginRight="@dimen/_20sdp"
         app:layout_constraintRight_toLeftOf="@id/pad_icon"
@@ -22,19 +22,19 @@
 
     <ImageView
         android:id="@+id/pad_icon"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
         android:src="@drawable/pad_icon"
         app:layout_constraintBottom_toTopOf="@id/adsLinear"
-        android:layout_marginBottom="@dimen/_40sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
 
     <ImageView
         android:id="@+id/next_img"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
         android:src="@drawable/btn_selanjutnya"
         android:layout_marginLeft="@dimen/_20sdp"
         app:layout_constraintLeft_toRightOf="@id/pad_icon"

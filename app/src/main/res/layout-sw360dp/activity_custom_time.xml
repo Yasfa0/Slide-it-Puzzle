@@ -252,8 +252,8 @@
         android:layout_marginRight="@dimen/_40sdp"
         android:background="@color/white2"
         android:outlineAmbientShadowColor="@color/white2"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="2dp"
+        app:cardCornerRadius="@dimen/_30sdp"
+        app:cardElevation="@dimen/_2sdp"
         app:contentPadding="@dimen/_14sdp"
         app:layout_constraintBottom_toTopOf="@id/numpad"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -272,22 +272,22 @@
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="@dimen/_20sdp"
                 android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="35dp" />
+                android:textSize="35sp" />
 
             <TextView
                 android:id="@+id/input2"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="@dimen/_20sdp"
                 android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="35dp" />
+                android:textSize="35sp" />
 
             <TextView
                 style="@style/Base.TextAppearance.AppCompat.Headline"
@@ -303,11 +303,11 @@
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/_20sdp"
                 android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="35dp" />
+                android:textSize="35sp" />
 
 
             <TextView
@@ -315,11 +315,11 @@
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/_20sdp"
                 android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="35dp" />
+                android:textSize="35sp" />
 
         </GridLayout>
 

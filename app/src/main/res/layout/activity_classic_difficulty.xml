@@ -28,7 +28,8 @@
         app:layout_constraintBottom_toTopOf="@id/adsLinear"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:src="@drawable/blankspace" />
+        android:src="@drawable/blankspace"
+        />
 
 
     <GridLayout
@@ -51,7 +52,7 @@
             android:layout_marginBottom="@dimen/_25sdp"
             android:textSize="@dimen/_25sdp"
             android:layout_gravity="center"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/quicksand_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -59,16 +60,18 @@
         <ImageView
             android:id="@+id/yes"
             android:src="@drawable/yes"
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="@dimen/_90sdp"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_60sdp"
             />
 
 
         <ImageView
             android:id="@+id/no"
             android:src="@drawable/no"
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="@dimen/_90sdp"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_60sdp"
             />
 
 

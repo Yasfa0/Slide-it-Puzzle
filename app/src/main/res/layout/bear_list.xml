@@ -13,7 +13,7 @@
         android:layout_weight="0.8"
         android:fontFamily="@font/quicksand_bold"
         android:text="Ujang"
-        android:textSize="18sp">
+        android:textSize="@dimen/_18sdp">
     </TextView>
 
     <LinearLayout
@@ -29,7 +29,7 @@
             android:textColor="#c90000"
             android:fontFamily="@font/gothic"
             android:text="12:30"
-            android:textSize="14sp">
+            android:textSize="@dimen/_14sdp">
 
         </TextView>
 
@@ -40,7 +40,7 @@
             android:textColor="#00c000"
             android:fontFamily="@font/gothic"
             android:text="5X6"
-            android:textSize="14sp">
+            android:textSize="@dimen/_14sdp">
 
         </TextView>
     </LinearLayout>
@@ -55,7 +55,7 @@
         android:text="170000"
         android:layout_weight="1"
         android:textColor="#000000"
-        android:textSize="18sp">
+        android:textSize="@dimen/_18sdp">
 
     </TextView>
 

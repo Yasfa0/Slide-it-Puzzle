@@ -11,8 +11,6 @@ public class UjangEffect {
 
     //Ieu keur ImageView
     public void clickAnim(final ImageView ujangImage) {
-
-
         new CountDownTimer(300, 10) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -36,7 +34,7 @@ public class UjangEffect {
                         ujangImage.setScaleX((float) 0.9 + i / 500);
                         ujangImage.setScaleY((float) 0.9 + i / 500);
                     }
-                } else if (millisUntilFinished > 30) {
+                } else if (millisUntilFinished > 55) {
                     float i = millisUntilFinished % 100;
 
                     if (i == 0) {
@@ -64,8 +62,6 @@ public class UjangEffect {
     }
 
     public void clickAnim(final TextView ujangImage) {
-
-
         new CountDownTimer(300, 10) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -119,10 +115,6 @@ public class UjangEffect {
     //Ieu keur ImageButton
     //Jero na mah keneh kehed
     //Beda na ngan Tipe na hungkul
-    public void clickButtonAnim(ImageButton ujangButton) {
-        ujangButton.setScaleX((float) 0.85);
-        ujangButton.setScaleY((float) 0.85);
-    }
 
 
 }
