@@ -11,8 +11,9 @@
         android:id="@+id/preview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand_bold"
         android:text="Pratinjau"
-        android:textSize="30dp"
+        android:textSize="@dimen/_30sdp"
         app:layout_constraintLeft_toLeftOf="@id/card"
         app:layout_constraintBottom_toTopOf="@+id/card"
         tools:layout_editor_absoluteX="40dp" />
@@ -31,8 +32,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
-        android:layout_width="230dp"
-        android:layout_height="210dp"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
         android:layout_gravity="center"
         android:orientation="vertical"
         android:paddingTop="40dp"
@@ -46,8 +47,9 @@
 
         <ImageView
             android:id="@+id/gambar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_gravity="center">
         </ImageView>
 
     </androidx.cardview.widget.CardView>

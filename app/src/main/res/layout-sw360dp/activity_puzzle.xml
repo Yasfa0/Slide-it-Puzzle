@@ -171,15 +171,15 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
-        android:layout_width="280dp"
-        android:layout_height="280dp"
+        android:layout_width="@dimen/_195sdp"
+        android:layout_height="@dimen/_195sdp"
         android:layout_gravity="center"
-        android:layout_marginBottom="70dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="@dimen/_70sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:elevation="0dp"
         android:orientation="vertical"
-        android:paddingTop="40dp"
-        android:visibility="visible"
+        android:paddingTop="@dimen/_40sdp"
+        android:visibility="invisible"
         app:cardBackgroundColor="@color/white2"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@id/pad_up"
@@ -187,14 +187,15 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <FrameLayout
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_250sdp"
             android:layout_gravity="center">
 
             <FrameLayout
                 android:id="@+id/frame"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
 
             </FrameLayout>
 

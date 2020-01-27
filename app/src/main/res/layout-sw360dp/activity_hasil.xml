@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:id="@+id/teks"
+                android:fontFamily="@font/quicksand_bold"
                 android:text="Enter your Name"
                 android:textColor="#111"
                 android:textSize="20sp"

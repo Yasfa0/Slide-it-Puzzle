@@ -118,6 +118,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textAlignment="center"
+            android:fontFamily="@font/quicksand_bold"
             android:text="Sedang memuat Skor \n Tunggu bentar ya.."
             android:textColor="@color/colorPrimary"
             />
