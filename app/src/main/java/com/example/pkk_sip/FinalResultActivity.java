@@ -100,8 +100,8 @@ public class FinalResultActivity extends AppCompatActivity {
                         backSound();
                     }
                 };
-                    Handler timer = new Handler();
-                    timer.postDelayed(run, 300);
+                Handler timer = new Handler();
+                timer.postDelayed(run, 300);
             }
         });
 

@@ -10,41 +10,41 @@
 
     <ImageView
         android:id="@+id/back"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
         android:src="@drawable/btn_kembali"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="@dimen/_20sdp"
         app:layout_constraintRight_toLeftOf="@id/pad_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="9dp"
+        app:layout_constraintBottom_toTopOf="@id/adsLinear"
+        android:layout_marginBottom="@dimen/_9sdp"
         />
 
 
     <ImageView
         android:id="@+id/pad_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
         android:src="@drawable/pad_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@id/adsLinear"
+        android:layout_marginBottom="@dimen/_40sdp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
 
     <ImageView
         android:id="@+id/next_img"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
         android:src="@drawable/btn_selanjutnya"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/_20sdp"
         app:layout_constraintLeft_toRightOf="@id/pad_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/adsLinear"
         />
 
     <ImageView
         android:id="@+id/image"
         android:onClick="Pilih"
-        android:layout_margin="30dp"
+        android:layout_margin="@dimen/_30sdp"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -55,6 +55,7 @@
         />
 
     <LinearLayout
+        android:id="@+id/adsLinear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

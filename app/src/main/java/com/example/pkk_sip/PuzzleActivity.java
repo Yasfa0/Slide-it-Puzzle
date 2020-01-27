@@ -623,9 +623,9 @@ public class PuzzleActivity extends AppCompatActivity {
                     }
                     Bearmove(p, t);
                     initslide();
-                    if(status_suara){
-//                        playSound();
-                    }
+                    //if(status_suara){
+                    //playSound();
+                    //}
 
                     break;
                 }

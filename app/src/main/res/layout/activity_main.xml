@@ -29,6 +29,7 @@
 
             />
         <ImageView
+            android:id="@+id/bgm"
             android:layout_height="40dp"
             android:layout_width="40dp"
             android:src="@drawable/musik"
@@ -53,7 +54,7 @@
         android:rowCount="4"
         android:columnCount="1"
         app:layout_constraintTop_toBottomOf="@id/logo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ads"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         >
@@ -61,21 +62,23 @@
 
         <ImageView
             android:id="@+id/custom"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:layout_width="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_gravity="center"
             android:src="@drawable/btn_mulai_game"
             android:adjustViewBounds="true"
-            android:maxHeight="100dp"
+            android:maxHeight="90dp"
             android:scaleType="centerInside"
             />
 
 
         <ImageView
             android:id="@+id/ranking"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:src="@drawable/btn_ranking"
             android:adjustViewBounds="true"
             android:maxHeight="100dp"
@@ -84,9 +87,10 @@
 
         <ImageView
             android:id="@+id/exit"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:src="@drawable/btn_keluar_game"
             android:adjustViewBounds="true"
             android:maxHeight="100dp"
@@ -95,6 +99,7 @@
 
     </GridLayout>
     <LinearLayout
+        android:id="@+id/ads"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

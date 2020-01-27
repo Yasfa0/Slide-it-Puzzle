@@ -2,6 +2,8 @@ package com.example.pkk_sip;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,9 +29,10 @@ import maes.tech.intentanim.CustomIntent;
 public class MainActivity extends AppCompatActivity {
 
     Context context;
+    BGMClass bgmClass = new BGMClass();
     UjangEffect ujang = new UjangEffect();
-//    TextView testText;
-    ImageView customMenu, ranking, sound, exit;
+    //    TextView testText;
+    ImageView customMenu, ranking, sound, exit,btn_bgm;
     MediaPlayer ok, bgm;
     Bundle firstBundle;
     boolean firstTime;
@@ -59,11 +62,15 @@ public class MainActivity extends AppCompatActivity {
 
         //Sementara
         if (firstTime) {
-            bgm = MediaPlayer.create(this, R.raw.bgm_menu);
-            bgm.setLooping(true);
-            bgm.start();
+//            bgm = MediaPlayer.create(getApplication(), R.raw.bgm_menu);
+//            bgm.setLooping(true);
+//            bgm.start();
+            context = getApplicationContext();
+            bgmClass.startBGM(context);
         }
 
+
+        btn_bgm = findViewById(R.id.bgm);
         sound = findViewById(R.id.sound);
 //        testText = findViewById(R.id.soundTest);
         customMenu = (ImageView) findViewById(R.id.custom);
@@ -74,14 +81,22 @@ public class MainActivity extends AppCompatActivity {
 
 //        testText.setText(pref.getString("soundSetting", null));
 
-        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
-            sound.setColorFilter(Color.argb(0, 255, 255, 255));
-
-        }
-
-        if (pref.getString("soundSetting", null).equalsIgnoreCase("OFF")) {
-            sound.setColorFilter(Color.argb(100, 20, 20, 20));
-        }
+//        if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
+//            sound.setColorFilter(Color.argb(0, 255, 255, 255));
+//
+//        }
+//
+//        if (pref.getString("soundSetting", null).equalsIgnoreCase("OFF")) {
+//            sound.setColorFilter(Color.argb(100, 20, 20, 20));
+//        }
+//
+//        if(pref.getString("BGMSetting", null).equalsIgnoreCase("ON")){
+//            btn_bgm.setColorFilter(Color.argb(0,255,255,255));
+//        }
+//
+//        if (pref.getString("BGMSetting", null).equalsIgnoreCase("OFF")){
+//            btn_bgm.setColorFilter(Color.argb(100,20,20,20));
+//        }
 
 
         sound.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +115,29 @@ public class MainActivity extends AppCompatActivity {
                     editor.apply();
                     sound.setColorFilter(Color.argb(0, 255, 255, 255));
 //                    testText.setText(pref.getString("soundSetting", null));
+                }
+            }
+        });
+
+        btn_bgm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ujang.clickAnim(btn_bgm);
+                if (pref.getString("BGMSetting",null).equalsIgnoreCase("ON")){
+                    editor = pref.edit();
+                    editor.putString("BGMSetting","OFF");
+                    editor.apply();
+                    btn_bgm.setColorFilter(Color.argb(100,20,20,20));
+//                    bgm.stop();
+//                    bgm.release();
+                    bgmClass.stopBGM();
+                }else {
+                    editor = pref.edit();
+                    editor.putString("BGMSetting","ON");
+                    editor.apply();
+                    btn_bgm.setColorFilter(Color.argb(0,255,255,255));
+                    Context bgmcontext = getApplicationContext();
+                    bgmClass.startBGM(bgmcontext);
                 }
             }
         });

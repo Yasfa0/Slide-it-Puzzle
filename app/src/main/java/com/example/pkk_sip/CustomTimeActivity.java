@@ -125,10 +125,10 @@ public class CustomTimeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 posisi = 1;
-                input1.setTextSize(70);
-                input2.setTextSize(50);
-                input3.setTextSize(50);
-                input4.setTextSize(50);
+                input1.setTextSize(40);
+                input2.setTextSize(35);
+                input3.setTextSize(35);
+                input4.setTextSize(35);
                 playSound();
             }
         });
@@ -137,10 +137,10 @@ public class CustomTimeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 posisi = 2;
-                input1.setTextSize(50);
-                input2.setTextSize(70);
-                input3.setTextSize(50);
-                input4.setTextSize(50);
+                input1.setTextSize(35);
+                input2.setTextSize(40);
+                input3.setTextSize(35);
+                input4.setTextSize(35);
                 playSound();
             }
         });
@@ -150,10 +150,10 @@ public class CustomTimeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 posisi = 3;
-                input1.setTextSize(50);
-                input2.setTextSize(50);
-                input3.setTextSize(70);
-                input4.setTextSize(50);
+                input1.setTextSize(35);
+                input2.setTextSize(35);
+                input3.setTextSize(40);
+                input4.setTextSize(35);
                 playSound();
             }
         });
@@ -162,10 +162,10 @@ public class CustomTimeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 posisi = 4;
-                input1.setTextSize(50);
-                input2.setTextSize(50);
-                input3.setTextSize(50);
-                input4.setTextSize(70);
+                input1.setTextSize(35);
+                input2.setTextSize(35);
+                input3.setTextSize(35);
+                input4.setTextSize(40);
                 playSound();
             }
         });
@@ -197,10 +197,10 @@ public class CustomTimeActivity extends AppCompatActivity {
                         input3.setText("0");
                         input4.setText("0");
                         posisi = 1;
-                        input1.setTextSize(70);
-                        input2.setTextSize(50);
-                        input3.setTextSize(50);
-                        input4.setTextSize(50);
+                        input1.setTextSize(40);
+                        input2.setTextSize(35);
+                        input3.setTextSize(35);
+                        input4.setTextSize(35);
                         playSound();
 
 
@@ -234,9 +234,9 @@ public class CustomTimeActivity extends AppCompatActivity {
                 arrayinput.get(posisi - 1).setText("0");
                 for (int i = 0; i < 4; i++) {
                     if ((i + 1) == posisi) {
-                        arrayinput.get(i).setTextSize(70);
+                        arrayinput.get(i).setTextSize(40);
                     } else {
-                        arrayinput.get(posisi).setTextSize(50);
+                        arrayinput.get(posisi).setTextSize(35);
                     }
                 }
 
@@ -328,9 +328,9 @@ public class CustomTimeActivity extends AppCompatActivity {
 
                         for (int b = 0; b < 4; b++) {
                             if (b == i) {
-                                arrayinput.get(b).setTextSize(70);
+                                arrayinput.get(b).setTextSize(40);
                             } else {
-                                arrayinput.get(b).setTextSize(50);
+                                arrayinput.get(b).setTextSize(35);
                             }
 
                         }

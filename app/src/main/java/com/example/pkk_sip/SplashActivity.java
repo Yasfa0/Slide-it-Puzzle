@@ -28,6 +28,7 @@ public class SplashActivity extends AppCompatActivity {
 
         editor = pref.edit();
         editor.putString("soundSetting", "ON");
+        editor.putString("BGMSetting","ON");
         editor.apply();
 
 

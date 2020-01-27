@@ -15,7 +15,7 @@
         android:src="@drawable/btn_kembali"
         android:layout_marginRight="20dp"
         app:layout_constraintRight_toLeftOf="@id/pad_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/adsLinear"
         android:layout_marginBottom="9dp"
         />
 
@@ -25,7 +25,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/pad_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/adsLinear"
         android:layout_marginBottom="40dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -38,7 +38,7 @@
         android:src="@drawable/btn_selanjutnya"
         android:layout_marginLeft="20dp"
         app:layout_constraintLeft_toRightOf="@id/pad_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/adsLinear"
         />
 
     <ImageView
@@ -55,6 +55,7 @@
         />
 
     <LinearLayout
+        android:id="@+id/adsLinear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

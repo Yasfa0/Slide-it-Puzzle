@@ -20,12 +20,13 @@
 
         <TextView
             android:id="@+id/num1"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:layout_row="0"
             android:layout_column="0"
             android:background="@drawable/kotak"
+            android:fontFamily="@font/quicksand_bold"
             android:text="1"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -35,10 +36,11 @@
 
         <TextView
             android:id="@+id/num2"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/kotak"
+            android:fontFamily="@font/quicksand_bold"
             android:text="2"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -48,10 +50,11 @@
 
         <TextView
             android:id="@+id/num3"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/kotak"
+            android:fontFamily="@font/quicksand_bold"
             android:text="3"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -60,10 +63,11 @@
 
         <TextView
             android:id="@+id/num4"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/kotak"
+            android:fontFamily="@font/quicksand_bold"
             android:text="4"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -72,10 +76,11 @@
 
         <TextView
             android:id="@+id/num5"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/kotak"
+            android:fontFamily="@font/quicksand_bold"
             android:text="5"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -84,10 +89,11 @@
 
         <TextView
             android:id="@+id/num6"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/kotak"
+            android:fontFamily="@font/quicksand_bold"
             android:text="6"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -96,10 +102,11 @@
 
         <TextView
             android:id="@+id/num7"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/kotak"
+            android:fontFamily="@font/quicksand_bold"
             android:text="7"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -108,10 +115,11 @@
 
         <TextView
             android:id="@+id/num8"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/kotak"
+            android:fontFamily="@font/quicksand_bold"
             android:text="8"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -120,10 +128,11 @@
 
         <TextView
             android:id="@+id/num9"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/kotak"
+            android:fontFamily="@font/quicksand_bold"
             android:text="9"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -132,10 +141,11 @@
 
         <TextView
             android:id="@+id/del"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/kotak"
+            android:fontFamily="@font/quicksand_bold"
             android:text="Del"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -145,10 +155,11 @@
 
         <TextView
             android:id="@+id/num0"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/kotak"
+            android:fontFamily="@font/quicksand_bold"
             android:text="0"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -158,15 +169,16 @@
 
         <TextView
             android:id="@+id/clear"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/kotak"
+            android:fontFamily="@font/quicksand_bold"
             android:text="Clear"
             android:textAlignment="center"
             android:textColor="#000000"
             android:gravity="center"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
 
 
@@ -178,29 +190,30 @@
         android:layout_height="60dp"
         android:layout_marginBottom="32dp"
         android:src="@drawable/alarm"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/adsLinear"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <ImageView
         android:id="@+id/right"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
         android:src="@drawable/btn_selanjutnya"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/_20sdp"
         app:layout_constraintLeft_toRightOf="@id/pad_icon"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/adsLinear"
+        />
 
     <ImageView
         android:id="@+id/left"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
         android:src="@drawable/btn_kembali"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="@dimen/_20sdp"
         app:layout_constraintRight_toLeftOf="@id/pad_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="9dp"
+        app:layout_constraintBottom_toTopOf="@id/adsLinear"
+        android:layout_marginBottom="@dimen/_9sdp"
         />
 
     <TextView
@@ -209,7 +222,7 @@
         android:layout_height="wrap_content"
         android:text="Masukan Batas Waktu"
         android:textSize="25sp"
-        android:fontFamily="@font/gothic"
+        android:fontFamily="@font/quicksand_bold"
         android:textColor="@color/white2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/Penjelasan"
@@ -233,19 +246,19 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_40sdp"
         android:background="@color/white2"
         android:outlineAmbientShadowColor="@color/white2"
         app:cardCornerRadius="40dp"
         app:cardElevation="2dp"
-        app:contentPadding="16dp"
+        app:contentPadding="@dimen/_14sdp"
         app:layout_constraintBottom_toTopOf="@id/numpad"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TextWaktu"
+        app:layout_constraintTop_toBottomOf="@id/Penjelasan"
         >
 
         <GridLayout
@@ -263,7 +276,7 @@
                 android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="50dp" />
+                android:textSize="35dp" />
 
             <TextView
                 android:id="@+id/input2"
@@ -274,7 +287,7 @@
                 android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="50dp" />
+                android:textSize="35dp" />
 
             <TextView
                 style="@style/Base.TextAppearance.AppCompat.Headline"
@@ -283,7 +296,7 @@
                 android:fontFamily="@font/gothic"
                 android:text=":"
                 android:textAlignment="center"
-                android:textSize="50dp" />
+                android:textSize="35dp" />
 
             <TextView
                 android:id="@+id/input3"
@@ -294,7 +307,7 @@
                 android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="50dp" />
+                android:textSize="35dp" />
 
 
             <TextView
@@ -306,13 +319,14 @@
                 android:fontFamily="@font/gothic"
                 android:text="0"
                 android:textAlignment="center"
-                android:textSize="50dp" />
+                android:textSize="35dp" />
 
         </GridLayout>
 
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
+        android:id="@+id/adsLinear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
