@@ -25,6 +25,7 @@ public class ImageOptionActivity extends AppCompatActivity {
     CountDownTimer jeda;
     MediaPlayer voice;
     SharedPreferences pref;
+    SharedPreferences.Editor editor;
     MediaPlayer bgm;
 
 
@@ -74,6 +75,11 @@ public class ImageOptionActivity extends AppCompatActivity {
         } else {
 
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     public void backSound() {

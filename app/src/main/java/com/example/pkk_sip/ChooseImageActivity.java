@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.RectF;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -34,12 +35,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import maes.tech.intentanim.CustomIntent;
-
 public class ChooseImageActivity extends AppCompatActivity {
 
     ImageView back, next;
     MediaPlayer voice;
     SharedPreferences pref;
+    SharedPreferences.Editor editor;
     ArrayList<Bitmap> data_Gambar = new ArrayList<Bitmap>();
 
     Bundle dataBundle;
@@ -195,6 +196,7 @@ public class ChooseImageActivity extends AppCompatActivity {
 
         }
     }
+
 
     public void backSound() {
 

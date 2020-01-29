@@ -60,7 +60,6 @@ public class RankingActivity extends AppCompatActivity {
                 loadingText.setVisibility(View.INVISIBLE);
                 for (DataSnapshot bearss : dataSnapshot.getChildren()) {
                     Player bear = bearss.getValue(Player.class);
-
                     blist.add(bear);
                 }
 

@@ -2,6 +2,9 @@ package com.example.pkk_sip;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
 
 import android.app.Application;
 import android.content.Context;
@@ -22,6 +25,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.common.api.internal.LifecycleFragment;
 
 import maes.tech.intentanim.CustomIntent;
 
@@ -29,15 +33,24 @@ import maes.tech.intentanim.CustomIntent;
 public class MainActivity extends AppCompatActivity {
 
     Context context;
+
+
     BGMClass bgmClass = new BGMClass();
     UjangEffect ujang = new UjangEffect();
     //    TextView testText;
     ImageView customMenu, ranking, sound, exit,btn_bgm;
-    MediaPlayer ok, bgm;
+    MediaPlayer ok;
     Bundle firstBundle;
     boolean firstTime;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        bgmClass.stopBGM();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         btn_bgm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 ujang.clickAnim(exit);
 
                 backSound();
+                bgmClass.stopBGM();
 
                 Runnable run = new Runnable() {
                     @Override
@@ -209,11 +225,12 @@ public class MainActivity extends AppCompatActivity {
                         {
 
                             finish();
-                            //System.exit(1);
-                        }
 
+                        }
+//                        System.exit(1);
                         startActivity(toLauncher);
-                        //finish();
+
+                        finish();
                         CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                     }
                 };
@@ -235,7 +252,6 @@ public class MainActivity extends AppCompatActivity {
         // });
 
     }
-
     public void playSound() {
 
         if (pref.getString("soundSetting", null).equalsIgnoreCase("ON")) {
