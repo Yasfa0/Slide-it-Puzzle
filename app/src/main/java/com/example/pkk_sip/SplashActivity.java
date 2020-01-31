@@ -14,22 +14,13 @@ import maes.tech.intentanim.CustomIntent;
 public class SplashActivity extends AppCompatActivity {
 
     private int waktuloading = 1000;
-    SharedPreferences pref;
-    SharedPreferences.Editor editor;
+
     MediaPlayer bgm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-
-        pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
-
-        editor = pref.edit();
-        editor.putString("soundSetting", "ON");
-        editor.putString("BGMSetting","ON");
-        editor.apply();
 
 
         new Handler().postDelayed(new Runnable() {

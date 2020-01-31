@@ -1,19 +1,19 @@
 package com.example.pkk_sip;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 
 public class BGMClass {
+    static MediaPlayer bgmPlayer;
 
-    MediaPlayer bgmPlayer;
-
-    public void startBGM(Context AppContext){
+    public static void startBGM(Context AppContext){
         bgmPlayer = MediaPlayer.create(AppContext, R.raw.bgm_menu);
         bgmPlayer.setLooping(true);
         bgmPlayer.start();
     }
 
-    public void stopBGM(){
+    public static void stopBGM(){
         bgmPlayer.stop();
         bgmPlayer.release();
     }

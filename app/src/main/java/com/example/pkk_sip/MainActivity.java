@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     Context context;
 
 
-    BGMClass bgmClass = new BGMClass();
+//    BGMClass bgmClass = new BGMClass();
     UjangEffect ujang = new UjangEffect();
     //    TextView testText;
     ImageView customMenu, ranking, sound, exit,btn_bgm;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        bgmClass.stopBGM();
+        BGMClass.stopBGM();
     }
 
     @Override
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 //            bgm.setLooping(true);
 //            bgm.start();
             context = getApplicationContext();
-            bgmClass.startBGM(context);
+            BGMClass.startBGM(context);
         }
 
 
@@ -145,14 +145,14 @@ public class MainActivity extends AppCompatActivity {
                     btn_bgm.setColorFilter(Color.argb(100,20,20,20));
 //                    bgm.stop();
 //                    bgm.release();
-                    bgmClass.stopBGM();
+                    BGMClass.stopBGM();
                 }else {
                     editor = pref.edit();
                     editor.putString("BGMSetting","ON");
                     editor.apply();
                     btn_bgm.setColorFilter(Color.argb(0,255,255,255));
                     Context bgmcontext = getApplicationContext();
-                    bgmClass.startBGM(bgmcontext);
+                    BGMClass.startBGM(bgmcontext);
                 }
             }
         });
@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 ujang.clickAnim(exit);
 
                 backSound();
-                bgmClass.stopBGM();
+                BGMClass.stopBGM();
 
                 Runnable run = new Runnable() {
                     @Override
