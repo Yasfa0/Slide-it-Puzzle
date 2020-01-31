@@ -68,8 +68,12 @@ public class Preview extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Intent back = new Intent(Preview.this, ChooseImageActivity.class);
+                        Intent back = new Intent(Preview.this, TimeLimitActivity.class);
                         back.putExtra("waktu", waktu);
+                        String p = getIntent().getStringExtra("p");
+                        String t = getIntent().getStringExtra("l");
+                        back.putExtra("p",p);
+                        back.putExtra("l",t);
                         startActivity(back);
                         CustomIntent.customType(Preview.this, "fadein-to-fadeout");
                         backSound();

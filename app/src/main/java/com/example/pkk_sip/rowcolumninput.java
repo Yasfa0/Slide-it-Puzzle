@@ -75,11 +75,11 @@ public class rowcolumninput extends AppCompatActivity {
                     @Override
                     public void run() {
 
-//                        Intent back = new Intent(rowcolumninput.this, CustomTimeActivity.class);
-//                        startActivity(back);
-                        onBackPressed();
+                        Intent back = new Intent(rowcolumninput.this, TimeLimitActivity.class);
+                        startActivity(back);
+ //                       onBackPressed();
 
-//                        CustomIntent.customType(rowcolumninput.this, "fadein-to-fadeout");
+                        CustomIntent.customType(rowcolumninput.this, "fadein-to-fadeout");
                         backSound();
                     }
                 };
