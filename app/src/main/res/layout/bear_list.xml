@@ -5,21 +5,27 @@
     android:weightSum="3"
     android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/iconRank"
-        android:layout_width="@dimen/_20sdp"
-        android:layout_height="@dimen/_20sdp"/>
-
-    <TextView
-        android:id="@+id/nama"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="#000000"
-        android:layout_weight="0.8"
-        android:fontFamily="@font/quicksand_bold"
-        android:text="Ujang"
-        android:textSize="@dimen/_18sdp">
-    </TextView>
+        android:orientation="horizontal"
+        android:layout_weight="0.8">
+        <ImageView
+            android:id="@+id/iconRank"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            />
+        <TextView
+            android:id="@+id/nama"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#000000"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="Ujang"
+            android:textSize="@dimen/_18sdp">
+        </TextView>
+
+    </LinearLayout>
 
 
 
@@ -37,7 +43,6 @@
             android:fontFamily="@font/gothic"
             android:text="12:30"
             android:textSize="@dimen/_14sdp">
-
         </TextView>
 
         <TextView
@@ -52,7 +57,6 @@
         </TextView>
     </LinearLayout>
 
-
     <TextView
         android:id="@+id/skor"
         android:layout_width="match_parent"
@@ -63,7 +67,6 @@
         android:layout_weight="1"
         android:textColor="#000000"
         android:textSize="@dimen/_18sdp">
-
     </TextView>
 
 </LinearLayout>

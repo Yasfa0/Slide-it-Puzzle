@@ -52,7 +52,7 @@ public class FinalResultActivity extends AppCompatActivity {
     UjangEffect ujang = new UjangEffect();
 
     public void initdb() {
-        db.orderByChild("skor").addValueEventListener(new ValueEventListener() {
+        db.orderByChild("skor").limitToLast(11).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 blist.clear();

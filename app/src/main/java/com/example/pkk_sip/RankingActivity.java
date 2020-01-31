@@ -53,7 +53,7 @@ public class RankingActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        db.orderByChild("skor").addValueEventListener(new ValueEventListener() {
+        db.orderByChild("skor").limitToLast(100).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 blist.clear();
