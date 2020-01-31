@@ -103,9 +103,7 @@ public class ChooseImageActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Intent back = new Intent(ChooseImageActivity.this, rowcolumninput.class);
-                        back.putExtra("waktu", waktu);
-                        startActivity(back);
+                        onBackPressed();
                         backSound();
                         CustomIntent.customType(ChooseImageActivity.this, "fadein-to-fadeout");
                     }

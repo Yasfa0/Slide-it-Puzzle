@@ -126,9 +126,7 @@ public class RankingActivity extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-
-                        Intent back = new Intent(RankingActivity.this, MainActivity.class);
-                        startActivity(back);
+                        onBackPressed();
                         CustomIntent.customType(RankingActivity.this, "fadein-to-fadeout");
                         backSound();
 

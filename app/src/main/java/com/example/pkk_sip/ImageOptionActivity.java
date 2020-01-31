@@ -51,8 +51,7 @@ public class ImageOptionActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toMenu = new Intent(ImageOptionActivity.this, MainActivity.class);
-                startActivity(toMenu);
+                onBackPressed();
                 backSound();
                 CustomIntent.customType(ImageOptionActivity.this, "fadein-to-fadeout");
             }

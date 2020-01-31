@@ -108,8 +108,7 @@ public class CustomTimeActivity extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-                        Intent back = new Intent(CustomTimeActivity.this, TimeLimitActivity.class);
-                        startActivity(back);
+                        onBackPressed();
                         backSound();
                         CustomIntent.customType(CustomTimeActivity.this, "fadein-to-fadeout");
                     }

@@ -67,14 +67,15 @@ public class Preview extends AppCompatActivity {
                 Runnable run = new Runnable() {
                     @Override
                     public void run() {
-
-                        Intent back = new Intent(Preview.this, TimeLimitActivity.class);
-                        back.putExtra("waktu", waktu);
-                        String p = getIntent().getStringExtra("p");
-                        String t = getIntent().getStringExtra("l");
-                        back.putExtra("p",p);
-                        back.putExtra("l",t);
-                        startActivity(back);
+//
+//                        Intent back = new Intent(Preview.this, TimeLimitActivity.class);
+//                        back.putExtra("waktu", waktu);
+//                        String p = getIntent().getStringExtra("p");
+//                        String t = getIntent().getStringExtra("l");
+//                        back.putExtra("p",p);
+//                        back.putExtra("l",t);
+                        onBackPressed();
+                        //startActivity(back);
                         CustomIntent.customType(Preview.this, "fadein-to-fadeout");
                         backSound();
 
