@@ -35,9 +35,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/gothic"
-        android:text="Global Ranking"
+        android:text="Global Ranking \n(Top 50)"
         android:textColor="@color/white2"
-        android:textSize="30dp"
+        android:textSize="20sp"
+        android:textAlignment="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo" />

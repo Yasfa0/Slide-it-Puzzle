@@ -43,6 +43,8 @@ public class BearList extends ArrayAdapter {
             icon_rank.setBackgroundResource(R.drawable.medal_silver);
         }else if (position == 2){
             icon_rank.setBackgroundResource(R.drawable.medal_bronze);
+        }else if(position >= 3 && position <= 9){
+            icon_rank.setBackgroundResource(R.drawable.small_star);
         }
 
         txt_nama.setText(bear.getNama());

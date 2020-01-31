@@ -12,8 +12,8 @@
         android:layout_weight="0.8">
         <ImageView
             android:id="@+id/iconRank"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
             />
         <TextView
             android:id="@+id/nama"
