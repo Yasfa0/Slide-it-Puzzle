@@ -8,8 +8,19 @@
     android:background="@drawable/gradientbackground"
     >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_50sdp"
+        android:textAlignment="center"
+        android:text="Nyalakan Internet\n bila ingin mengupload Score"
+        android:textSize="@dimen/_15sdp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/card_name"
+        />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_name"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_margin="40sp"
