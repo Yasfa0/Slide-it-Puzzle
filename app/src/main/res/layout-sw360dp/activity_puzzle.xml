@@ -194,16 +194,18 @@
             <FrameLayout
                 android:id="@+id/frame"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center">
+                android:layout_height="match_parent">
 
             </FrameLayout>
 
-            <ImageView
-                android:id="@+id/hint_image"
+            <FrameLayout
+                android:id="@+id/framehint"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="invisible"></ImageView>
+                android:layout_height="match_parent">
+
+            </FrameLayout>
+
+
 
         </FrameLayout>
 

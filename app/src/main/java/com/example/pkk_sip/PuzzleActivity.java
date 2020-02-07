@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -56,11 +57,11 @@ public class PuzzleActivity extends AppCompatActivity {
     SharedPreferences pref;
 
     ArrayList<Bearblock> listblock;
+    ArrayList<ImageView> listimg;
     ImageView leftbtn;
     ImageView rightbtn;
     ImageView upbtn;
     ImageView downbtn;
-    ImageView gambar_hint;
     int[] currentpos = new int[]{3, 3};
     int[] leftpos = new int[]{2, 3};
     int[] rightpos = new int[]{4, 3};
@@ -103,7 +104,6 @@ public class PuzzleActivity extends AppCompatActivity {
         no3 = (ImageView) findViewById(R.id.no3);
         start = (ImageView) findViewById(R.id.start);
         blur = (ImageView) findViewById(R.id.blur);
-        gambar_hint = findViewById(R.id.hint_image);
 
 
         pref = getSharedPreferences("gamePrefs", Context.MODE_PRIVATE);
@@ -391,7 +391,6 @@ public class PuzzleActivity extends AppCompatActivity {
         randomizer();
 
 
-        hint((ImageView) findViewById(R.id.hint_image));
         hint((ImageView) findViewById(R.id.hint));
     }
 
@@ -499,7 +498,6 @@ public class PuzzleActivity extends AppCompatActivity {
         for(int i = 0;i<listblock.size();i++){
             ujang.clickAnim(listblock.get(i).getBlock());
         }
-
     }
 
     public void chimeSound() {
@@ -653,15 +651,18 @@ public class PuzzleActivity extends AppCompatActivity {
     }
 
     private void hint(ImageView img) {
-        final ImageView hint = findViewById(R.id.hint_image);
         final ImageView hint_btn = findViewById(R.id.hint);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hint.getVisibility() == View.VISIBLE) {
-                    hint.setVisibility(View.INVISIBLE);
-                } else if (hint.getVisibility() == View.INVISIBLE) {
-                    hint.setVisibility(View.VISIBLE);
+                if (listimg.get(0).getVisibility() == View.VISIBLE) {
+                    for(int i = 0;i<listimg.size();i++){
+                        listimg.get(i).setVisibility(View.INVISIBLE);
+                    }
+                } else if (listimg.get(0).getVisibility() == View.INVISIBLE) {
+                    for(int i = 0;i<listimg.size();i++){
+                        listimg.get(i).setVisibility(View.VISIBLE);
+                    }
                 }
                 ujang.clickAnim(hint_btn);
 
@@ -811,19 +812,30 @@ public class PuzzleActivity extends AppCompatActivity {
         uppos = new int[]{p, t - 1};
         downpos = new int[]{p, t + 1};
         ArrayList<LinearLayout> arrayll = new ArrayList<LinearLayout>();
+        ArrayList<LinearLayout> arrayhint = new ArrayList<LinearLayout>();
+
         int block_length = dpToPx(layout_p / (p + 1));
         int block_height = dpToPx(layout_t / (t + 1));
         FrameLayout fl = findViewById(R.id.frame);
+        FrameLayout fh = findViewById(R.id.framehint);
 //        FrameLayout fl = null;
         listblock = new ArrayList<Bearblock>();
+        listimg = new ArrayList<ImageView>();
         for (int i = 0; i <= t; i++) {
             LinearLayout ll = new LinearLayout(this);
+            LinearLayout hint = new LinearLayout(this);
             FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
                     dpToPx(layout_p), dpToPx(layout_t)
             );
 
+            FrameLayout.LayoutParams lh = new FrameLayout.LayoutParams(
+                    dpToPx(layout_p), dpToPx(layout_t)
+            );
+
             lp.setLayoutDirection(LinearLayout.HORIZONTAL);
+            lh.setLayoutDirection(LinearLayout.HORIZONTAL);
             arrayll.add(ll);
+            arrayhint.add(hint);
             for (int ii = 0; ii <= p; ii++) {
                 if (listblock.size() != ((p + 1) * (t + 1)) - 1) {
                     ImageView imv = new ImageView(this);
@@ -835,17 +847,31 @@ public class PuzzleActivity extends AppCompatActivity {
                     block.setStartposition();
                     LinearLayout.LayoutParams ip = new LinearLayout.LayoutParams(block_length, block_height);
                     ip.topMargin = i * block_height;
+
+                    LinearLayout.LayoutParams ih = new LinearLayout.LayoutParams(block_length, block_height);
+                    ih.topMargin = i * block_height;
+
+                    ImageView imh = new ImageView(this);
+                    imh.setImageBitmap(bitmapArrayList.get((i * 1) + (i * p) + ii));
+                    imh.setVisibility(View.INVISIBLE);
                     arrayll.get(i).addView(imv, ip);
+                    arrayhint.get(i).addView(imh,ih);
                     listblock.add(block);
+                    listimg.add(imh);
 
                 }
             }
 
             fl.addView(arrayll.get(i), lp);
+            fh.addView(arrayhint.get(i),lh);
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
                     dpToPx(layout_p), dpToPx(layout_t));
             params.gravity = Gravity.CENTER;
+            FrameLayout.LayoutParams paramsh = new FrameLayout.LayoutParams(
+                    dpToPx(layout_p), dpToPx(layout_t));
+            paramsh.gravity = Gravity.CENTER;
             fl.setLayoutParams(params);
+            fh.setLayoutParams(paramsh);
         }
     }
 
@@ -919,7 +945,6 @@ public class PuzzleActivity extends AppCompatActivity {
 
     private void initPicOOP() {
         Bitmap temp = getIntent().getParcelableExtra("Gambar");
-        gambar_hint.setImageBitmap(temp);
         for (int i = 0; i < t; i++) {
             for (int a = 0; a < p; a++) {
                 bitmapArrayList.add(crop(temp, a % p, i % t));
